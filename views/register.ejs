@@ -32,7 +32,7 @@
                 <br/>
                 <input type="button" class="button button-primary" value="提交" onclick="validate()" />
                 <input type="button" class="button button-highlight" value="重置" onclick="register_reset()"/>
-                <label id="message" style="color:#ff0000"></label>
+                <label id="message" style="color:#ff0000"><% if(message){%> <%=message %> <%}%></label>
             </form>
         </div>
     </div>

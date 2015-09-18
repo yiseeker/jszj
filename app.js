@@ -9,15 +9,16 @@ var passport=require('passport');
 var localStrategy=require('passport-local').Strategy;
 var session=require('express-session');
 var flash=require('connect-flash');
-var USER=require('./dbmodels/models').getModel('USER');
+var models=require('./dbmodels/models');
+var USER=models.getModel('USER');
 
 
-var routes = require('./routes/index');
+var routes = require('./routes/index');routes.SetModel(USER);
 var news = require('./routes/news');
 var recommend = require('./routes/recommend');
 var hot = require('./routes/activity');
 var error = require('./routes/error');
-var register = require('./routes/register');
+var register = require('./routes/register');register.SetModel(USER);
 
 var app = express();
 app.listen(8000,function(){

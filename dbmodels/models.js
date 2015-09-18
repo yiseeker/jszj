@@ -1,7 +1,7 @@
 /********************************Mongoose *************************************************************/
 var mongoose=require('mongoose');
 mongoose.connect('mongodb://localhost/jszj');
-var db=mongoose.connection;
+//var db=mongoose.connection;
 var list=new Array();
 
 var userSchema=mongoose.Schema({username:String,password:String,email:String,mobile:String});
