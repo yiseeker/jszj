@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-/* 推荐 */
 router.get('/', function(req, res) {
-  res.render('recommend',{'layout':'LAYOUT.ejs'});
+    res.render('error',{message:'success'});
 });
 
 module.exports = router;
