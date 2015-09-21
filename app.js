@@ -9,7 +9,7 @@ var passport=require('passport');
 var localStrategy=require('passport-local').Strategy;
 var session=require('express-session');
 var flash=require('connect-flash');
-
+var USER=require('./dbmodels/models').getModel('USER');
 
 
 var routes = require('./routes/index');
@@ -24,12 +24,7 @@ app.listen(8000,function(){
     console.log('[Server Start] : Listening port 8000.');
 });
 
-/********************************Mongoose *************************************************************/
-var mongoose=require('mongoose');
-var userSchema=mongoose.Schema({username:String,password:String});
-var USER=mongoose.model('app_users',userSchema,'app_users');
-mongoose.connect('mongodb://localhost/jszj');
-var db=mongoose.connection;
+
 
 
 // view engine setup

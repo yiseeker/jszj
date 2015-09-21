@@ -1,0 +1,747 @@
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:691:11)
+    at /home/linux/Projects/jszj/node_modules/express/lib/application.js:152:9
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:150:14)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:228:11)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:189:19)
+    at Layer.app.use.res.render.message [as handle] (/home/linux/Projects/jszj/app.js:148:9)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:221:19)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:189:19)
+    at Layer.app.use.res.render.message [as handle] (/home/linux/Projects/jszj/app.js:134:5)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:226:17)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:691:11)
+    at /home/linux/Projects/jszj/node_modules/express/lib/application.js:152:9
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:150:14)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:228:11)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:189:19)
+    at Layer.app.use.res.render.message [as handle] (/home/linux/Projects/jszj/app.js:148:9)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:221:19)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:189:19)
+    at Layer.app.use.res.render.message [as handle] (/home/linux/Projects/jszj/app.js:134:5)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:226:17)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:691:11)
+    at /home/linux/Projects/jszj/node_modules/express/lib/application.js:152:9
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:150:14)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:228:11)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:189:19)
+    at Layer.app.use.res.render.message [as handle] (/home/linux/Projects/jszj/app.js:148:9)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:221:19)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:189:19)
+    at Layer.app.use.res.render.message [as handle] (/home/linux/Projects/jszj/app.js:134:5)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:226:17)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:691:11)
+    at /home/linux/Projects/jszj/node_modules/express/lib/application.js:152:9
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:150:14)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:228:11)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:189:19)
+    at Layer.app.use.res.render.message [as handle] (/home/linux/Projects/jszj/app.js:148:9)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:221:19)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:189:19)
+    at Layer.app.use.res.render.message [as handle] (/home/linux/Projects/jszj/app.js:134:5)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:226:17)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:691:11)
+    at /home/linux/Projects/jszj/node_modules/express/lib/application.js:152:9
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:150:14)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:228:11)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:189:19)
+    at Layer.app.use.res.render.message [as handle] (/home/linux/Projects/jszj/app.js:148:9)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:221:19)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+    at next (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:189:19)
+    at Layer.app.use.res.render.message [as handle] (/home/linux/Projects/jszj/app.js:134:5)
+    at trim_prefix (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:226:17)
+    at c (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:198:9)
+    at Function.proto.process_params (/home/linux/Projects/jszj/node_modules/express/lib/router/index.js:251:12)
+ts/jquery.js [36m304 [90m6ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m5ms[0m
+[90mGET /javascripts/script.js [36m304 [90m3ms[0m
+[90mGET /images/logo.png [36m304 [90m3ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m3ms - 4.71kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m4ms - 4.7kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m9ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m3ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m3ms - 4.71kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m4ms - 4.67kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m6ms - 4.65kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m16ms - 4.66kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m5ms - 4.64kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m5ms - 4.61kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m4ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m3ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m5ms - 3.48kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m2ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m5ms - 4.65kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m7ms - 4.66kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m5ms - 4.66kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m3ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [36m304 [90m18ms[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m4ms - 4.65kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m4ms - 3.55kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m3ms - 4.65kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m0ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m3ms - 4.68kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m3ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m4ms - 4.7kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m3ms - 4.69kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m4ms - 4.69kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m5ms - 4.78kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m4ms - 4.69kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m4ms - 4.69kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m2ms - 4.69kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [36m304 [90m4ms[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m4ms - 4.69kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m2ms[0m
+[90mGET /register [32m200 [90m5ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m5ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m0ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m5ms - 4.7kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m4ms - 4.69kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m3ms - 4.7kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m4ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m3ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m4ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m4ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m4ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m0ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m4ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m4ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m4ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m4ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m0ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m4ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m5ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m3ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m3ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m3ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m5ms - 4.72kb[0m
+[90mGET /stylesheets/font-awesome.min.css [32m200 [90m3ms - 21.47kb[0m
+[90mGET /stylesheets/style.css [32m200 [90m2ms - 56b[0m
+[90mGET /stylesheets/bootstrap.min.css [32m200 [90m30ms - 119.67kb[0m
+[90mGET /stylesheets/buttons.css [32m200 [90m30ms - 77.72kb[0m
+[90mGET /javascripts/bootstrap.min.js [32m200 [90m29ms - 35.95kb[0m
+[90mGET /javascripts/script.js [32m200 [90m30ms - 333b[0m
+[90mGET /images/logo.png [32m200 [90m5ms - 2.84kb[0m
+[90mGET /javascripts/jquery.js [32m200 [90m59ms - 249.58kb[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [32m200 [90m1ms - 63.92kb[0m
+[90mGET /register [32m200 [90m7ms - 4.72kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m0ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m0ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m0ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m0ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m4ms - 4.73kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m0ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m0ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m0ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m3ms - 4.73kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m0ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m0ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m0ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m5ms - 4.71kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m0ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m0ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m4ms - 4.71kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m5ms - 4.7kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m0ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m0ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [36m304 [90m6ms[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m3ms - 4.7kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /index [32m200 [90m27ms - 6.49kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/thumbnail1.jpg [36m304 [90m1ms[0m
+[90mGET /images/thumbnail2.jpg [36m304 [90m1ms[0m
+[90mGET /images/thumbnail3.jpg [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /login [32m200 [90m9ms - 5.23kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mPOST /login? [36m302 [90m14ms - 68b[0m
+[90mGET /login [32m200 [90m5ms - 5.25kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m2ms[0m
+[90mPOST /login? [36m302 [90m3ms - 68b[0m
+[90mGET /login [32m200 [90m6ms - 5.25kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m3ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /login [32m200 [90m4ms - 5.25kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /login [32m200 [90m4ms - 5.27kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m0ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m0ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m0ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m6ms - 4.76kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m4ms - 4.79kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [36m304 [90m3ms[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m2ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [36m304 [90m3ms[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [36m304 [90m3ms[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m2ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m0ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mGET /register [32m200 [90m4ms - 4.82kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [32m200 [90m2ms - 496b[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mGET /register [32m200 [90m6ms - 4.91kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m3ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m2ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m0ms[0m
+[90mPOST /* [33m404 [90m45ms - 19b[0m
+[90mGET /register [32m200 [90m4ms - 4.92kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m0ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m0ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mPOST /register [33m404 [90m4ms - 19b[0m
+[90mGET /register [32m200 [90m4ms - 4.91kb[0m
+[90mGET /register [36m304 [90m3ms[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m2ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m1ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m1ms[0m
+[90mPOST /register? [33m404 [90m3ms - 19b[0m
+[90mPOST /register? [33m404 [90m3ms - 19b[0m
+[90mGET /register [32m200 [90m4ms - 4.91kb[0m
+[90mGET /stylesheets/bootstrap.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/font-awesome.min.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/buttons.css [36m304 [90m1ms[0m
+[90mGET /stylesheets/style.css [36m304 [90m1ms[0m
+[90mGET /javascripts/jquery.js [36m304 [90m1ms[0m
+[90mGET /javascripts/bootstrap.min.js [36m304 [90m1ms[0m
+[90mGET /javascripts/script.js [36m304 [90m1ms[0m
+[90mGET /images/logo.png [36m304 [90m0ms[0m
+[90mGET /fonts/fontawesome-webfont.woff?v=4.2.0 [36m304 [90m2ms[0m
+[90mPOST /register [33m404 [90m3ms - 19b[0m
