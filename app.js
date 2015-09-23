@@ -19,6 +19,7 @@ var news = require('./routes/news');
 var recommend = require('./routes/recommend');
 var hot = require('./routes/activity');
 var error = require('./routes/error');
+var users = require('./routes/users');
 var register = require('./routes/register');register.SetModel(USER);
 
 var app = express();
@@ -65,7 +66,7 @@ app.use('/recommend', recommend);
 app.use('/activity', hot);
 app.use('/error', error);
 app.use('/register', register);
-
+app.use('/users',users);
 
 
 
@@ -135,6 +136,7 @@ app.get('/logout', function(req, res) {
 });
 
 
+
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -167,3 +169,6 @@ app.use(function(err, req, res, next) {
     });
     next();
 });
+
+
+

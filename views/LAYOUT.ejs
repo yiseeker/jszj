@@ -11,7 +11,7 @@
     <script src='/javascripts/script.js'></script>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -54,22 +54,22 @@
                         <li>
                             <div class="btn-group" style="margin-right:15px">
                                 <button class="btn btn-default">
-                                    欢迎，<%=userName%>!
+                                    欢迎，<%=userName%>
                                 </button>
                                 <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#"><i class="fa fa-user-secret"></i>档案</a>
+                                        <a href="#" onclick="go('/users/myProfile')">档案设置</a>
                                     </li>
                                     <li class="divider">
                                     </li>
                                     <li >
-                                        <a href="#"><i class="fa fa-users"></i>我的活动</a>
+                                        <a href="#" onclick="go('/users/myActivity')">我的活动</a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-user-plus"></i>我的参与</a>
+                                        <a href="#" onclick="go('/users/myParticipate')">我的参与</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>

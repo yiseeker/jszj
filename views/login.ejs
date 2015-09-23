@@ -6,12 +6,8 @@
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
                 <div class="panel panel-info">
-                    <div class="panel-heading form-inline">
-                            <button class="button button-small button-primary button-pill button-longshadow-left button-raised"><i class="fa fa-user">本站</i></button>
-                            <button class="button button-small button-highlight button-pill button-longshadow-right button-raised"><i class="fa fa-weibo">微博</i></button>
-                            <button class="button button-small button-caution button-pill button-longshadow-left button-raised"><i class="fa fa-weixin">微信</i></button>
-                            <button class="button button-small button-action button-pill button-longshadow-right button-raised"><i class="fa fa-qq">QQ  </i></button>
-
+                    <div class="panel-heading text-center">
+                        <b>登录</b>
                     </div>
                     <div class="panel-body">
                         <div class="input-group text-center">
@@ -25,8 +21,8 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <input type="button" class="button button-primary button-raised" value="登录" onclick="submitForm('_form')" />&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="button" class="button button-action" value="注册" onclick="go('/register')" />
+                        <input type="button" class="button button-primary" value="登录" onclick="submitForm('_form')" />&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="button" class="button button-action " value="注册" onclick="go('/register')" />
                         <label><% if(message){%><%=message%><%}%></label>
                     </div>
                 </div>
