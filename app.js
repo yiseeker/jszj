@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
-app.use(session({secret:'jszj',resave:true,saveUninitialized:true,cookie: { maxAge: 600000 }}));
+app.use(session({secret:'jszj',resave:true,saveUninitialized:true,cookie: { maxAge: 6000000 }}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -133,6 +133,12 @@ app.post('/login', function(req, res,next) {
 app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/index');
+});
+
+
+/********************************  for test *************************************/
+app.get('/test', function(req, res) {
+    res.render('test',{'layout':'LAYOUT.ejs'});
 });
 
 

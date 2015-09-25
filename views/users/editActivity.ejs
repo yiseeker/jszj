@@ -4,6 +4,7 @@
 
 <div class="container-fluid">
     <div class="row">
+        <!--左边保存按钮等-->
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <div class="panel panel-default text-center">
             <div class="panel-heading">
@@ -22,8 +23,9 @@
             </div>
         </div>
         </div>
-
+        <!--右边活动编辑区域-->
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+            <!--活动命名-->
             <div class="panel panel-default text-center">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -59,7 +61,7 @@
                     </div>
                 </div>
             </div>
-
+            <!--设置活动背景-->
             <div class="panel panel-default text-center">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -103,7 +105,7 @@
                     </div>
                 </div>
             </div>
-
+            <!--设置活动宣传栏-->
             <div class="panel panel-default text-center">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -156,7 +158,7 @@
                     </div>
                 </div>
             </div>
-
+            <!--设置活动板块-->
             <div class="panel panel-default text-center">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -164,17 +166,37 @@
                     </h3>
                 </div>
                 <div class="panel-body">
+                    <div class="row">
+                        <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-8">
+                            <div class="input-group">
+                                <input id="moduleName" type="text" class="form-control" placeholder="输入模块名"/>
+                                <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <button class="button button-primary button-small" onclick="addModule()">添加</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row text-left">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            模块列表
+                            <hr/>
+                            <div id="moduleList">
 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            <!--为板块添加内容-->
             <div class="panel panel-default text-center">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         为板块添加内容(必须)
                     </h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" id="modules">
 
                 </div>
             </div>
@@ -182,3 +204,87 @@
     </div>
 
 </div>
+
+
+<script>
+    var _moduleList=new Array();
+    function addModule()
+    {
+        var name=$('#moduleName').val();
+        if(name=="")
+        {
+            return ;
+        }
+        else
+        {
+            if(isModuleNameExists(name))
+            {
+                alert('模块名称已存在列表中，请核对');
+                return ;
+            }
+            else
+            {
+                _moduleList.push({'name':name});
+                setModuleList(name);
+                return;
+            }
+
+        }
+    }
+
+    function setModuleList(name)
+    {
+        var parent=$('#moduleList').get(0);
+        var child=document.createElement("div");
+        child.setAttribute('id',name);
+
+        var grandChild1=document.createElement('label');
+        grandChild1.innerText=name;
+        child.appendChild(grandChild1);
+
+        var grandChild2=document.createElement('button');
+        grandChild2.setAttribute('style',"color: red");
+        grandChild2.setAttribute('onclick',"removeFromModuleList('"+name+"')");
+        grandChild2.innerHTML='<i class="fa fa-close"></i>';
+        child.appendChild(grandChild2);
+
+        parent.appendChild(child);
+    }
+
+    function removeFromModuleList(name)
+    {
+        var parent=$('#moduleList').get(0);
+        var child=$('#'+name).get(0);
+        parent.removeChild(child);
+        for(var i in _moduleList)
+        {
+            if(_moduleList[i].name==name)
+            {
+                _moduleList.splice(i);
+                return;
+            }
+        }
+    }
+
+    function isModuleNameExists(name)
+    {
+        for(var i in _moduleList)
+        {
+            if(_moduleList[i].name==name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function addModuleSegment(name)
+    {
+        var parent=$('#modules').get(0);
+        var child=document.createElement('div');
+        child.setAttribute('id',name+'_container');
+        child.innerHTML='<label>'+name+'</label><hr/> <div class="row"></div>';
+    }
+
+</script>
+
