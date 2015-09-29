@@ -1,3 +1,4 @@
+
 <br/>
 <br/>
 
@@ -197,7 +198,22 @@
                     </h3>
                 </div>
                 <div class="panel-body" id="modules">
-
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <select class="form-control" id="moduleOptions">
+                                <option>请选择要添加内容的板块</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                            <button class="button button-primary button-small">保存</button>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <textarea id="editor"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -205,8 +221,9 @@
 
 </div>
 
-
+<script src="/javascripts/ckeditor/ckeditor.js"></script>
 <script>
+    CKEDITOR.replace('editor');
     var _moduleList=new Array();
     function addModule()
     {
@@ -226,21 +243,34 @@
             {
                 _moduleList.push({'name':name});
                 setModuleList(name);
+                addToOptions(name)
                 return;
             }
 
         }
     }
 
+    <!--在模块编辑栏的下拉列表中添加-->
+    function addToOptions(name)
+    {
+        var op =$('#moduleOptions').get(0);
+        for(var i=0;i<=op.options.length-1;i++)
+        {
+            if(op.options[i].text==name)
+            {
+                return;
+            }
+        }
+        var item=new Option(name);
+        op.options.add(item);
+    }
+
+    <!--在模块列表中添加模块名-->
     function setModuleList(name)
     {
         var parent=$('#moduleList').get(0);
         var child=document.createElement("div");
         child.setAttribute('id',name);
-
-        var grandChild1=document.createElement('label');
-        grandChild1.innerText=name;
-        child.appendChild(grandChild1);
 
         var grandChild2=document.createElement('button');
         grandChild2.setAttribute('style',"color: red");
@@ -248,9 +278,17 @@
         grandChild2.innerHTML='<i class="fa fa-close"></i>';
         child.appendChild(grandChild2);
 
+        var grandChild1=document.createElement('label');
+        grandChild1.innerText=name;
+        grandChild1.setAttribute('style',"margin-left:15px");
+        child.appendChild(grandChild1);
+
+
+
         parent.appendChild(child);
     }
 
+    <!--从模块列表中删除模块-->
     function removeFromModuleList(name)
     {
         var parent=$('#moduleList').get(0);
@@ -261,11 +299,21 @@
             if(_moduleList[i].name==name)
             {
                 _moduleList.splice(i);
-                return;
+                break;
+            }
+        }
+
+        var op =$('#moduleOptions').get(0);
+        for(var i=0;i<=op.options.length-1;i++)
+        {
+            if(op.options[i].text==name)
+            {
+                op.options[i]=null;
             }
         }
     }
 
+    <!-- 判断模块名是否已存在-->
     function isModuleNameExists(name)
     {
         for(var i in _moduleList)
@@ -278,13 +326,6 @@
         return false;
     }
 
-    function addModuleSegment(name)
-    {
-        var parent=$('#modules').get(0);
-        var child=document.createElement('div');
-        child.setAttribute('id',name+'_container');
-        child.innerHTML='<label>'+name+'</label><hr/> <div class="row"></div>';
-    }
 
 </script>
 
