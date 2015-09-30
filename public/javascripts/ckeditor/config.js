@@ -38,4 +38,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	//test
 	config.extraPlugins = 'abbr';
+
+	//用于从CKEDITOR上传文件的处理请求路径
+	config.filebrowserImageUploadUrl='/upload';
 };

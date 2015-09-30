@@ -20,6 +20,7 @@ var recommend = require('./routes/recommend');
 var hot = require('./routes/activity');
 var error = require('./routes/error');
 var users = require('./routes/users');
+var upload = require('./routes/upload');
 var register = require('./routes/register');register.SetModel(USER);
 
 var app = express();
@@ -67,6 +68,7 @@ app.use('/activity', hot);
 app.use('/error', error);
 app.use('/register', register);
 app.use('/users',users);
+app.use('/upload',upload);
 
 
 
@@ -140,6 +142,7 @@ app.get('/logout', function(req, res) {
 app.get('/test', function(req, res) {
     res.render('test',{'layout':'LAYOUT.ejs'});
 });
+
 
 
 
