@@ -14,7 +14,7 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <button class="button button-primary">保存</button>
+                <button class="button button-primary" onclick="save()">保存</button>
                 <button class="button button-action">预览</button>
                 <button class="button button-highlight">重置</button>
                 <button class="button button-royal">返回</button>
@@ -37,19 +37,19 @@
                     <div class="row">
                         <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="输入活动名"/>
+                                <input name="activityName" id="activityName" type="text" class="form-control" placeholder="输入活动名"/>
                                 <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
                             </div>
                         </div>
-                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" >启用
+                                    <input name="enable" id="enable" type="checkbox" checked='checked' >启用
                                 </label>
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                            <select class="form-control">
+                            <select name="activityType" id="activityType" class="form-control">
                                 <option>商业</option>
                                 <option>家政</option>
                                 <option>教育</option>
@@ -279,7 +279,7 @@
         child.appendChild(grandChild2);
 
         var grandChild1=document.createElement('label');
-        grandChild1.innerText=name;
+        grandChild1.innerHTML=name;
         grandChild1.setAttribute('style',"margin-left:15px");
         child.appendChild(grandChild1);
 
@@ -326,6 +326,38 @@
         return false;
     }
 
+    <!-- 保存活动页面内容-->
+    function save()
+    {
+        var name=$('#activityName').val();
+        if(name.trim()=='' || name.trim()==null)//验证用户是否输入了活动名
+        {
+            alert('请输入您的活动名称!');
+            return;
+        }
+
+        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,10}$');//验证活动名是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test($('#activityName').val()))
+        {
+            alert('请输入10个以内的字符作为活动名，汉字、字母及数字的组合都可以!');
+            return;
+        }
+
+        if(_moduleList.length==0)//检查是否添加了模块
+        {
+            alert('当前活动没有任何模块，请添加至少一个！');
+            return;
+        }
+
+        if(!document.getElementById('enable').checked)
+        {
+            if(!confirm('注意：您尚未选择启用此活动，内容将不公开显示，是否继续？'))
+            {
+                return;
+            }
+        }
+
+    }
 
 </script>
 
