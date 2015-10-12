@@ -24,7 +24,15 @@ router.post('/', function(req, res,next) {
 
             }
             var fileName=req.user.username+'_'+uuid.v4()+'.'+fileType;
-            fs.renameSync(files.upload.path,'/home/linux/Projects/jszj/upload/'+fileName);//这里的保存路径是系统的路径，不是站点的路径
+            if(req.query.type=='temp')
+            {
+                fs.renameSync(files.upload.path,'/home/linux/Projects/jszj/temp/'+fileName);//存放到临时目录，随时可以删除
+            }
+            else
+            {
+                fs.renameSync(files.upload.path,'/home/linux/Projects/jszj/upload/'+fileName);//这里的保存路径是系统的路径，不是站点的路径
+            }
+
             res.send("<script>window.parent.CKEDITOR.tools.callFunction("+req.query.CKEditorFuncNum+",'/resource/"+fileName+"','')</script>");
         }catch(e)
         {

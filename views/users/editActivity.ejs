@@ -1,4 +1,7 @@
 
+<script src="/javascripts/fileUpload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/javascripts/fileUpload/js/jquery.iframe-transport.js"></script>
+<script src="/javascripts/fileUpload/js/jquery.fileupload.js"></script>
 <br/>
 <br/>
 
@@ -15,9 +18,9 @@
             </div>
             <div class="panel-body">
                 <button class="button button-primary" onclick="save()">保存</button>
-                <button class="button button-action">预览</button>
-                <button class="button button-highlight">重置</button>
-                <button class="button button-royal">返回</button>
+                <button class="button button-action" onclick="preview()">预览</button>
+                <button class="button button-highlight" onclick="reset()">重置</button>
+                <button class="button button-royal" onclick="goback()">返回</button>
             </div>
             <div class="panel-footer">
 
@@ -116,14 +119,20 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <input type="file" placeholder="第一幅宣传图片">
+                            <input type="file" placeholder="第一幅宣传图片" id="file1">
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                            <input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile1()">
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                            <label id="uploadMessage1" style="colo:red"></label>
                         </div>
                     </div>
                     <br/>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="输入第一幅图片的描述文字"/>
+                                <input id="fileText1" type="text" class="form-control" placeholder="输入第一幅图片的描述文字"/>
                                 <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
                             </div>
                         </div>
@@ -131,28 +140,41 @@
                     <br/>
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <input type="file" placeholder="第二幅宣传图片">
+                            <input type="file" placeholder="第二幅宣传图片" id="file2">
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                            <input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile2()">
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                            <label id="uploadMessage2" style="colo:red"></label>
                         </div>
                     </div>
                     <br/>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="输入第二幅图片的描述文字"/>
+                                <input id="fileText2" type="text" class="form-control" placeholder="输入第二幅图片的描述文字"/>
                                 <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
                             </div>
                         </div>
                     </div>
+                    <br/>
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <input type="file" placeholder="第三幅宣传图片">
+                            <input type="file" placeholder="第三幅宣传图片" id="file3">
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                            <input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile3()">
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                            <label id="uploadMessage3" style="colo:red"></label>
                         </div>
                     </div>
                     <br/>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="输入第三幅图片的描述文字"/>
+                                <input id="fileText3" type="text" class="form-control" placeholder="输入第三幅图片的描述文字"/>
                                 <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
                             </div>
                         </div>
@@ -225,6 +247,7 @@
 <script>
     CKEDITOR.replace('editor');
     var _moduleList=new Array();
+    var _moduleContent=new Array();
     function addModule()
     {
         var name=$('#moduleName').val();
@@ -359,5 +382,60 @@
 
     }
 
+    function goback()
+    {
+        history.go(-1);
+    }
+
+    function reset()
+    {
+        $('#activityName').val('');
+        document.getElementById('enable').checked=true;
+        $('#activityType').val('商业');
+        $('input:radio[name=theme]').attr('checked',false);
+        $('#file1').val('');
+        $('#fileText1').val('');
+        $('#file2').val('');
+        $('#fileText2').val('');
+        $('#file3').val('');
+        $('#fileText3').val('');
+        $('#moduleName').val('');
+        CKEDITOR.instances.editor.setData('');
+
+        var parent=$('#moduleList').get(0);
+        for(var i in _moduleList)
+        {
+            var child=$('#'+_moduleList[i].name).get(0);
+            parent.removeChild(child);
+        }
+
+        var op =$('#moduleOptions').get(0);
+        op.options.length=0;
+
+        _moduleList=new Array();
+        _moduleContent=new Array();
+
+
+
+    }
+
+    function preview()
+    {
+        var win=window.open('/users/previewActivity');
+    }
+
+
+    function uploadfile2()
+    {
+
+    }
+
+    function uploadfile3()
+    {
+
+    }
+
+    $('#file1').fileupload();
 </script>
+
 

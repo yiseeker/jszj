@@ -27,6 +27,8 @@ router.get('/editActivity',function(req,res){
 router.get('/showActivity',function(req,res){
     res.render('users/showActivity',{'layout':'LAYOUT.ejs'});
 });
-
+router.get('/previewActivity',function(req,res){
+    res.render('users/previewActivity',{'layout':'LAYOUT.ejs'});
+});
 
 module.exports = router;
