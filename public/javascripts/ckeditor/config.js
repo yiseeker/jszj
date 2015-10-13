@@ -38,4 +38,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	//用于从CKEDITOR上传文件的处理请求路径
 	config.filebrowserImageUploadUrl='/upload';
+
+	//允许插入html标记
+	config.allowedContent=true;
 };

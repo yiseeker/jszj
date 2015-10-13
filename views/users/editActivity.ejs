@@ -1,4 +1,3 @@
-
 <script src="/javascripts/fileUpload/js/vendor/jquery.ui.widget.js"></script>
 <script src="/javascripts/fileUpload/js/jquery.iframe-transport.js"></script>
 <script src="/javascripts/fileUpload/js/jquery.fileupload.js"></script>
@@ -66,7 +65,7 @@
                 </div>
             </div>
             <!--设置活动背景-->
-            <div class="panel panel-default text-center">
+            <!--<div class="panel panel-default text-center">
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         选择活动的主题背景(可选)
@@ -108,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!--设置活动宣传栏-->
             <div class="panel panel-default text-center">
                 <div class="panel-heading">
@@ -119,13 +118,11 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <input type="file" placeholder="第一幅宣传图片" id="file1">
+                            <input type="file" name="file1" placeholder="第一幅宣传图片" id="file1">
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                            <input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile1()">
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                            <label id="uploadMessage1" style="colo:red"></label>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            <label id="uploadMessage1" style="color:red"></label>
+                            <!--<input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile1()">-->
                         </div>
                     </div>
                     <br/>
@@ -140,13 +137,14 @@
                     <br/>
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <input type="file" placeholder="第二幅宣传图片" id="file2">
+                            <input type="file" name="file2" placeholder="第二幅宣传图片" id="file2">
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            <label id="uploadMessage2" style="color:red"></label>
+                            <!--<input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile2()">-->
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                            <input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile2()">
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                            <label id="uploadMessage2" style="colo:red"></label>
+
                         </div>
                     </div>
                     <br/>
@@ -161,13 +159,14 @@
                     <br/>
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <input type="file" placeholder="第三幅宣传图片" id="file3">
+                            <input type="file" name="file3" placeholder="第三幅宣传图片" id="file3">
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            <label id="uploadMessage3" style="color:red"></label>
+                            <!--<input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile3()">-->
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                            <input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile3()">
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                            <label id="uploadMessage3" style="colo:red"></label>
+
                         </div>
                     </div>
                     <br/>
@@ -222,12 +221,12 @@
                 <div class="panel-body" id="modules">
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                            <select class="form-control" id="moduleOptions">
-                                <option>请选择要添加内容的板块</option>
+                            <select class="form-control" id="moduleOptions" onchange="moduleChanged()">
+
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-                            <button class="button button-primary button-small">保存</button>
+                            <button class="button button-primary button-small" onclick="saveModuleContent()">保存</button>
                         </div>
                     </div>
                     <hr/>
@@ -245,9 +244,13 @@
 
 <script src="/javascripts/ckeditor/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('editor');
+
+    CKEDITOR.replace('editor',{"allowedContent":true});
+
     var _moduleList=new Array();
     var _moduleContent=new Array();
+
+
     function addModule()
     {
         var name=$('#moduleName').val();
@@ -424,18 +427,49 @@
         var win=window.open('/users/previewActivity');
     }
 
-
-    function uploadfile2()
+    function moduleChanged()
     {
+        var selection =$('#moduleOptions').val();
+
+        CKEDITOR.instances.editor.setData('');
+        for(var i in _moduleContent)
+        {
+            if(_moduleContent[i].name==selection)
+            {
+                $('#editor').html(_moduleContent[i].content);
+                break;
+            }
+        }
+    }
+
+    function saveModuleContent()
+    {
+        $("#editor").val("aaaaaaaa");
 
     }
 
-    function uploadfile3()
-    {
 
-    }
+    $("#file1").fileupload({
+        url:"/upload?type=temp&tag=file1",//处理程序的地址，当然也可以直接写在input的data-url属性内
+        done:function(e,result){
+            $('#uploadMessage1').html(result.result.file);
+        }
+    });
 
-    $('#file1').fileupload();
+    $("#file2").fileupload({
+        url:"/upload?type=temp&tag=file2",//处理程序的地址，当然也可以直接写在input的data-url属性内
+        done:function(e,result){
+            $('#uploadMessage2').html(result.result.file);
+        }
+    });
+
+
+    $("#file3").fileupload({
+        url:"/upload?type=temp&tag=file3",//处理程序的地址，当然也可以直接写在input的data-url属性内
+        done:function(e,result){
+            $('#uploadMessage3').html(result.result.file);
+        }
+    });
 </script>
 
 
