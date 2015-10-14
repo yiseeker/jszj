@@ -41,6 +41,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use('/resource',express.static(path.join(__dirname, 'upload')));
+app.use('/tmp',express.static(path.join(__dirname, 'temp')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 app.use(session({secret:'jszj',resave:true,saveUninitialized:true,cookie: { maxAge: 6000000 }}));

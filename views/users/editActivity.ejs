@@ -117,12 +117,14 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <input type="file" name="file1" placeholder="第一幅宣传图片" id="file1">
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                            <input type="button" class="button button-primary button-small" value="清除" onclick="clearFile('uploadMessage1')">
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
                             <label id="uploadMessage1" style="color:red"></label>
-                            <!--<input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile1()">-->
                         </div>
                     </div>
                     <br/>
@@ -136,15 +138,14 @@
                     </div>
                     <br/>
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <input type="file" name="file2" placeholder="第二幅宣传图片" id="file2">
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                            <label id="uploadMessage2" style="color:red"></label>
-                            <!--<input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile2()">-->
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <input type="button" class="button button-primary button-small" value="清除" onclick="clearFile('uploadMessage2')">
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+                            <label id="uploadMessage2" style="color:red"></label>
                         </div>
                     </div>
                     <br/>
@@ -158,15 +159,14 @@
                     </div>
                     <br/>
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <input type="file" name="file3" placeholder="第三幅宣传图片" id="file3">
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                            <label id="uploadMessage3" style="color:red"></label>
-                            <!--<input type="button" class="button button-primary button-small" value="上传" onclick="uploadfile3()">-->
-                        </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-
+                            <input type="button" class="button button-primary button-small" value="清除" onclick="clearFile('uploadMessage3')">
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+                            <label id="uploadMessage3" style="color:red"></label>
                         </div>
                     </div>
                     <br/>
@@ -430,22 +430,38 @@
     function moduleChanged()
     {
         var selection =$('#moduleOptions').val();
-
-        CKEDITOR.instances.editor.setData('');
         for(var i in _moduleContent)
         {
             if(_moduleContent[i].name==selection)
             {
-                $('#editor').html(_moduleContent[i].content);
-                break;
+                CKEDITOR.instances.editor.setData(_moduleContent[i].content);
+                return;
             }
         }
+        CKEDITOR.instances.editor.setData('');
     }
 
     function saveModuleContent()
     {
-        $("#editor").val("aaaaaaaa");
+        var name =$('#moduleOptions').val();
+        var content=CKEDITOR.instances.editor.getData();
+        //CKEDITOR.instances.editor.setData("<p>hello</p>",{callback: function(){this.checkDirty();}})
+        for(var j in _moduleContent)
+        {
+            if(_moduleContent[j].name==name)
+            {
+                _moduleContent[j].content=content;
+                alert('模块['+name+']保存成功');
+                return;
+            }
+        }
+        _moduleContent.push({"name":name,"content":content});
+        alert('模块['+name+']保存成功');
+    }
 
+    function clearFile(file)
+    {
+        document.getElementById(file).innerHTML='';
     }
 
 
