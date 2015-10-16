@@ -189,10 +189,11 @@
         div_panelhead.setAttribute('class','panel-heading');
         div_panelhead.appendChild(h3);
         var div_body=document.createElement('div');
-        var editor=document.createElement('textarea');
-        editor.setAttribute('id','editor'+i);
+        //var editor=document.createElement('textarea');
+        //editor.setAttribute('id','editor'+i);
         div_body.setAttribute('class','panel-body');
-        div_body.appendChild(editor);
+        //div_body.appendChild(editor);
+        div_body.innerHTML=_moduleContent[i].content;
         var panel=document.createElement('div');
         panel.setAttribute('class','panel panel-default');
         panel.appendChild(div_panelhead);
@@ -201,8 +202,8 @@
         var container=document.getElementById('contentContainer');
         container.appendChild(panel);
 
-        CKEDITOR.replace('editor'+i,{"allowedContent":true});
-        CKEDITOR.instances['editor'+i].setData(_moduleContent[i].content);
+        //CKEDITOR.replace('editor'+i,{"allowedContent":true});
+        //CKEDITOR.instances['editor'+i].setData(_moduleContent[i].content);
     }
 
 </script>

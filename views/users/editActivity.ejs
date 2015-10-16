@@ -1,6 +1,111 @@
 <script src="/javascripts/fileUpload/js/vendor/jquery.ui.widget.js"></script>
 <script src="/javascripts/fileUpload/js/jquery.iframe-transport.js"></script>
 <script src="/javascripts/fileUpload/js/jquery.fileupload.js"></script>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <a id="modal-512666" href="#modal-container-512666" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+
+            <div class="modal fade" id="modal-container-512666" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                Modal title
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                Save changes
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-container-512666" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                ×
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                编辑商品
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <input type="file" name="file4" id="file4" placeholder="请选择文件" class="form-control">
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <img src="#" alt="" id="itemImage">
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="input-group">
+                                        <input id="itemName" type="text" class="form-control" placeholder="输入商品名称"/>
+                                        <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="input-group">
+                                        <input id="itemDesc" type="text" class="form-control" placeholder="输入商品描述"/>
+                                        <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                    <div class="input-group">
+                                        <input id="itemUprice" type="text" class="form-control" placeholder="输入商品单价"/>
+                                        <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                    <div class="input-group">
+                                        <input id="itemUom" type="text" class="form-control" placeholder="输入商品单位"/>
+                                        <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                                    </div>
+                                </div>
+                                <br/>
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                取消
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                保存
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
 <br/>
 <br/>
 
@@ -49,17 +154,6 @@
                                     <input name="enable" id="enable" type="checkbox" checked='checked' >启用
                                 </label>
                             </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                            <select name="activityType" id="activityType" class="form-control">
-                                <option>商业</option>
-                                <option>家政</option>
-                                <option>教育</option>
-                                <option>公益</option>
-                                <option>便民</option>
-                                <option>娱乐</option>
-                                <option>不确定</option>
-                            </select>
                         </div>
                     </div>
                     <br/>
@@ -202,7 +296,7 @@
             <div class="panel panel-default text-center">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        为活动设置板块(必须)
+                        为活动设置版块(必须)
                     </h3>
                 </div>
                 <div class="panel-body">
@@ -244,14 +338,15 @@
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-                            <button class="button button-primary button-small" onclick="saveModuleContent()">保存</button>
+                            <button class="button button-primary button-small" onclick="addItem()">新增商品</button>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                            <button class="button button-primary button-small" onclick="saveModuleContent()">保存商品清单</button>
                         </div>
                     </div>
                     <hr/>
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <textarea id="editor"></textarea>
-                        </div>
+                    <div class="row" id="itemList">
+
                     </div>
                 </div>
             </div>
@@ -263,10 +358,10 @@
 <script src="/javascripts/ckeditor/ckeditor.js"></script>
 <script>
 
-    CKEDITOR.replace('editor',{"allowedContent":true});
 
     var _moduleList=new Array();
     var _moduleContent=new Array();
+    var itemid=0;
 
 
     function addModule()
@@ -477,10 +572,73 @@
         alert('模块['+name+']保存成功');
     }
 
+    function addItem()
+    {
+        var list=document.getElementById('itemList');
+
+
+        var item=document.createElement('div');
+        item.setAttribute('class','thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-4');
+        item.setAttribute('id','item_'+itemid);
+
+        var itemImg=document.createElement('img');
+        itemImg.setAttribute('src','/images/logo.png');
+        itemImg.setAttribute('alt','');
+
+        var capDiv=document.createElement('div');
+        capDiv.setAttribute('class','caption');
+
+        var title=document.createElement('label');
+        title.innerHTML='商品名称';
+
+
+
+        var p2=document.createElement('p');
+        var a3=document.createElement('a');
+        a3.setAttribute('class','btn btn-info');
+        a3.setAttribute('href','#');
+        a3.setAttribute('onclick','editItem("item_'+itemid+'")');
+        a3.innerHTML='编辑';
+        var a4=document.createElement('a');
+        a4.setAttribute('class','btn btn-danger');
+        a4.setAttribute('href','#');
+        a4.setAttribute('onclick','delItem("item_'+itemid+'")');
+        a4.innerHTML='删除';
+        p2.appendChild(a3);
+        p2.appendChild(a4);
+
+        capDiv.appendChild(title);
+
+        capDiv.appendChild(p2);
+
+        item.appendChild(itemImg);
+        item.appendChild(capDiv);
+
+        list.appendChild(item);
+
+        itemid++;
+    }
+
+    function delItem(id)
+    {
+        var list=document.getElementById('itemList');
+        var item=document.getElementById(id);
+        list.removeChild(item);
+    }
+
+    function editItem(id)
+    {
+        $('#editItemId').val(id);
+        $('#modal-container-512666').modal('show');
+
+    }
+
     function clearFile(file)
     {
         document.getElementById(file).innerHTML='';
     }
+
+
 
 
     $("#file1").fileupload({
@@ -507,5 +665,6 @@
 
     this.document._moduleContent=_moduleContent;
 </script>
+
 
 
