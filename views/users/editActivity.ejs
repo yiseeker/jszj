@@ -22,25 +22,33 @@
                                     上传商品图片:
                                     <input type="file" name="file4" id="file4" placeholder="请选择文件">
                                 </div>
+                            </div>
+                            <div class="row">
                                 <br/>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <img width="100%" src="#" alt="" id="itemImage">
                                 </div>
+                            </div>
                                 <br/>
+                            <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="input-group">
                                         <input id="itemName" type="text" class="form-control" placeholder="输入商品名称"/>
                                         <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
                                     </div>
                                 </div>
+                            </div>
                                 <br/>
+                            <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="input-group">
                                         <input id="itemDesc" type="text" class="form-control" placeholder="输入商品描述"/>
                                         <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
                                     </div>
                                 </div>
-                                <br/>
+                            </div>
+                            <br/>
+                            <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <div class="input-group">
                                         <input id="itemUprice" type="text" class="form-control" placeholder="输入商品单价(元)"/>
@@ -53,14 +61,24 @@
                                         <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
                                     </div>
                                 </div>
+                            </div>
                                 <br/>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
+                                    所属模块: <select class="form-control" id="moduleOptions" >
+
+                                    </select>
+                                </div>
+                            </div>
+                                <br/>
+                            <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <label id="modalMessage" style="color:red"></label>
                                 </div>
-                                <input type="hidden" id="modalItemId" />
-
-
                             </div>
+
+                            <input type="hidden" id="modalItemId" />
+
                         </div>
                         <div class="modal-footer">
 
@@ -303,16 +321,8 @@
                 </div>
                 <div class="panel-body" id="modules">
                     <div class="row">
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                            <select class="form-control" id="moduleOptions" onchange="moduleChanged()">
-
-                            </select>
-                        </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
                             <button class="button button-primary button-small" onclick="addItem()">新增商品</button>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
-                            <button class="button button-primary button-small" onclick="saveModuleContent()">保存商品清单</button>
                         </div>
                     </div>
                     <hr/>
@@ -393,8 +403,6 @@
         grandChild1.setAttribute('style',"margin-left:15px");
         child.appendChild(grandChild1);
 
-
-
         parent.appendChild(child);
     }
 
@@ -474,6 +482,7 @@
         history.go(-1);
     }
 
+    <!-- 重置活动页面-->
     function reset()
     {
         $('#activityName').val('');
@@ -487,23 +496,20 @@
         $('#file3').val('');
         $('#fileText3').val('');
         $('#moduleName').val('');
-        CKEDITOR.instances.editor.setData('');
+        $('#activityDesc').val('');
+        $('#contactInfo').val('');
 
-        var parent=$('#moduleList').get(0);
-        for(var i in _moduleList)
-        {
-            var child=$('#'+_moduleList[i].name).get(0);
-            parent.removeChild(child);
-        }
+        var moduleList=$('#moduleList').get(0);
+        moduleList.innerHTML='';
+
+        var itemList=$('#itemList').get(0);
+        itemList.innerHTML='';
 
         var op =$('#moduleOptions').get(0);
         op.options.length=0;
 
         _moduleList=new Array();
         _moduleContent=new Array();
-
-
-
     }
 
     function preview()
@@ -511,25 +517,27 @@
         var win=window.open('/users/previewActivity');
     }
 
-    function moduleChanged()
+    /*function moduleChanged()
     {
         var selection =$('#moduleOptions').val();
+        var container=$('#moduleList').get(0);
+        container.innerHTML='';
+
         for(var i in _moduleContent)
         {
-            if(_moduleContent[i].name==selection)
+            if(_moduleContent[i].moduleName=selection)
             {
                 CKEDITOR.instances.editor.setData(_moduleContent[i].content);
                 return;
             }
         }
-        CKEDITOR.instances.editor.setData('');
-    }
+
+    }*/
 
     function saveModuleContent()
     {
         var name =$('#moduleOptions').val();
-        var content=CKEDITOR.instances.editor.getData();
-        //CKEDITOR.instances.editor.setData("<p>hello</p>",{callback: function(){this.checkDirty();}})
+
         for(var j in _moduleContent)
         {
             if(_moduleContent[j].name==name)
@@ -550,7 +558,7 @@
 
         var item=document.createElement('div');
         item.setAttribute('class','thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-4');
-        item.setAttribute('id','item_'+itemid);
+        item.setAttribute('id',itemid+'');
 
         var itemImg=document.createElement('img');
         itemImg.setAttribute('src','/images/logo.png');
@@ -583,10 +591,14 @@
         var a4=document.createElement('a');
         a4.setAttribute('class','btn btn-danger');
 
-        a4.setAttribute('onclick','delItem("item_'+itemid+'")');
+        a4.setAttribute('onclick','delItem("'+itemid+'")');
         a4.innerHTML='删除';
         p2.appendChild(a3);
         p2.appendChild(a4);
+
+        var module=document.createElement('input');
+        module.setAttribute('type','hidden');
+        module.setAttribute('id','thumbNailModuleName_'+itemid);
 
         capDiv.appendChild(title);
         capDiv.appendChild(pp);
@@ -594,23 +606,39 @@
 
         item.appendChild(itemImg);
         item.appendChild(capDiv);
+        item.appendChild(module);
 
         list.appendChild(item);
 
         itemid++;
+
+
     }
 
     function delItem(id)
-    {
+    {TODO:
+        //从_moduleContent中清除商品信息
+        var module = $('#thumbNailModuleName_'+id).val();
+        var itemname = $('#thumbNailItemName_'+id).html();
+        for(var i in _moduleContent)
+        {
+            if(_moduleContent[i].moduleName==module && _moduleContent[i].itemName==itemname)
+            {
+                _moduleContent.splice(i);
+                return;
+            }
+        }
+
+        //从页面中清除商品项目
         var list=document.getElementById('itemList');
-        var item=document.getElementById(id);
+        var item=document.getElementById(id+'');
         list.removeChild(item);
     }
 
     function editItem(id)
     {
         var img = $('#thumbNailImgId_'+id).attr('src');
-        if(img==''||img==null)
+        if(img=='/images/logo.png'||img==null)
         {
             resetModal();
             $('#modalItemId').val(id);
@@ -618,17 +646,22 @@
         }
         else
         {
+            resetModal();
             $('#itemImage').attr('src',img);
             $('#itemName').val($('#thumbNailItemName_'+id).html());
-            $('#itemDesc').val($('#itemImage').attr('alt'));
+            $('#itemDesc').val($('#thumbNailImgId_'+id).attr('alt'));
             $('#itemUprice').val($('#thumbNailUprice_'+id).html());
             $('#itemUom').val($('#thumbNailUom_'+id).html());
             $('#modalItemId').val(id);
+            $('#moduleOptions').val($('#thumbNailModuleName_'+id).val());
+            $('#myModal').modal('show');
         }
     }
 
+    //将商品信息回传到缩略图中
     function saveItem()
     {
+        var id=$('#modalItemId').val();
         //检查图片是否上传
         var img=$('#itemImage').attr('src');
         if(img=='' || img==null)
@@ -650,6 +683,19 @@
         {
             $('#modalMessage').html('请输入15个字符以内的汉字或数字或字母的组合的商品名称!');
             return;
+        }
+
+        //检查是否存在同名商品,除了更新，否则不允许出现同名商品
+        for(var i in _moduleContent)
+        {
+            if(_moduleContent[i].itemName==name)
+            {
+                if(_moduleContent[i].itemId != id)
+                {
+                    alert('模块'+_moduleContent[i].moduleName+'中已存在同名商品，请检查!');
+                    return;
+                }
+            }
         }
 
         //检查商品描述
@@ -698,20 +744,42 @@
             return;
         }
 
+        //检查是否选择了模块
+        var module =$('#moduleOptions').val();
+        if(module=='' || module==null)
+        {
+            $('#modalMessage').html('请选择所属模块!');
+            return;
+        }
+
         //验证完成后设置商品的缩略图
-        var id=$('#modalItemId').val();
         $('#thumbNailImgId_'+id).attr('src',img);
         $('#thumbNailImgId_'+id).attr('alt',desc);
         $('#thumbNailItemName_'+id).html(name);
-        $('#thumbNailUprice_'+id).html(price+'/'+uom);
+        $('#thumbNailUprice_'+id).html(price);
+        $('#thumbNailUom_'+id).html(uom);
+        $('#thumbNailModuleName_'+id).val(module);
         $('#myModal').modal('hide');
+
+        //保存商品信息至_moduleContent
+        for(var k in _moduleContent)
+        {
+            if(_moduleContent[k].itemId==id)
+            {
+                _moduleContent.splice(k);
+            }
+        }
+        _moduleContent.push({"moduleName":module,"itemName":name,"itemDesc":desc,"image":img,"price":price,"uom":uom,"itemId":id});
+
     }
 
+    //清除上传的宣传图片
     function clearFile(file)
     {
         document.getElementById(file).innerHTML='';
     }
 
+    //重置模态窗口中的信息
     function resetModal()
     {
         $('#file4').val('');
@@ -722,6 +790,7 @@
         $('#itemUom').val('');
         $('#modalMessage').html('');
         $('#modalItemId').val('');
+        $('#moduleOptions').get(0).selectedIndex=0;
     }
 
 
