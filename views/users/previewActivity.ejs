@@ -89,16 +89,8 @@
             </div>
         </div>
         <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
-            <div class="row" id="contentContainer">
-                <!--<div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-center">
-                            <b>最新</b>
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                    </div>
-                </div>-->
+            <div id="contentContainer">
+
             </div>
         </div>
     </div>
@@ -178,10 +170,11 @@
 
     //设置模块信息
     var _moduleContent=window.opener.document._moduleContent;
-    for(var i in _moduleContent)
+    var _moduleList=window.opener.document._moduleList;
+    for(var i in _moduleList)
     {
         var b =document.createElement('b');
-        b.innerHTML=_moduleContent[i].name;
+        b.innerHTML=_moduleContent[i].moduleName;
         var h3=document.createElement('h3');
         h3.setAttribute('class','panel-title text-center');
         h3.appendChild(b);
@@ -189,21 +182,85 @@
         div_panelhead.setAttribute('class','panel-heading');
         div_panelhead.appendChild(h3);
         var div_body=document.createElement('div');
-        //var editor=document.createElement('textarea');
-        //editor.setAttribute('id','editor'+i);
         div_body.setAttribute('class','panel-body');
-        //div_body.appendChild(editor);
-        div_body.innerHTML=_moduleContent[i].content;
+        var row=document.createElement('div');
+        row.setAttribute('class','row');
+        div_body.appendChild(row);
+        addItemToPanel(row,_moduleList[i].name);
+
         var panel=document.createElement('div');
         panel.setAttribute('class','panel panel-default');
         panel.appendChild(div_panelhead);
         panel.appendChild(div_body);
 
+
+
         var container=document.getElementById('contentContainer');
         container.appendChild(panel);
 
-        //CKEDITOR.replace('editor'+i,{"allowedContent":true});
-        //CKEDITOR.instances['editor'+i].setData(_moduleContent[i].content);
+    }
+
+
+    function addItemToPanel(parent,moduleName)
+    {
+        for(var j in _moduleContent)
+        {
+            if(_moduleContent[j].moduleName==moduleName)
+            {
+                //_moduleContent.push({"moduleName":module,"itemName":name,"itemDesc":desc,"image":img,"price":price,"uom":uom,"itemId":id});
+                var item=document.createElement('div');
+                item.setAttribute('class','thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-4');
+                item.setAttribute('id',_moduleContent[i].itemId);
+
+                var itemImg=document.createElement('img');
+                itemImg.setAttribute('src',_moduleContent[i].image);
+                itemImg.setAttribute('width','100%');
+                itemImg.setAttribute('id','thumbNailImgId_'+_moduleContent[i].itemId);
+                itemImg.setAttribute('alt',_moduleContent[i].itemDesc);
+
+                var capDiv=document.createElement('div');
+                capDiv.setAttribute('class','caption text-center');
+
+                var title=document.createElement('label');
+                title.setAttribute('id','thumbNailItemName_'+_moduleContent[i].itemId);
+                title.innerHTML=_moduleContent[i].itemName;
+
+                var pp=document.createElement('p');
+                var price=document.createElement('label');
+                var spliter=document.createElement('label');
+                var uom=document.createElement('label');
+                price.setAttribute('id','thumbNailUprice_'+_moduleContent[i].itemId);
+                price.innerHTML=_moduleContent[i].price;
+                uom.setAttribute('id','thumbNailUom_'+_moduleContent[i].itemId);
+                uom.innerHTML=_moduleContent[i].uom;
+                spliter.innerHTML='/';
+                pp.appendChild(price);
+                pp.appendChild(spliter);
+                pp.appendChild(uom);
+
+                var p2=document.createElement('p');
+                var a3=document.createElement('a');
+                a3.setAttribute('class','btn btn-info');
+                a3.setAttribute('onclick','AddToCart("'+_moduleContent[i].itemId+'")');
+                a3.innerHTML='购入';
+                var a4=document.createElement('a');
+                a4.setAttribute('style','margin-left:15px');
+                a4.setAttribute('onclick','seeDetail("'+_moduleContent[i].itemId+'")');
+                a4.innerHTML='详细';
+                p2.appendChild(a3);
+                p2.appendChild(a4);
+
+
+                capDiv.appendChild(title);
+                capDiv.appendChild(pp);
+                capDiv.appendChild(p2);
+
+                item.appendChild(itemImg);
+                item.appendChild(capDiv);
+
+                parent.appendChild(item);
+            }
+        }
     }
 
 </script>

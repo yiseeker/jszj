@@ -342,7 +342,7 @@
 
     var _moduleList=new Array();
     var _moduleContent=new Array();
-    var itemid=0;
+
 
 
     function addModule()
@@ -517,48 +517,15 @@
         var win=window.open('/users/previewActivity');
     }
 
-    /*function moduleChanged()
-    {
-        var selection =$('#moduleOptions').val();
-        var container=$('#moduleList').get(0);
-        container.innerHTML='';
-
-        for(var i in _moduleContent)
-        {
-            if(_moduleContent[i].moduleName=selection)
-            {
-                CKEDITOR.instances.editor.setData(_moduleContent[i].content);
-                return;
-            }
-        }
-
-    }*/
-
-    function saveModuleContent()
-    {
-        var name =$('#moduleOptions').val();
-
-        for(var j in _moduleContent)
-        {
-            if(_moduleContent[j].name==name)
-            {
-                _moduleContent[j].content=content;
-                alert('模块['+name+']保存成功');
-                return;
-            }
-        }
-        _moduleContent.push({"name":name,"content":content});
-        alert('模块['+name+']保存成功');
-    }
-
     function addItem()
     {
+        var itemid=uuid(16,16);
         var list=document.getElementById('itemList');
 
 
         var item=document.createElement('div');
         item.setAttribute('class','thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-4');
-        item.setAttribute('id',itemid+'');
+        item.setAttribute('id','item'+itemid+'');
 
         var itemImg=document.createElement('img');
         itemImg.setAttribute('src','/images/logo.png');
@@ -592,6 +559,7 @@
         a4.setAttribute('class','btn btn-danger');
 
         a4.setAttribute('onclick','delItem("'+itemid+'")');
+        a4.setAttribute('style','margin-left:15px');
         a4.innerHTML='删除';
         p2.appendChild(a3);
         p2.appendChild(a4);
@@ -610,29 +578,35 @@
 
         list.appendChild(item);
 
-        itemid++;
 
 
     }
 
     function delItem(id)
-    {TODO:
+    {
         //从_moduleContent中清除商品信息
-        var module = $('#thumbNailModuleName_'+id).val();
-        var itemname = $('#thumbNailItemName_'+id).html();
-        for(var i in _moduleContent)
-        {
-            if(_moduleContent[i].moduleName==module && _moduleContent[i].itemName==itemname)
-            {
-                _moduleContent.splice(i);
-                return;
-            }
-        }
-
-        //从页面中清除商品项目
+        var module = document.getElementById('thumbNailModuleName_'+id).value;
+        var itemname = document.getElementById('thumbNailItemName_'+id).innerHTML;
         var list=document.getElementById('itemList');
-        var item=document.getElementById(id+'');
-        list.removeChild(item);
+        var item=document.getElementById('item'+id);
+        if(module==''||module==null)
+        {
+            //如果是新增的空的商品，则从页面中清除商品项目
+
+            list.removeChild(item);
+        }else
+        {
+            //如果是已经编辑过的商品，则不但要清除页面信息，也要清除_moduleContent中的信息
+            for(var i in _moduleContent)
+            {
+                if(_moduleContent[i].moduleName==module && _moduleContent[i].itemName==itemname)
+                {
+                    _moduleContent.splice(i);
+                }
+            }
+            //从页面中清除商品项目
+            list.removeChild(item);
+        }
     }
 
     function editItem(id)
@@ -826,6 +800,7 @@
     });
 
     this.document._moduleContent=_moduleContent;
+    this.document._moduleList=_moduleList;
 </script>
 
 

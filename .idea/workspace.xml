@@ -34,23 +34,23 @@
       <file leaf-file-name="editActivity.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/users/editActivity.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4537037">
-              <caret line="618" column="10" selection-start-line="618" selection-start-column="10" selection-end-line="618" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.4375">
+              <caret line="561" column="49" selection-start-line="561" selection-start-column="49" selection-end-line="561" selection-end-column="49" />
               <folding>
-                <element signature="e#16757#17226#0#HTML" expanded="false" />
-                <element signature="e#17290#17567#0#HTML" expanded="false" />
-                <element signature="e#17629#18296#0#HTML" expanded="false" />
-                <element signature="e#18364#18892#0#HTML" expanded="false" />
-                <element signature="e#18959#19141#0#HTML" expanded="false" />
-                <element signature="e#19188#19927#0#HTML" expanded="false" />
-                <element signature="e#20032#20822#0#HTML" expanded="false" />
-                <element signature="e#20851#20913#0#HTML" expanded="false" />
-                <element signature="e#21371#21769#0#HTML" expanded="false" />
-                <element signature="e#21798#23820#0#HTML" expanded="false" />
-                <element signature="e#24446#25208#0#HTML" expanded="false" />
-                <element signature="e#25257#28458#0#HTML" expanded="false" />
-                <element signature="e#28509#28568#0#HTML" expanded="false" />
-                <element signature="e#28617#28946#0#HTML" expanded="false" />
+                <element signature="e#16740#17209#0#HTML" expanded="false" />
+                <element signature="e#17273#17550#0#HTML" expanded="false" />
+                <element signature="e#17612#18279#0#HTML" expanded="false" />
+                <element signature="e#18347#18875#0#HTML" expanded="false" />
+                <element signature="e#18942#19124#0#HTML" expanded="false" />
+                <element signature="e#19171#19910#0#HTML" expanded="false" />
+                <element signature="e#19938#19969#0#HTML" expanded="false" />
+                <element signature="e#20015#20805#0#HTML" expanded="false" />
+                <element signature="e#20834#20896#0#HTML" expanded="false" />
+                <element signature="e#23052#23885#0#HTML" expanded="false" />
+                <element signature="e#23917#24679#0#HTML" expanded="false" />
+                <element signature="e#24728#27929#0#HTML" expanded="false" />
+                <element signature="e#27980#28039#0#HTML" expanded="false" />
+                <element signature="e#28088#28417#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -59,19 +59,9 @@
       <file leaf-file-name="previewActivity.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/users/previewActivity.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding>
-                <marker date="1444958160321" expanded="true" signature="4972:5166" placeholder="{...}" />
-                <marker date="1444958160321" expanded="true" signature="5180:5425" placeholder="{...}" />
-                <marker date="1444958160321" expanded="true" signature="5637:5831" placeholder="{...}" />
-                <marker date="1444958160321" expanded="true" signature="5845:6090" placeholder="{...}" />
-                <marker date="1444958160321" expanded="true" signature="6303:6497" placeholder="{...}" />
-                <marker date="1444958160321" expanded="true" signature="6511:6756" placeholder="{...}" />
-                <marker date="1444958160321" expanded="true" signature="6870:7993" placeholder="{...}" />
-                <marker date="1444958160321" expanded="true" signature="7309:7405" placeholder="//..." />
-                <marker date="1444958160321" expanded="true" signature="7855:7987" placeholder="//..." />
-              </folding>
+            <state vertical-scroll-proportion="-33.666668">
+              <caret line="246" column="57" selection-start-line="246" selection-start-column="57" selection-end-line="246" selection-end-column="57" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,7 +96,6 @@
         <option value="$PROJECT_DIR$/routes/error.js" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$PROJECT_DIR$/public/stylesheets/fontawesome4_4.css" />
-        <option value="$PROJECT_DIR$/public/javascripts/script.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/dbmodels/models.js" />
         <option value="$PROJECT_DIR$/views/register.ejs" />
@@ -129,8 +118,9 @@
         <option value="$PROJECT_DIR$/routes/upload.js" />
         <option value="$PROJECT_DIR$/public/javascripts/ckeditor/config.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/views/users/previewActivity.ejs" />
         <option value="$PROJECT_DIR$/views/LAYOUT.ejs" />
+        <option value="$PROJECT_DIR$/public/javascripts/script.js" />
+        <option value="$PROJECT_DIR$/views/users/previewActivity.ejs" />
         <option value="$PROJECT_DIR$/views/users/editActivity.ejs" />
       </list>
     </option>
@@ -171,6 +161,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -203,10 +194,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jszj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jszj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jszj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jszj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -475,13 +497,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/error.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -638,43 +653,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/jquery.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/bootstrap.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/users/previewActivity.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <marker date="1444958160321" expanded="true" signature="4972:5166" placeholder="{...}" />
-            <marker date="1444958160321" expanded="true" signature="5180:5425" placeholder="{...}" />
-            <marker date="1444958160321" expanded="true" signature="5637:5831" placeholder="{...}" />
-            <marker date="1444958160321" expanded="true" signature="5845:6090" placeholder="{...}" />
-            <marker date="1444958160321" expanded="true" signature="6303:6497" placeholder="{...}" />
-            <marker date="1444958160321" expanded="true" signature="6511:6756" placeholder="{...}" />
-            <marker date="1444958160321" expanded="true" signature="6870:7993" placeholder="{...}" />
-            <marker date="1444958160321" expanded="true" signature="7309:7405" placeholder="//..." />
-            <marker date="1444958160321" expanded="true" signature="7855:7987" placeholder="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/LAYOUT.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.104166664">
-          <caret line="5" column="56" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -693,25 +675,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0023255814">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/LAYOUT.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1875">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.959596">
+          <caret line="54" column="1" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/users/previewActivity.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-33.666668">
+          <caret line="246" column="57" selection-start-line="246" selection-start-column="57" selection-end-line="246" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/users/editActivity.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4537037">
-          <caret line="618" column="10" selection-start-line="618" selection-start-column="10" selection-end-line="618" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.4375">
+          <caret line="561" column="49" selection-start-line="561" selection-start-column="49" selection-end-line="561" selection-end-column="49" />
           <folding>
-            <element signature="e#16757#17226#0#HTML" expanded="false" />
-            <element signature="e#17290#17567#0#HTML" expanded="false" />
-            <element signature="e#17629#18296#0#HTML" expanded="false" />
-            <element signature="e#18364#18892#0#HTML" expanded="false" />
-            <element signature="e#18959#19141#0#HTML" expanded="false" />
-            <element signature="e#19188#19927#0#HTML" expanded="false" />
-            <element signature="e#20032#20822#0#HTML" expanded="false" />
-            <element signature="e#20851#20913#0#HTML" expanded="false" />
-            <element signature="e#21371#21769#0#HTML" expanded="false" />
-            <element signature="e#21798#23820#0#HTML" expanded="false" />
-            <element signature="e#24446#25208#0#HTML" expanded="false" />
-            <element signature="e#25257#28458#0#HTML" expanded="false" />
-            <element signature="e#28509#28568#0#HTML" expanded="false" />
-            <element signature="e#28617#28946#0#HTML" expanded="false" />
+            <element signature="e#16740#17209#0#HTML" expanded="false" />
+            <element signature="e#17273#17550#0#HTML" expanded="false" />
+            <element signature="e#17612#18279#0#HTML" expanded="false" />
+            <element signature="e#18347#18875#0#HTML" expanded="false" />
+            <element signature="e#18942#19124#0#HTML" expanded="false" />
+            <element signature="e#19171#19910#0#HTML" expanded="false" />
+            <element signature="e#19938#19969#0#HTML" expanded="false" />
+            <element signature="e#20015#20805#0#HTML" expanded="false" />
+            <element signature="e#20834#20896#0#HTML" expanded="false" />
+            <element signature="e#23052#23885#0#HTML" expanded="false" />
+            <element signature="e#23917#24679#0#HTML" expanded="false" />
+            <element signature="e#24728#27929#0#HTML" expanded="false" />
+            <element signature="e#27980#28039#0#HTML" expanded="false" />
+            <element signature="e#28088#28417#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
