@@ -34,24 +34,9 @@
       <file leaf-file-name="editActivity.ejs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/users/editActivity.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4375">
-              <caret line="561" column="49" selection-start-line="561" selection-start-column="49" selection-end-line="561" selection-end-column="49" />
-              <folding>
-                <element signature="e#16740#17209#0#HTML" expanded="false" />
-                <element signature="e#17273#17550#0#HTML" expanded="false" />
-                <element signature="e#17612#18279#0#HTML" expanded="false" />
-                <element signature="e#18347#18875#0#HTML" expanded="false" />
-                <element signature="e#18942#19124#0#HTML" expanded="false" />
-                <element signature="e#19171#19910#0#HTML" expanded="false" />
-                <element signature="e#19938#19969#0#HTML" expanded="false" />
-                <element signature="e#20015#20805#0#HTML" expanded="false" />
-                <element signature="e#20834#20896#0#HTML" expanded="false" />
-                <element signature="e#23052#23885#0#HTML" expanded="false" />
-                <element signature="e#23917#24679#0#HTML" expanded="false" />
-                <element signature="e#24728#27929#0#HTML" expanded="false" />
-                <element signature="e#27980#28039#0#HTML" expanded="false" />
-                <element signature="e#28088#28417#0#HTML" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.5520833">
+              <caret line="442" column="32" selection-start-line="442" selection-start-column="32" selection-end-line="442" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -59,8 +44,8 @@
       <file leaf-file-name="previewActivity.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/users/previewActivity.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-33.666668">
-              <caret line="246" column="57" selection-start-line="246" selection-start-column="57" selection-end-line="246" selection-end-column="57" />
+            <state vertical-scroll-proportion="8.0">
+              <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -161,7 +146,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -229,6 +213,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -679,9 +664,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0023255814">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -697,38 +679,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.959596">
           <caret line="54" column="1" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/users/previewActivity.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-33.666668">
-          <caret line="246" column="57" selection-start-line="246" selection-start-column="57" selection-end-line="246" selection-end-column="57" />
+        <state vertical-scroll-proportion="8.0">
+          <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/users/editActivity.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4375">
-          <caret line="561" column="49" selection-start-line="561" selection-start-column="49" selection-end-line="561" selection-end-column="49" />
-          <folding>
-            <element signature="e#16740#17209#0#HTML" expanded="false" />
-            <element signature="e#17273#17550#0#HTML" expanded="false" />
-            <element signature="e#17612#18279#0#HTML" expanded="false" />
-            <element signature="e#18347#18875#0#HTML" expanded="false" />
-            <element signature="e#18942#19124#0#HTML" expanded="false" />
-            <element signature="e#19171#19910#0#HTML" expanded="false" />
-            <element signature="e#19938#19969#0#HTML" expanded="false" />
-            <element signature="e#20015#20805#0#HTML" expanded="false" />
-            <element signature="e#20834#20896#0#HTML" expanded="false" />
-            <element signature="e#23052#23885#0#HTML" expanded="false" />
-            <element signature="e#23917#24679#0#HTML" expanded="false" />
-            <element signature="e#24728#27929#0#HTML" expanded="false" />
-            <element signature="e#27980#28039#0#HTML" expanded="false" />
-            <element signature="e#28088#28417#0#HTML" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.5520833">
+          <caret line="442" column="32" selection-start-line="442" selection-start-column="32" selection-end-line="442" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>

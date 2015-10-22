@@ -411,24 +411,88 @@
     {
         var parent=$('#moduleList').get(0);
         var child=$('#'+name).get(0);
-        parent.removeChild(child);
-        for(var i in _moduleList)
+        var count =countsInModule(name);
+        if(count!=0)//如果模块中没有任何内容，那么可以直接删除模块，否则提示用户
         {
-            if(_moduleList[i].name==name)
+            if(confirm('模块['+name+']中包含了'+count+'件商品，删除模块将删除所有商品，是否继续？'))
             {
-                _moduleList.splice(i);
-                break;
-            }
-        }
+                //删除页面中的元素
+                parent.removeChild(child);
+                //删除_moduleList中的元素
+                for(var i in _moduleList)
+                {
+                    if(_moduleList[i].name==name)
+                    {
+                        _moduleList.splice(i);
+                        break;
+                    }
+                }
+                //删除下拉菜单中的元素
+                var op =$('#moduleOptions').get(0);
+                for(var i=0;i<=op.options.length-1;i++)
+                {
+                    if(op.options[i].text==name)
+                    {
+                        op.options[i]=null;
+                    }
+                }
+                //删除_moduleContent中的元素
 
-        var op =$('#moduleOptions').get(0);
-        for(var i=0;i<=op.options.length-1;i++)
-        {
-            if(op.options[i].text==name)
+                for(var j in _moduleContent)
+                {
+                    alert('do it');
+                    if(_moduleContent[j].moduleName==name)
+                    {
+                        document.getElementById('itemList').removeChild(document.getElementById('item'+_moduleContent[j].itemId));
+                        alert(_moduleContent.length);
+                        _moduleContent.splice(j,1);
+                        alert(_moduleContent.length);
+                    }
+                }
+
+            }
+            else
             {
-                op.options[i]=null;
+                return;
             }
         }
+        else
+        {
+            //删除页面中的元素
+            parent.removeChild(child);
+            //删除_moduleList中的元素
+            for(var i in _moduleList)
+            {
+                if(_moduleList[i].name==name)
+                {
+                    _moduleList.splice(i);
+                    break;
+                }
+            }
+            //删除下拉菜单中的元素
+            var op =$('#moduleOptions').get(0);
+            for(var i=0;i<=op.options.length-1;i++)
+            {
+                if(op.options[i].text==name)
+                {
+                    op.options[i]=null;
+                }
+            }
+        }
+    }
+
+    //获取模块中对应的商品数量
+    function countsInModule(moduleName)
+    {
+        var count=0;
+        for(var i in _moduleContent)
+        {
+            if(_moduleContent[i].moduleName==moduleName)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
     <!-- 判断模块名是否已存在-->
@@ -485,31 +549,7 @@
     <!-- 重置活动页面-->
     function reset()
     {
-        $('#activityName').val('');
-        document.getElementById('enable').checked=true;
-        $('#activityType').val('商业');
-        $('input:radio[name=theme]').attr('checked',false);
-        $('#file1').val('');
-        $('#fileText1').val('');
-        $('#file2').val('');
-        $('#fileText2').val('');
-        $('#file3').val('');
-        $('#fileText3').val('');
-        $('#moduleName').val('');
-        $('#activityDesc').val('');
-        $('#contactInfo').val('');
-
-        var moduleList=$('#moduleList').get(0);
-        moduleList.innerHTML='';
-
-        var itemList=$('#itemList').get(0);
-        itemList.innerHTML='';
-
-        var op =$('#moduleOptions').get(0);
-        op.options.length=0;
-
-        _moduleList=new Array();
-        _moduleContent=new Array();
+        location.reload(true);
     }
 
     function preview()
@@ -765,6 +805,7 @@
         $('#modalMessage').html('');
         $('#modalItemId').val('');
         $('#moduleOptions').get(0).selectedIndex=0;
+
     }
 
 

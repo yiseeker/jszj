@@ -210,29 +210,29 @@
                 //_moduleContent.push({"moduleName":module,"itemName":name,"itemDesc":desc,"image":img,"price":price,"uom":uom,"itemId":id});
                 var item=document.createElement('div');
                 item.setAttribute('class','thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-4');
-                item.setAttribute('id',_moduleContent[i].itemId);
+                item.setAttribute('id',_moduleContent[j].itemId);
 
                 var itemImg=document.createElement('img');
-                itemImg.setAttribute('src',_moduleContent[i].image);
+                itemImg.setAttribute('src',_moduleContent[j].image);
                 itemImg.setAttribute('width','100%');
-                itemImg.setAttribute('id','thumbNailImgId_'+_moduleContent[i].itemId);
-                itemImg.setAttribute('alt',_moduleContent[i].itemDesc);
+                itemImg.setAttribute('id','thumbNailImgId_'+_moduleContent[j].itemId);
+                itemImg.setAttribute('alt',_moduleContent[j].itemDesc);
 
                 var capDiv=document.createElement('div');
                 capDiv.setAttribute('class','caption text-center');
 
                 var title=document.createElement('label');
-                title.setAttribute('id','thumbNailItemName_'+_moduleContent[i].itemId);
-                title.innerHTML=_moduleContent[i].itemName;
+                title.setAttribute('id','thumbNailItemName_'+_moduleContent[j].itemId);
+                title.innerHTML=_moduleContent[j].itemName;
 
                 var pp=document.createElement('p');
                 var price=document.createElement('label');
                 var spliter=document.createElement('label');
                 var uom=document.createElement('label');
-                price.setAttribute('id','thumbNailUprice_'+_moduleContent[i].itemId);
-                price.innerHTML=_moduleContent[i].price;
-                uom.setAttribute('id','thumbNailUom_'+_moduleContent[i].itemId);
-                uom.innerHTML=_moduleContent[i].uom;
+                price.setAttribute('id','thumbNailUprice_'+_moduleContent[j].itemId);
+                price.innerHTML=_moduleContent[j].price;
+                uom.setAttribute('id','thumbNailUom_'+_moduleContent[j].itemId);
+                uom.innerHTML=_moduleContent[j].uom;
                 spliter.innerHTML='/';
                 pp.appendChild(price);
                 pp.appendChild(spliter);
@@ -241,11 +241,11 @@
                 var p2=document.createElement('p');
                 var a3=document.createElement('a');
                 a3.setAttribute('class','btn btn-info');
-                a3.setAttribute('onclick','AddToCart("'+_moduleContent[i].itemId+'")');
+                a3.setAttribute('onclick','AddToCart("'+_moduleContent[j].itemId+'")');
                 a3.innerHTML='购入';
                 var a4=document.createElement('a');
                 a4.setAttribute('style','margin-left:15px');
-                a4.setAttribute('onclick','seeDetail("'+_moduleContent[i].itemId+'")');
+                a4.setAttribute('onclick','seeDetail("'+_moduleContent[j].itemId+'")');
                 a4.innerHTML='详细';
                 p2.appendChild(a3);
                 p2.appendChild(a4);
