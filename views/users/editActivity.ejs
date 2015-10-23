@@ -336,7 +336,8 @@
 
 </div>
 
-<script src="/javascripts/ckeditor/ckeditor.js"></script>
+
+<!--<script src="/javascripts/ckeditor/ckeditor.js"></script>-->
 <script>
 
 
@@ -423,7 +424,7 @@
                 {
                     if(_moduleList[i].name==name)
                     {
-                        _moduleList.splice(i);
+                        _moduleList.splice(i,1);
                         break;
                     }
                 }
@@ -438,15 +439,14 @@
                 }
                 //删除_moduleContent中的元素
 
-                for(var j in _moduleContent)
+                for(var j=0;j<_moduleContent.length;j++)
                 {
-                    alert('do it');
                     if(_moduleContent[j].moduleName==name)
                     {
                         document.getElementById('itemList').removeChild(document.getElementById('item'+_moduleContent[j].itemId));
-                        alert(_moduleContent.length);
+
                         _moduleContent.splice(j,1);
-                        alert(_moduleContent.length);
+                        j--;
                     }
                 }
 
@@ -465,7 +465,7 @@
             {
                 if(_moduleList[i].name==name)
                 {
-                    _moduleList.splice(i);
+                    _moduleList.splice(i,1);
                     break;
                 }
             }
@@ -538,6 +538,12 @@
                 return;
             }
         }
+
+        //post数据，进行保存
+        $.post('/users/saveActivity',{'moduleList':_moduleList,'moduleContent':_moduleContent},
+        function(data){
+            alert(data);
+        });
 
     }
 
@@ -641,7 +647,8 @@
             {
                 if(_moduleContent[i].moduleName==module && _moduleContent[i].itemName==itemname)
                 {
-                    _moduleContent.splice(i);
+                    _moduleContent.splice(i,1);
+                    break;
                 }
             }
             //从页面中清除商品项目
@@ -780,7 +787,8 @@
         {
             if(_moduleContent[k].itemId==id)
             {
-                _moduleContent.splice(k);
+                _moduleContent.splice(k,1);
+                break;
             }
         }
         _moduleContent.push({"moduleName":module,"itemName":name,"itemDesc":desc,"image":img,"price":price,"uom":uom,"itemId":id});

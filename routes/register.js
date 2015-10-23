@@ -94,9 +94,16 @@ router.post('/', function(req, res) {
 
 
 
-function SetModel(model)
+function SetModel(list)
 {
-  USER=model;
+  for(var i in list)
+  {
+    if(list[i].modelName=='USER')
+    {
+      USER = list[i].model;
+      break;
+    }
+  }
 }
 
 module.exports = router;
