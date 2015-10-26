@@ -4,6 +4,7 @@
 
 
 
+<input type="hidden" id="activityId" />
 
 <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
                 <div class="modal-dialog">
@@ -226,6 +227,7 @@
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
                             <label id="uploadMessage1" style="color:red"></label>
+                            <input type="hidden" id="file1Path" />
                         </div>
                     </div>
                     <br/>
@@ -247,6 +249,7 @@
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
                             <label id="uploadMessage2" style="color:red"></label>
+                            <input type="hidden" id="file2Path" />
                         </div>
                     </div>
                     <br/>
@@ -268,6 +271,7 @@
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
                             <label id="uploadMessage3" style="color:red"></label>
+                            <input type="hidden" id="file3Path" />
                         </div>
                     </div>
                     <br/>
@@ -511,8 +515,9 @@
     <!-- 保存活动页面内容-->
     function save()
     {
+        //验证用户活动名
         var name=$('#activityName').val();
-        if(name.trim()=='' || name.trim()==null)//验证用户是否输入了活动名
+        if(name.trim()=='' || name.trim()==null)
         {
             alert('请输入您的活动名称!');
             return;
@@ -522,6 +527,36 @@
         if(!exp.test($('#activityName').val()))
         {
             alert('请输入10个以内的字符作为活动名，汉字、字母及数字的组合都可以!');
+            return;
+        }
+
+        //验证用户活动描述
+        var desc=$('#activityDesc').val();
+        if(desc.trim()=='' || desc.trim()==null)
+        {
+            alert('请输入您的活动描述!');
+            return;
+        }
+
+        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,100}$');//验证活动描述是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test(desc))
+        {
+            alert('请输入100个以内的字符作为活动描述，汉字、字母及数字的组合都可以!');
+            return;
+        }
+
+        //验证用户活动联系信息
+        var contact=$('#contactInfo').val();
+        if(contact.trim()=='' || contact.trim()==null)
+        {
+            alert('请输入您的联系信息!');
+            return;
+        }
+
+        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,50}$');//验证活动描述是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test(contact))
+        {
+            alert('请输入50个以内的字符作为联系信息!');
             return;
         }
 
@@ -539,10 +574,35 @@
             }
         }
 
+
         //post数据，进行保存
-        $.post('/users/saveActivity',{'moduleList':_moduleList,'moduleContent':_moduleContent},
-        function(data){
-            alert(data);
+        var data={
+            'activityId':$('#activityId').val()==null?'':$('#activityId').val(),
+            'activityName':name,
+            'activityDesc':desc,
+            'enabled':document.getElementById('enable').checked?true:false,
+            'contactInfo':contact,
+            'pic1':$('#file1Path').val()==null?'':$('#file1Path').val(),
+            'pic1Desc':$('#fileText1').val()==null?'':$('#fileText1').val(),
+            'pic2':$('#file2Path').val()==null?'':$('#file2Path').val(),
+            'pic2Desc':$('#fileText2').val()==null?'':$('#fileText2').val(),
+            'pic3':$('#file3Path').val()==null?'':$('#file3Path').val(),
+            'pic3Desc':$('#fileText3').val()==null?'':$('#fileText3').val(),
+            'moduleList':_moduleList,
+            'moduleContent':_moduleContent};
+        $.post('/users/saveActivity',
+                {'data':data},
+                function(data){
+                    if(data.success)
+                    {
+                        $('#activityId').val(data.activityId);
+                        alert(data.message);
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+
         });
 
     }
@@ -819,17 +879,35 @@
 
 
 
+    //用于上传宣传图片
     $("#file1").fileupload({
         url:"/upload?type=temp&tag=file1",//处理程序的地址，当然也可以直接写在input的data-url属性内
         done:function(e,result){
-            $('#uploadMessage1').html(result.result.file);
+            if(result.result.file==null)
+            {
+                $('#uploadMessage1').html(result.result);
+            }
+            else
+            {
+                $('#uploadMessage1').html('上传成功！');
+                $('#file1Path').val(result.result.file);
+            }
         }
     });
 
     $("#file2").fileupload({
         url:"/upload?type=temp&tag=file2",//处理程序的地址，当然也可以直接写在input的data-url属性内
         done:function(e,result){
-            $('#uploadMessage2').html(result.result.file);
+            if(result.result.file==null)
+            {
+                $('#uploadMessage2').html(result.result);
+            }
+            else
+            {
+                $('#uploadMessage2').html('上传成功！');
+                $('#file2Path').val(result.result.file);
+            }
+
         }
     });
 
@@ -837,10 +915,19 @@
     $("#file3").fileupload({
         url:"/upload?type=temp&tag=file3",//处理程序的地址，当然也可以直接写在input的data-url属性内
         done:function(e,result){
-            $('#uploadMessage3').html(result.result.file);
+            if(result.result.file==null)
+            {
+                $('#uploadMessage3').html(result.result);
+            }
+            else
+            {
+                $('#uploadMessage3').html('上传成功！');
+                $('#file3Path').val(result.result.file);
+            }
         }
     });
 
+    //用于上传商品图片
     $("#file4").fileupload({
         url:"/upload?type=temp&tag=file4",//处理程序的地址，当然也可以直接写在input的data-url属性内
         done:function(e,result){

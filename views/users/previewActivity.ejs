@@ -110,7 +110,7 @@
     document.getElementById('contactInfo').innerHTML=contactInfo;
 
     //carousel图片一设置
-    var pic1=window.opener.document.getElementById('uploadMessage1').innerHTML;
+    var pic1=window.opener.document.getElementById('file1Path').value;
     var pic1Desc=window.opener.document.getElementById('fileText1').value;
 
     if(pic1!='' && pic1!=null)
@@ -130,7 +130,7 @@
     }
 
     //carousel图片二设置
-    var pic2=window.opener.document.getElementById('uploadMessage2').innerHTML;
+    var pic2=window.opener.document.getElementById('file2Path').value;
     var pic2Desc=window.opener.document.getElementById('fileText2').value;
     if(pic2!='' && pic2!=null)
     {
@@ -149,7 +149,7 @@
     }
 
     //carousel图片三设置
-    var pic3=window.opener.document.getElementById('uploadMessage3').innerHTML;
+    var pic3=window.opener.document.getElementById('file3Path').innerHTML;
     var pic3Desc=window.opener.document.getElementById('fileText3').value;
 
     if(pic3!='' && pic3!=null)

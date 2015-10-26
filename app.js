@@ -18,7 +18,7 @@ var news = require('./routes/news');
 var recommend = require('./routes/recommend');
 var hot = require('./routes/activity');
 var error = require('./routes/error');
-var users = require('./routes/users');
+var users = require('./routes/users');users.SetModel(models.getAllModel());
 var upload = require('./routes/upload');
 var register = require('./routes/register');register.SetModel(models.getAllModel());
 
