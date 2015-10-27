@@ -11,7 +11,7 @@ var session=require('express-session');
 var flash=require('connect-flash');
 var models=require('./dbmodels/models');
 var bcrypt=require('bcrypt-nodejs');
-var USER=models.getModel('USER');
+var USER=models.getModel('APP_USER');
 
 var routes = require('./routes/index');
 var news = require('./routes/news');
@@ -88,9 +88,7 @@ passport.use(new localStrategy({
             {
                 return done(null,false,{message:'用户名不存在!'})
             }
-            console.log(password+'  '+user.password);
             bcrypt.compare(password,user.password,function(err,isValid) {
-                console.log(isValid);
                 if (isValid) {
                     return done(null, user);
                 }

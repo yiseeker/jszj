@@ -28,14 +28,30 @@ router.post('/', function(req, res,next) {
             if(req.query.type=='temp')
             {
                 var fileName=req.user.username+'_temp_'+uuid.v4()+'.'+fileType;
-                fs.renameSync(files[req.query.tag].path,'/home/linux/Projects/jszj/temp/'+fileName);//存放到临时目录，随时可以删除
-                res.send(JSON.parse('{"file":"'+fileName+'"}'));
+                fs.rename(files[req.query.tag].path,'/home/linux/Projects/jszj/temp/'+fileName,function(err){
+                    if(err)
+                    {
+                        res.send(err);
+                    }
+                    else
+                    {
+                        res.send(JSON.parse('{"file":"'+fileName+'"}'));
+                    }
+                });//存放到临时目录，随时可以删除
             }
             else
             {
                 var fileName=req.user.username+'_'+uuid.v4()+'.'+fileType;
-                fs.renameSync(files.upload.path,'/home/linux/Projects/jszj/upload/'+fileName);//为ckeditor保存的文件
-                res.send("<script>window.parent.CKEDITOR.tools.callFunction("+req.query.CKEditorFuncNum+",'/resource/"+fileName+"','')</script>");
+                fs.rename(files.upload.path,'/home/linux/Projects/jszj/upload/'+fileName,function(err){
+                   if(err)
+                   {
+                       res.send(err);
+                   }else
+                   {
+                       res.send("<script>window.parent.CKEDITOR.tools.callFunction("+req.query.CKEditorFuncNum+",'/resource/"+fileName+"','')</script>");
+                   }
+                });
+
             }
 
 

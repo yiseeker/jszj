@@ -6,100 +6,6 @@
 
 <input type="hidden" id="activityId" />
 
-<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                ×
-                            </button>
-                            <h4 class="modal-title" id="myModalLabel">
-                                编辑商品
-                            </h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    上传商品图片:
-                                    <input type="file" name="file4" id="file4" placeholder="请选择文件">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <br/>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <img width="100%" src="#" alt="" id="itemImage">
-                                </div>
-                            </div>
-                                <br/>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="input-group">
-                                        <input id="itemName" type="text" class="form-control" placeholder="输入商品名称"/>
-                                        <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                                <br/>
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="input-group">
-                                        <input id="itemDesc" type="text" class="form-control" placeholder="输入商品描述"/>
-                                        <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="input-group">
-                                        <input id="itemUprice" type="text" class="form-control" placeholder="输入商品单价(元)"/>
-                                        <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <div class="input-group">
-                                        <input id="itemUom" type="text" class="form-control" placeholder="输入商品单位"/>
-                                        <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                                <br/>
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
-                                    所属模块: <select class="form-control" id="moduleOptions" >
-
-                                    </select>
-                                </div>
-                            </div>
-                                <br/>
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                    <label id="modalMessage" style="color:red"></label>
-                                </div>
-                            </div>
-
-                            <input type="hidden" id="modalItemId" />
-
-                        </div>
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                取消
-                            </button>
-                            <button type="button" class="btn btn-primary" onclick="saveItem()">
-                                保存
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-<br/>
-<br/>
-
-
 <div class="container-fluid">
     <div class="row">
         <!--左边保存按钮等-->
@@ -117,7 +23,12 @@
                 <button class="button button-royal" onclick="goback()">返回</button>
             </div>
             <div class="panel-footer">
-
+                <div class="row">
+                    <ul>
+                        <li><a href="/users/editModule">编辑模块</a></li>
+                        <li><a href="/users/editItem">编辑商品</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         </div>
@@ -623,237 +534,9 @@
         var win=window.open('/users/previewActivity');
     }
 
-    function addItem()
-    {
-        var itemid=uuid(16,16);
-        var list=document.getElementById('itemList');
-
-
-        var item=document.createElement('div');
-        item.setAttribute('class','thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-4');
-        item.setAttribute('id','item'+itemid+'');
-
-        var itemImg=document.createElement('img');
-        itemImg.setAttribute('src','/images/logo.png');
-        itemImg.setAttribute('width','100%');
-        itemImg.setAttribute('id','thumbNailImgId_'+itemid);
-
-        var capDiv=document.createElement('div');
-        capDiv.setAttribute('class','caption');
-
-        var title=document.createElement('label');
-        title.setAttribute('id','thumbNailItemName_'+itemid);
-        title.innerHTML='商品名称';
-
-        var pp=document.createElement('p');
-        var price=document.createElement('label');
-        var spliter=document.createElement('label');
-        var uom=document.createElement('label');
-        price.setAttribute('id','thumbNailUprice_'+itemid);
-        uom.setAttribute('id','thumbNailUom_'+itemid);
-        spliter.innerHTML='/';
-        pp.appendChild(price);
-        pp.appendChild(spliter);
-        pp.appendChild(uom);
-
-        var p2=document.createElement('p');
-        var a3=document.createElement('a');
-        a3.setAttribute('class','btn btn-info');
-        a3.setAttribute('onclick','editItem("'+itemid+'")');
-        a3.innerHTML='编辑';
-        var a4=document.createElement('a');
-        a4.setAttribute('class','btn btn-danger');
-
-        a4.setAttribute('onclick','delItem("'+itemid+'")');
-        a4.setAttribute('style','margin-left:15px');
-        a4.innerHTML='删除';
-        p2.appendChild(a3);
-        p2.appendChild(a4);
-
-        var module=document.createElement('input');
-        module.setAttribute('type','hidden');
-        module.setAttribute('id','thumbNailModuleName_'+itemid);
-
-        capDiv.appendChild(title);
-        capDiv.appendChild(pp);
-        capDiv.appendChild(p2);
-
-        item.appendChild(itemImg);
-        item.appendChild(capDiv);
-        item.appendChild(module);
-
-        list.appendChild(item);
 
 
 
-    }
-
-    function delItem(id)
-    {
-        //从_moduleContent中清除商品信息
-        var module = document.getElementById('thumbNailModuleName_'+id).value;
-        var itemname = document.getElementById('thumbNailItemName_'+id).innerHTML;
-        var list=document.getElementById('itemList');
-        var item=document.getElementById('item'+id);
-        if(module==''||module==null)
-        {
-            //如果是新增的空的商品，则从页面中清除商品项目
-
-            list.removeChild(item);
-        }else
-        {
-            //如果是已经编辑过的商品，则不但要清除页面信息，也要清除_moduleContent中的信息
-            for(var i in _moduleContent)
-            {
-                if(_moduleContent[i].moduleName==module && _moduleContent[i].itemName==itemname)
-                {
-                    _moduleContent.splice(i,1);
-                    break;
-                }
-            }
-            //从页面中清除商品项目
-            list.removeChild(item);
-        }
-    }
-
-    function editItem(id)
-    {
-        var img = $('#thumbNailImgId_'+id).attr('src');
-        if(img=='/images/logo.png'||img==null)
-        {
-            resetModal();
-            $('#modalItemId').val(id);
-            $('#myModal').modal('show');
-        }
-        else
-        {
-            resetModal();
-            $('#itemImage').attr('src',img);
-            $('#itemName').val($('#thumbNailItemName_'+id).html());
-            $('#itemDesc').val($('#thumbNailImgId_'+id).attr('alt'));
-            $('#itemUprice').val($('#thumbNailUprice_'+id).html());
-            $('#itemUom').val($('#thumbNailUom_'+id).html());
-            $('#modalItemId').val(id);
-            $('#moduleOptions').val($('#thumbNailModuleName_'+id).val());
-            $('#myModal').modal('show');
-        }
-    }
-
-    //将商品信息回传到缩略图中
-    function saveItem()
-    {
-        var id=$('#modalItemId').val();
-        //检查图片是否上传
-        var img=$('#itemImage').attr('src');
-        if(img=='' || img==null)
-        {
-            $('#modalMessage').html('请选择商品图片!');
-            return;
-        }
-
-        //检查商品名称
-        var name=$('#itemName').val();
-        if(name.trim()=='' || name.trim()==null)//验证用户是否输入商品名
-        {
-            $('#modalMessage').html('请输入商品名称!');
-            return;
-        }
-
-        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,15}$');//验证商品名是否汉字、字母或数字的组合，其他字符不允许
-        if(!exp.test($('#itemName').val()))
-        {
-            $('#modalMessage').html('请输入15个字符以内的汉字或数字或字母的组合的商品名称!');
-            return;
-        }
-
-        //检查是否存在同名商品,除了更新，否则不允许出现同名商品
-        for(var i in _moduleContent)
-        {
-            if(_moduleContent[i].itemName==name)
-            {
-                if(_moduleContent[i].itemId != id)
-                {
-                    alert('模块'+_moduleContent[i].moduleName+'中已存在同名商品，请检查!');
-                    return;
-                }
-            }
-        }
-
-        //检查商品描述
-        var desc=$('#itemDesc').val();
-        if(desc.trim()=='' || desc.trim()==null)//验证用户是否输入商品描述
-        {
-            $('#modalMessage').html('请输入商品描述!');
-            return;
-        }
-
-        exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,100}$');//验证商品名是否汉字、字母或数字的组合，其他字符不允许
-        if(!exp.test($('#itemDesc').val()))
-        {
-            $('#modalMessage').html('请输入100个字符以内的汉字或数字或字母的组合作为商品描述!');
-            return;
-        }
-
-        //检查商品单价
-        var price=$('#itemUprice').val();
-        if(price.trim()=='' || price.trim()==null)//验证用户是否输入商品单价
-        {
-            $('#modalMessage').html('请输入商品单价!');
-            return;
-        }
-
-
-        if(isNaN($('#itemUprice').val()))
-        {
-            $('#modalMessage').html('请输入纯数字作为商品单价!');
-            return;
-        }
-
-        //检查商品单位
-        var uom=$('#itemUom').val();
-        if(uom.trim()=='' || uom.trim()==null)//验证用户是否输入商品单位
-        {
-            $('#modalMessage').html('请输入商品单位!');
-            return;
-        }
-
-
-        exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,10}$');//验证商品名是否汉字、字母或数字的组合，其他字符不允许
-        if(!exp.test($('#itemUom').val()))
-        {
-            $('#modalMessage').html('请输入10个字符以内的汉字或数字或字母的组合作为商品单位!');
-            return;
-        }
-
-        //检查是否选择了模块
-        var module =$('#moduleOptions').val();
-        if(module=='' || module==null)
-        {
-            $('#modalMessage').html('请选择所属模块!');
-            return;
-        }
-
-        //验证完成后设置商品的缩略图
-        $('#thumbNailImgId_'+id).attr('src',img);
-        $('#thumbNailImgId_'+id).attr('alt',desc);
-        $('#thumbNailItemName_'+id).html(name);
-        $('#thumbNailUprice_'+id).html(price);
-        $('#thumbNailUom_'+id).html(uom);
-        $('#thumbNailModuleName_'+id).val(module);
-        $('#myModal').modal('hide');
-
-        //保存商品信息至_moduleContent
-        for(var k in _moduleContent)
-        {
-            if(_moduleContent[k].itemId==id)
-            {
-                _moduleContent.splice(k,1);
-                break;
-            }
-        }
-        _moduleContent.push({"moduleName":module,"itemName":name,"itemDesc":desc,"image":img,"price":price,"uom":uom,"itemId":id});
-
-    }
 
     //清除上传的宣传图片
     function clearFile(file)
@@ -861,20 +544,7 @@
         document.getElementById(file).innerHTML='';
     }
 
-    //重置模态窗口中的信息
-    function resetModal()
-    {
-        $('#file4').val('');
-        $('#itemImage').attr('src','');
-        $('#itemName').val('');
-        $('#itemDesc').val('');
-        $('#itemUprice').val('');
-        $('#itemUom').val('');
-        $('#modalMessage').html('');
-        $('#modalItemId').val('');
-        $('#moduleOptions').get(0).selectedIndex=0;
 
-    }
 
 
 
@@ -927,13 +597,7 @@
         }
     });
 
-    //用于上传商品图片
-    $("#file4").fileupload({
-        url:"/upload?type=temp&tag=file4",//处理程序的地址，当然也可以直接写在input的data-url属性内
-        done:function(e,result){
-            $('#itemImage').attr('src','/tmp/'+result.result.file);
-        }
-    });
+
 
     this.document._moduleContent=_moduleContent;
     this.document._moduleList=_moduleList;
