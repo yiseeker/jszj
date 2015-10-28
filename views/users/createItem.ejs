@@ -80,6 +80,7 @@
                 </div>
 
                 <input type="hidden" id="modalItemId" />
+                <input type="hidden" id="modalItemIdActual" />
 
             </div>
             <div class="modal-footer">
@@ -123,7 +124,6 @@
 
 <script>
 
-    var _itemList=new Array();
     function addItem()
     {
         var itemid=uuid(16,16);
@@ -171,40 +171,50 @@
         p2.appendChild(a3);
         p2.appendChild(a4);
 
+        var actid=document.createElement('input');
+        actid.setAttribute('type','hidden');
+        actid.setAttribute('id','actualID_'+itemid);
+
         capDiv.appendChild(title);
         capDiv.appendChild(pp);
         capDiv.appendChild(p2);
 
         item.appendChild(itemImg);
         item.appendChild(capDiv);
+        item.appendChild(actid);
 
         list.appendChild(item);
     }
 
     function delItem(id)
     {
-        var module = document.getElementById('thumbNailModuleName_'+id).value;
-        var itemname = document.getElementById('thumbNailItemName_'+id).innerHTML;
+        var actid = document.getElementById('actualID_'+id).value;
         var list=document.getElementById('itemList');
         var item=document.getElementById('item'+id);
-        if(module==''||module==null)
+        if(actid=='')
         {
             //如果是新增的空的商品，则从页面中清除商品项目
-
             list.removeChild(item);
         }else
         {
-            //如果是已经编辑过的商品，则不但要清除页面信息，也要清除_moduleContent中的信息
-            for(var i in _moduleContent)
-            {
-                if(_moduleContent[i].moduleName==module && _moduleContent[i].itemName==itemname)
-                {
-                    _moduleContent.splice(i,1);
-                    break;
-                }
-            }
-            //从页面中清除商品项目
-            list.removeChild(item);
+            //如果是已经编辑过的商品，则不但要清除页面信息，也要从DB中清除掉
+            var data={'_id':actid};
+            $.post('/users/deleteItem',
+                    {'data':data},
+                    function(data){
+                        if(data.success)
+                        {
+                            //从页面中清除商品项目
+                            list.removeChild(item);
+                            alert('1');
+                            alert(data.message);
+                        }
+                        else
+                        {
+                            alert(data.message);
+                        }
+                    });
+
         }
     }
 
@@ -227,6 +237,7 @@
             $('#itemUom').val($('#thumbNailUom_'+id).html());
             $('#modalItemId').val(id);
             $('#moduleOptions').val($('#thumbNailModuleName_'+id).val());
+            $('#modalItemIdActual').val($('#actualID_'+id).val());
             $('#myModal').modal('show');
         }
     }
@@ -235,6 +246,7 @@
     function saveItem()
     {
         var id=$('#modalItemId').val();
+        var actid=$('#modalItemIdActual').val();
         //检查图片是否上传
         var img=$('#itemImage').attr('src');
         if(img=='' || img==null)
@@ -303,11 +315,11 @@
             $('#modalMessage').html('请输入10个字符以内的汉字或数字或字母的组合作为商品单位!');
             return;
         }
-        //保存商品信息至_moduleContent
 
-        var data={"itemName":name,"itemDesc":desc,"image":img,"price":price,"uom":uom,"itemId":id};
-        $.post('/users/saveItem',
-                {'data':data},
+        //保存商品信息至db
+        var data={"itemName":name,"itemDesc":desc,"image":img,"price":price,"uom":uom,"itemID":actid,"activityID":getQueryStringByName('actid')};
+
+        $.post('/users/saveNewItem',{'data':data},
                 function(data){
                     if(data.success)
                     {
@@ -316,15 +328,14 @@
                         $('#thumbNailItemName_'+id).html(name);
                         $('#thumbNailUprice_'+id).html(price);
                         $('#thumbNailUom_'+id).html(uom);
+                        $('#actualID_'+id).val(data._id);
                         $('#myModal').modal('hide');
                     }
                     else
                     {
                         $('#modalMessage').html(data.message);
                     }
-
                 });
-
     }
 
     //重置模态窗口中的信息
@@ -338,7 +349,7 @@
         $('#itemUom').val('');
         $('#modalMessage').html('');
         $('#modalItemId').val('');
-
+        $('#modalItemIdActual').val('');
     }
 
     //用于上传商品图片

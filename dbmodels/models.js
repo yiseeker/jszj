@@ -14,7 +14,7 @@ var COM_ACTIVITY=mongoose.model('COM_Activity',com_activitySchema,'COM_Activity'
 
 
 //定义COM_Items
-var com_itemsSchema=mongoose.Schema({creatorID:String,creationDate:Date,lastUpdateDate:Date,enabled:Boolean,itemName:String,itemDescription:String,unitPrice:Number,primaryUOM:String,secondaryUOM:String,attachment1:String,attachment2:String,attachment3:String});
+var com_itemsSchema=mongoose.Schema({activityID:String,creatorID:String,creationDate:Date,lastUpdateDate:Date,enabled:Boolean,itemName:String,itemDescription:String,unitPrice:Number,primaryUOM:String,secondaryUOM:String,attachment1:String,attachment2:String,attachment3:String});
 var COM_ITEMS=mongoose.model('COM_Items',com_itemsSchema,'COM_Items');
 
 

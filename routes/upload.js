@@ -27,7 +27,7 @@ router.post('/', function(req, res,next) {
             //var fileName=uuid.v4()+'.'+fileType;
             if(req.query.type=='temp')
             {
-                var fileName=req.user.username+'_temp_'+uuid.v4()+'.'+fileType;
+                var fileName=req.user.username+'_'+uuid.v4()+'.'+fileType;
                 fs.rename(files[req.query.tag].path,'/home/linux/Projects/jszj/temp/'+fileName,function(err){
                     if(err)
                     {

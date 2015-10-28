@@ -57,7 +57,7 @@ router.get('/createModule',function(req,res){
     res.render('users/createModule',{'layout':'LAYOUT.ejs'});
 });
 
-
+//保存新的活动
 router.post('/saveNewActivity',function(req,res){
     async.waterfall([
             function(callback)//检查用户是否保存过同名活动
@@ -176,8 +176,110 @@ router.post('/saveNewActivity',function(req,res){
 
 });
 
+//删除新增的物品
+router.post('/deleteItem',function(req,res){
+    ITEM.remove({'_id':req.body.data._id},function(err){
+        if(err)
+        {
+            res.send({'succeed':false,'message':err});
+        }
+        else
+        {
+            res.send({'succeed':true,'message':'商品删除成功!'});
+        }
+    });
+});
 
+//保存新的物品
+router.post('/saveNewItem',function(req,res){
+    try
+    {
+        async.waterfall([
+                function(callback){//活动项下是否存在同名物品
+                    ITEM.findOne({'activityID':req.body.data.activityID,'itemName':req.body.data.itemName,'_id':{$ne:req.body.data.itemID==''?null:req.body.data.itemID}},
+                        function(err,doc){
+                            if(err)
+                            {
+                                return callback(err);
+                            }
+                            else if(doc!=null)
+                            {
+                                return callback('当前活动内存在同名物品，请检查!');
+                            }
+                            else
+                            {
+                                return callback(null);
+                            }
+                        });
+                },
+                function(callback){
+                    if(req.body.data.itemID!='')//执行更新
+                    {
+                        ITEM.findByIdAndUpdate(req.body.data.itemID,
+                            {
+                                lastUpdateDate:new Date(),
+                                itemName:req.body.data.itemName,
+                                itemDescription:req.body.data.itemDesc,
+                                unitPrice:req.body.data.price,
+                                primaryUOM:req.body.data.uom,
+                                attachment1:req.body.data.image
+                            },
+                            function(err,doc){
+                                if(err)
+                                {
+                                    return callback(err);
+                                }
+                                else
+                                {
+                                    return callback(null,doc);
+                                }
+                            }
+                        );
+                    }
+                    else//执行新增
+                    {
+                        var item =new ITEM();
+                        item.activityID=req.body.data.activityID;
+                        item.creatorID=req.user.username;
+                        item.creationDate=new Date();
+                        item.lastUpdateDate=new Date();
+                        item.enabled=true;
+                        item.itemName=req.body.data.itemName;
+                        item.itemDescription=req.body.data.itemDesc;
+                        item.unitPrice=req.body.data.price;
+                        item.primaryUOM=req.body.data.uom;
+                        item.attachment1=req.body.data.image;
 
+                        item.save(function (err, doc) {
+                            if (err) {
+                                return callback(err);
+                            }
+                            else {
+                                return callback(null, doc);
+                            }
+                        });
+                    }
+                }
+            ],
+            function rollback(err,result)//最终的处理，回滚或提交
+            {
+                if(err)
+                {
+                    res.send({'success':false,'message':'物品保存失败,原因:'+err});
+                }
+                else
+                {
+                    res.send({'success':true,'message':'物品保存成功!','_id':result._id});
+                }
+            }
+        );
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
+
+});
 
 function SetModel(list)
 {
@@ -186,6 +288,13 @@ function SetModel(list)
         if(list[i].modelName=='COM_ACTIVITY')
         {
             ACTIVITY=list[i].model;
+        }
+        if(list[i].modelName=='COM_ITEMS')
+        {
+            ITEM=list[i].model;
+        }
+        if(ACTIVITY!=null&&ITEM!=null)
+        {
             return;
         }
     }
