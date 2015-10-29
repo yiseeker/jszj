@@ -7,7 +7,7 @@
     <div class="row">
         <div class="alert alert-success alert-dismissable">
             <h3>
-                第二步
+                第三步
             </h3>
             <strong>创建您的商品!</strong> 包括商品名称、图片、描述、单价、单位等。
         </div>
@@ -72,6 +72,12 @@
                     </div>
                 </div>
                 <br/>
+                <!--<div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p>所属模块：</p>
+                        <select id="modalSelect"></select>
+                    </div>
+                </div>-->
                 <br/>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -120,9 +126,36 @@
         </div>
     </div>
 </div>
+<br/>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <button class="button button-primary button-large text-center" onclick="save()">下一步</button>
+        </div>
+    </div>
+</div>
 
 
 <script>
+
+    var _itemList=new Array();
+
+/*    //加载_moduleList
+    $.post('/users/getModuleList',{'activityID':getQueryStringByName('actid')},
+            function(data){
+                if(data.succeed)
+                {
+                    for(var i in data.list)
+                    {
+                        $('#modalSelect').append("<option value='"+data.list[i].moduleID+"'>"+data.list[i].moduleName+"</option>");
+                    }
+                }
+                else
+                {
+                    $('#modalMessage').html('获取模块列表失败，请联系客服解决！');
+                }
+            });*/
+
 
     function addItem()
     {
@@ -197,16 +230,24 @@
             list.removeChild(item);
         }else
         {
-            //如果是已经编辑过的商品，则不但要清除页面信息，也要从DB中清除掉
+            //如果是已经编辑过的商品，则不但要清除页面信息，也要从DB和_itemList中清除掉
             var data={'_id':actid};
             $.post('/users/deleteItem',
                     {'data':data},
                     function(data){
-                        if(data.success)
+                        if(data.succeed)
                         {
                             //从页面中清除商品项目
                             list.removeChild(item);
-                            alert('1');
+                            //从_itemList中清除
+                            for(var i in _itemList)
+                            {
+                                if(_itemList[i].itemID==actid)
+                                {
+                                    _itemList.splice(i,1);
+                                    break;
+                                }
+                            }
                             alert(data.message);
                         }
                         else
@@ -317,11 +358,11 @@
         }
 
         //保存商品信息至db
-        var data={"itemName":name,"itemDesc":desc,"image":img,"price":price,"uom":uom,"itemID":actid,"activityID":getQueryStringByName('actid')};
+        var item={"itemName":name,"itemDesc":desc,"image":img,"price":price,"uom":uom,"itemID":actid,"activityID":getQueryStringByName('actid')};
 
-        $.post('/users/saveNewItem',{'data':data},
+        $.post('/users/saveNewItem',{'data':item},
                 function(data){
-                    if(data.success)
+                    if(data.succeed)
                     {
                         $('#thumbNailImgId_'+id).attr('src',img);
                         $('#thumbNailImgId_'+id).attr('alt',desc);
@@ -330,6 +371,24 @@
                         $('#thumbNailUom_'+id).html(uom);
                         $('#actualID_'+id).val(data._id);
                         $('#myModal').modal('hide');
+                        //将信息保存到_itemList中
+                        if(item.itemID=='')//新增的item
+                        {
+                            item.itemID=data._id;
+                            _itemList.push(item);
+                        }
+                        else//更新的item
+                        {
+                            for(var i in _itemList)
+                            {
+                                if(_itemList[i].itemID==item.itemID)
+                                {
+                                    _itemList.splice(i,1);
+                                    break;
+                                }
+                            }
+                            _itemList.push(item);
+                        }
                     }
                     else
                     {
@@ -350,6 +409,20 @@
         $('#modalMessage').html('');
         $('#modalItemId').val('');
         $('#modalItemIdActual').val('');
+    }
+
+    <!-- 保存物品页面内容-->
+    function save()
+    {
+        //检查_itemList中是否存在信息
+        if(_itemList.length==0)
+        {
+            alert('请先添加商品再执行下一步操作！');
+            return;
+        }
+
+        go('/users/itemsInModule?actid='+getQueryStringByName('actid'));
+
     }
 
     //用于上传商品图片

@@ -6,6 +6,7 @@ var fs=require('fs');
 
 var ACTIVITY;//This is mongodb model
 var ITEM;//This is mongodb model
+var MODULE;//This is mongodb model
 
 //All users content needs authentication, or the request will be redirect to login page automatically
 router.all('*',function(req,res,next){
@@ -45,16 +46,16 @@ router.get('/createItem',function(req,res){
     res.render('users/createItem',{'layout':'LAYOUT.ejs'});
 });
 
-router.post('/crItem',function(req,res){
-
-});
-
 router.get('/createActivity',function(req,res){
     res.render('users/createActivity',{'layout':'LAYOUT.ejs'});
 });
 
 router.get('/createModule',function(req,res){
     res.render('users/createModule',{'layout':'LAYOUT.ejs'});
+});
+
+router.get('/itemsInModule',function(req,res){
+    res.render('users/itemsInModule',{'layout':'LAYOUT.ejs'});
 });
 
 //保存新的活动
@@ -265,11 +266,11 @@ router.post('/saveNewItem',function(req,res){
             {
                 if(err)
                 {
-                    res.send({'success':false,'message':'物品保存失败,原因:'+err});
+                    res.send({'succeed':false,'message':'物品保存失败,原因:'+err});
                 }
                 else
                 {
-                    res.send({'success':true,'message':'物品保存成功!','_id':result._id});
+                    res.send({'succeed':true,'message':'物品保存成功!','_id':result._id});
                 }
             }
         );
@@ -280,6 +281,103 @@ router.post('/saveNewItem',function(req,res){
     }
 
 });
+
+//保存模块
+router.post('/saveModule',function(req,res){
+    async.waterfall([
+            //检查是否存在同名模块
+            function(callback){
+                MODULE.findOne({'activityID':req.body.module.activityID,'moduleName':req.body.module.moduleName},function(err,doc){
+                    if(err)
+                    {
+                        return callback(err);
+                    }
+                    else
+                    {
+                        if(doc!=null)
+                        {
+                            return callback('活动项下已存在同名模块!');
+                        }
+                        else
+                        {
+                            return callback(null);
+                        }
+                    }
+                });
+            },
+            //保存模块
+            function(callback){
+                var module=new MODULE();
+                module.creatorID=req.user.username;
+                module.creationDate=new Date();
+                module.activityID=req.body.module.activityID;
+                module.enabled=true;
+                module.moduleName=req.body.module.moduleName;
+
+                module.save(function (err, doc) {
+                    if (err) {
+                        return callback(err);
+                    }
+                    else {
+                        return callback(null, doc);
+                    }
+                });
+            }
+        ],
+        function rollback(err,result){
+            if(err)
+            {
+                res.send({'succeed':false,'message':'模块保存失败,原因:'+err});
+            }
+            else
+            {
+                res.send({'succeed':true,'message':'模块保存成功!','_id':result._id});
+            }
+        });
+});
+
+//删除模块
+router.post('/deleteModule',function(req,res){
+    MODULE.remove({'activityID':req.body.module.activityID,'_id':req.body.module.moduleID},
+        function(err){
+            if(err)
+            {
+                res.send({'succeed':false,'message':err});
+            }
+            else
+            {
+                res.send({'succeed':true,'message':'模块删除成功！'});
+            }
+        });
+});
+
+//获取模块列表
+router.post('/getModuleList',function(req,res){
+    MODULE.find({'activityID':req.body.activityID,'enabled':true},
+        function(err,docs){
+            if(err)
+            {
+                res.send({'succeed':false,'message':err});
+            }
+            else
+            {
+                if(docs==null)
+                {
+                    res.send({'succeed':false,'message':'未能获取任何模块信息！'});
+                }
+                else
+                {
+                    var list=new Array();
+                    for(var i in docs)
+                    {
+                        list.push({'moduleName':docs[i].moduleName,'moduleID':docs[i]._id});
+                    }
+                    res.send({'succeed':true,'message':'获取列表成功！','list':list});
+                }
+            }
+        });
+});
+
 
 function SetModel(list)
 {
@@ -293,7 +391,11 @@ function SetModel(list)
         {
             ITEM=list[i].model;
         }
-        if(ACTIVITY!=null&&ITEM!=null)
+        if(list[i].modelName=='COM_MODULES')
+        {
+            MODULE=list[i].model;
+        }
+        if(ACTIVITY != null && ITEM != null && MODULE != null)
         {
             return;
         }
