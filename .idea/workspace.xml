@@ -21,38 +21,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="users.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="180" column="0" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8406285">
+              <caret line="433" column="21" selection-start-line="433" selection-start-column="21" selection-end-line="433" selection-end-column="27" />
               <folding>
-                <element signature="e#1671#5838#0" expanded="false" />
                 <element signature="e#5895#6147#0" expanded="false" />
-                <element signature="e#9678#11343#0" expanded="false" />
-                <element signature="e#11399#11745#0" expanded="false" />
-                <element signature="e#11804#12561#0" expanded="false" />
+                <element signature="e#6204#12313#0" expanded="false" />
+                <element signature="e#6218#12261#0" expanded="false" />
+                <element signature="e#12367#14032#0" expanded="false" />
+                <element signature="e#14088#14434#0" expanded="false" />
+                <element signature="e#15313#15850#0" expanded="false" />
+                <element signature="n#!!block;n#SetModel#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="createModule.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/users/createModule.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.0">
-              <caret line="187" column="67" selection-start-line="187" selection-start-column="67" selection-end-line="187" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="createItem.ejs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/users/createItem.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5416667">
-              <caret line="418" column="9" selection-start-line="418" selection-start-column="9" selection-end-line="418" selection-end-column="9" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -60,9 +42,31 @@
       <file leaf-file-name="itemsInModule.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/users/itemsInModule.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0">
-              <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+            <state vertical-scroll-proportion="-52.444443">
+              <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dbmodels/models.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="157" selection-start-line="16" selection-start-column="142" selection-end-line="16" selection-end-column="157" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createItem.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/users/createItem.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.962963">
+              <caret line="359" column="8" selection-start-line="359" selection-start-column="8" selection-end-line="396" selection-end-column="19" />
+              <folding>
+                <element signature="e#12508#13934#0#HTML" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,9 +74,36 @@
       <file leaf-file-name="createActivity.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/users/createActivity.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="282" column="73" selection-start-line="282" selection-start-column="24" selection-end-line="282" selection-end-column="73" />
-              <folding />
+              <folding>
+                <marker date="1446098262274" expanded="true" signature="7431:7490" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="7534:7944" placeholder="{&quot;url&quot;: &quot;/upload?type=temp&amp;tag=file1&quot;...}" />
+                <marker date="1446098262274" expanded="true" signature="7646:7938" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="7701:7774" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="7804:7928" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="7975:8386" placeholder="{&quot;url&quot;: &quot;/upload?type=temp&amp;tag=file2&quot;...}" />
+                <marker date="1446098262274" expanded="true" signature="8087:8380" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="8142:8215" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="8245:8369" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="8418:8828" placeholder="{&quot;url&quot;: &quot;/upload?type=temp&amp;tag=file3&quot;...}" />
+                <marker date="1446098262274" expanded="true" signature="8530:8822" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="8585:8658" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="8688:8812" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="8878:11442" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="8998:9062" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="9215:9301" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="9422:9486" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="9621:9709" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="9840:9904" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="10041:10113" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="10179:10297" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="10248:10287" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="10339:10976" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="11081:11433" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="11140:11269" placeholder="{...}" />
+                <marker date="1446098262274" expanded="true" signature="11315:11414" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -129,15 +160,15 @@
         <option value="$PROJECT_DIR$/views/users/myActivity.ejs" />
         <option value="$PROJECT_DIR$/views/users/editItem.ejs" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/routes/upload.js" />
         <option value="$PROJECT_DIR$/public/javascripts/script.js" />
         <option value="$PROJECT_DIR$/views/users/createActivity.ejs" />
         <option value="$PROJECT_DIR$/views/users/editActivity.ejs" />
         <option value="$PROJECT_DIR$/dbmodels/models.js" />
         <option value="$PROJECT_DIR$/views/users/createModule.ejs" />
+        <option value="$PROJECT_DIR$/routes/upload.js" />
+        <option value="$PROJECT_DIR$/views/users/createItem.ejs" />
         <option value="$PROJECT_DIR$/views/users/itemsInModule.ejs" />
         <option value="$PROJECT_DIR$/routes/users.js" />
-        <option value="$PROJECT_DIR$/views/users/createItem.ejs" />
       </list>
     </option>
   </component>
@@ -177,6 +208,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -237,14 +270,26 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="routes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jszj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jszj" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="dbmodels" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -652,42 +697,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6262626">
-          <caret line="109" column="40" selection-start-line="109" selection-start-column="40" selection-end-line="109" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/upload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4949495">
-          <caret line="29" column="48" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/script.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.61616164">
           <caret line="78" column="29" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dbmodels/models.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47474748">
-          <caret line="27" column="33" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/users/createActivity.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.0">
-          <caret line="282" column="73" selection-start-line="282" selection-start-column="24" selection-end-line="282" selection-end-column="73" />
           <folding />
         </state>
       </provider>
@@ -700,49 +713,111 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/forever.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/users/createActivity.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="282" column="73" selection-start-line="282" selection-start-column="24" selection-end-line="282" selection-end-column="73" />
+          <folding>
+            <marker date="1446098262274" expanded="true" signature="7431:7490" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="7534:7944" placeholder="{&quot;url&quot;: &quot;/upload?type=temp&amp;tag=file1&quot;...}" />
+            <marker date="1446098262274" expanded="true" signature="7646:7938" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="7701:7774" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="7804:7928" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="7975:8386" placeholder="{&quot;url&quot;: &quot;/upload?type=temp&amp;tag=file2&quot;...}" />
+            <marker date="1446098262274" expanded="true" signature="8087:8380" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="8142:8215" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="8245:8369" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="8418:8828" placeholder="{&quot;url&quot;: &quot;/upload?type=temp&amp;tag=file3&quot;...}" />
+            <marker date="1446098262274" expanded="true" signature="8530:8822" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="8585:8658" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="8688:8812" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="8878:11442" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="8998:9062" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="9215:9301" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="9422:9486" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="9621:9709" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="9840:9904" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="10041:10113" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="10179:10297" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="10248:10287" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="10339:10976" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="11081:11433" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="11140:11269" placeholder="{...}" />
+            <marker date="1446098262274" expanded="true" signature="11315:11414" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="109" column="40" selection-start-line="109" selection-start-column="40" selection-end-line="109" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/upload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/users/createModule.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.0">
+        <state vertical-scroll-proportion="3.8958333">
           <caret line="187" column="67" selection-start-line="187" selection-start-column="67" selection-end-line="187" selection-end-column="67" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/forever.log">
+    <entry file="file://$PROJECT_DIR$/views/users/createItem.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.962963">
+          <caret line="359" column="8" selection-start-line="359" selection-start-column="8" selection-end-line="396" selection-end-column="19" />
+          <folding>
+            <element signature="e#12508#13934#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbmodels/models.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="16" column="157" selection-start-line="16" selection-start-column="142" selection-end-line="16" selection-end-column="157" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/users/itemsInModule.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.0">
-          <caret line="6" column="55" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
+        <state vertical-scroll-proportion="-52.444443">
+          <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="180" column="0" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.8406285">
+          <caret line="433" column="21" selection-start-line="433" selection-start-column="21" selection-end-line="433" selection-end-column="27" />
           <folding>
-            <element signature="e#1671#5838#0" expanded="false" />
             <element signature="e#5895#6147#0" expanded="false" />
-            <element signature="e#9678#11343#0" expanded="false" />
-            <element signature="e#11399#11745#0" expanded="false" />
-            <element signature="e#11804#12561#0" expanded="false" />
+            <element signature="e#6204#12313#0" expanded="false" />
+            <element signature="e#6218#12261#0" expanded="false" />
+            <element signature="e#12367#14032#0" expanded="false" />
+            <element signature="e#14088#14434#0" expanded="false" />
+            <element signature="e#15313#15850#0" expanded="false" />
+            <element signature="n#!!block;n#SetModel#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/users/createItem.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5416667">
-          <caret line="418" column="9" selection-start-line="418" selection-start-column="9" selection-end-line="418" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>

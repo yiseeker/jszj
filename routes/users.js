@@ -213,6 +213,66 @@ router.post('/saveNewItem',function(req,res){
                             }
                         });
                 },
+                function(callback)//将上传的临时商品图片保存到upload文件夹下
+                {
+                    var exp =new RegExp('^/tmp/');
+                    if(exp.test(req.body.data.image))//如果是临时的，则转移到upload文件夹下
+                    {
+                        fs.rename(__dirname.replace(/routes/,'')+req.body.data.image.replace('tmp','temp'),__dirname.replace(/routes/,'')+req.body.data.image.replace('tmp','upload'),function(err){
+                            if(err)
+                            {
+                                return callback(err);
+                            }
+                            else
+                            {
+                                req.body.data.image=req.body.data.image.replace(/\/tmp\//,'');
+                                return callback(null);
+                            }
+                        });
+                    }
+                    else//如果图片已经是转移到upload文件夹下，则返回
+                    {
+                        req.body.data.image=req.body.data.image.replace(/\/resource\//,'');
+                        return callback(null);
+                    }
+                },
+                function(callback){//对于已经保存的商品，如果新的图片名和旧的不一致，那么从upload文件夹中删除旧文件
+                    var oldFile;
+                    if(req.body.data.itemID=='')
+                    {
+                        return callback(null);
+                    }
+                    ITEM.findOne({'_id':req.body.data.itemID},function(err,doc){
+                       if(err)
+                       {
+                           return callback(err);
+                       }
+                       else
+                       {
+                           if(doc==null)
+                           {
+                               return callback('获取商品信息时出错，请联系客服！');
+                           }
+                           else
+                           {
+                               oldFile=doc.attachment1;
+                               if(oldFile!=req.body.data.image)//执行删除老文件
+                               {
+                                   fs.unlink(__dirname.replace(/routes/,'upload/')+oldFile,function(err){
+                                       if(err)
+                                       {
+                                           return callback(err);
+                                       }
+                                       else
+                                       {
+                                           return callback(null);
+                                       }
+                                   });
+                               }
+                           }
+                       }
+                    });
+                },
                 function(callback){
                     if(req.body.data.itemID!='')//执行更新
                     {
@@ -371,8 +431,30 @@ router.post('/getModuleList',function(req,res){
                     for(var i in docs)
                     {
                         list.push({'moduleName':docs[i].moduleName,'moduleID':docs[i]._id});
-                    }
+                    }//TODO
                     res.send({'succeed':true,'message':'获取列表成功！','list':list});
+                }
+            }
+        });
+});
+
+//获取物品列表
+router.post('/getItemList',function(req,res){
+    ITEM.find({'activityID':req.body.activityID,'enabled':true},
+        function(err,docs){
+            if(err)
+            {
+                res.send({'succeed':false,'message':err});
+            }
+            else
+            {
+                if(docs==null)
+                {
+                    res.send({'succeed':false,'message':'未能获取任何模块信息！'});
+                }
+                else
+                {
+                    res.send({'succeed':true,'message':'获取列表成功！','list':docs});
                 }
             }
         });

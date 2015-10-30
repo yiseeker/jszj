@@ -364,7 +364,7 @@
                 function(data){
                     if(data.succeed)
                     {
-                        $('#thumbNailImgId_'+id).attr('src',img);
+                        $('#thumbNailImgId_'+id).attr('src',img.replace('tmp','resource'));
                         $('#thumbNailImgId_'+id).attr('alt',desc);
                         $('#thumbNailItemName_'+id).html(name);
                         $('#thumbNailUprice_'+id).html(price);
