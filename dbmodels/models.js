@@ -21,11 +21,16 @@ var COM_ITEMS=mongoose.model('COM_Items',com_itemsSchema,'COM_Items');
 var com_modulesSchema=mongoose.Schema({activityID:String,creatorID:String,creationDate:Date,lastUpdateDate:Date,enabled:Boolean,itemName:String,moduleName:String});
 var COM_MODULES=mongoose.model('COM_Modules',com_modulesSchema,'COM_Modules');
 
+//定义模块COM_ItemsInModule
+var com_itemsinmoduleSchema=mongoose.Schema({activityID:String,creatorID:String,creationDate:Date,lastUpdateDate:Date,enabled:Boolean,itemList:Array});
+var COM_ITEMSINMODULE=mongoose.model('COM_ItemsInModule',com_itemsinmoduleSchema,'COM_ItemsInModule');
+
 
 list.push({modelName:'APP_USER',model:APP_USER});
 list.push({modelName:'COM_ACTIVITY',model:COM_ACTIVITY});
 list.push({modelName:'COM_ITEMS',model:COM_ITEMS});
 list.push({modelName:'COM_MODULES',model:COM_MODULES});
+list.push({modelName:'COM_ITEMSINMODULE',model:COM_ITEMSINMODULE});
 
 function getModel(modelName)
 {

@@ -7,6 +7,7 @@ var fs=require('fs');
 var ACTIVITY;//This is mongodb model
 var ITEM;//This is mongodb model
 var MODULE;//This is mongodb model
+var ITEMSINMODULE;//This is mongodb model
 
 //All users content needs authentication, or the request will be redirect to login page automatically
 router.all('*',function(req,res,next){
@@ -56,6 +57,10 @@ router.get('/createModule',function(req,res){
 
 router.get('/itemsInModule',function(req,res){
     res.render('users/itemsInModule',{'layout':'LAYOUT.ejs'});
+});
+
+router.get('/commercialFinished',function(req,res){
+    res.render('users/commercialFinished',{'layout':'LAYOUT.ejs'});
 });
 
 //保存新的活动
@@ -430,8 +435,8 @@ router.post('/getModuleList',function(req,res){
                     var list=new Array();
                     for(var i in docs)
                     {
-                        list.push({'moduleName':docs[i].moduleName,'moduleID':docs[i]._id});
-                    }//TODO
+                        list.push({'moduleName':docs[i].moduleName,'moduleID':docs[i]._id,'itemList':new Array()});
+                    }
                     res.send({'succeed':true,'message':'获取列表成功！','list':list});
                 }
             }
@@ -440,24 +445,91 @@ router.post('/getModuleList',function(req,res){
 
 //获取物品列表
 router.post('/getItemList',function(req,res){
-    ITEM.find({'activityID':req.body.activityID,'enabled':true},
-        function(err,docs){
-            if(err)
-            {
-                res.send({'succeed':false,'message':err});
-            }
-            else
-            {
-                if(docs==null)
+    try{
+
+        ITEM.find({'activityID':req.body.activityID,'enabled':true},
+            function(err,docs){
+                if(err)
                 {
-                    res.send({'succeed':false,'message':'未能获取任何模块信息！'});
+                    res.send({'succeed':false,'message':err});
                 }
                 else
                 {
-                    res.send({'succeed':true,'message':'获取列表成功！','list':docs});
+                    if(docs==null)
+                    {
+                        res.send({'succeed':false,'message':'未能获取任何模块信息！'});
+                    }
+                    else
+                    {
+                        res.send({'succeed':true,'message':'获取列表成功！','list':docs});
+                    }
                 }
-            }
-        });
+            });
+
+    }catch(e)
+    {
+        console.log(e);
+    }
+
+});
+
+//保存模块中包含哪些商品信息
+router.post('/saveItemInModuleList',function(req,res){
+    try{
+        async.waterfall([
+                function(callback){//检查itemsInModule是否存在此活动项下的数据数据
+                    ITEMSINMODULE.find({'activityID':req.body.activityID},function(err,docs){
+                        if(err)
+                        {
+                            return callback(err);
+                        }
+                        else
+                        {
+                            if(docs!=null)
+                            {
+                                if(docs.length!=0)
+                                {
+                                    return callback('活动项下已存在模块商品信息，不能重复创建！');
+                                }
+                            }
+                        }
+                        return callback(null);
+                    });
+                },
+                function(callback)//插入新的数据
+                {
+                    var iim=new ITEMSINMODULE();
+                    iim.creatorID=req.user.username;
+                    iim.creationDate=new Date();
+                    iim.enabled=true;
+                    iim.itemList=req.body.moduleList;
+                    iim.activityID=req.body.activityID;
+                    iim.save(function (err) {
+                        if (err) {
+                            callback(err);
+                        }
+                        else {
+                            callback(null);
+                        }
+                    });
+                }
+            ],
+            function(err,result){
+                if(err)
+                {
+                    res.send({'succeed':false,'message':'保存模块中的商品清单时失败,原因:'+err});
+                }
+                else
+                {
+                    res.send({'succeed':true,'message':'保存成功!'});
+                }
+            });
+
+    }catch(e)
+    {
+        console.log(e);
+    }
+
 });
 
 
@@ -477,7 +549,11 @@ function SetModel(list)
         {
             MODULE=list[i].model;
         }
-        if(ACTIVITY != null && ITEM != null && MODULE != null)
+        if(list[i].modelName=='COM_ITEMSINMODULE')
+        {
+            ITEMSINMODULE=list[i].model;
+        }
+        if(ACTIVITY != null && ITEM != null && MODULE != null && ITEMSINMODULE!=null)
         {
             return;
         }
