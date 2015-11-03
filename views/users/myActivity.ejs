@@ -5,16 +5,16 @@
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
-                    <b>我的活动分类</b>
+                    <b>创建新的活动</b>
                 </div>
                 <div class="panel-body text-center">
-                    <button class="button button-caution button-normal">所有</button>
-                    <button class="button button-primary button-normal">商业</button>
+                    <button class="button button-primary button-normal" onclick="go('/users/createActivity')">商业</button>
                     <button class="button button-action button-normal">教育</button>
                     <button class="button button-highlight button-normal">公益</button>
+                    <button class="button button-caution button-normal">娱乐</button>
                 </div>
                 <div class="panel-footer text-center">
-                    <button class="button button-primary button-raised"onclick="go('/users/createActivity')">创建新活动</button>
+                    <p>点击按钮，进入活动的创建向导。</p>
                 </div>
             </div>
         </div>
@@ -26,8 +26,8 @@
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="row" id="list">
+                        <!--<div class="thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <img alt="Bootstrap Thumbnail First" src="http://lorempixel.com/600/200" />
                             <div class="caption">
                                 <h3>
@@ -37,10 +37,11 @@
                                     这里是活动概述
                                 </p>
                                 <p>
-                                    <a class="btn btn-primary" href="#" onclick="go('/users/editActivity?id=123')"><i class="fa fa-edit"></i>  编辑 </a> <a class="btn" href="#" onclick="go('/users/showActivity?id=123')"><i class="fa fa-eye"></i> 查看</a>
+                                    <a class="btn btn-primary" href="#" onclick="go('/users/editActivity?id=123')"><i class="fa fa-edit"></i>  编辑 </a>
+                                    <a class="btn" href="#" onclick="go('/users/showActivity?id=123')"><i class="fa fa-eye"></i> 查看</a>
                                 </p>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <div class="panel-footer">
@@ -50,3 +51,71 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    //加载后获取现有活动列表
+    $.post('/users/getActivityList',null,
+            function(data){
+                if(data.succeed)
+                {
+                    add(data.list);
+                }
+                else
+                {
+                    alert(data.message);
+                }
+            });
+
+    //将活动添加到页面列表中
+    function add(list)
+    {
+        if(list==null)
+        {
+            return;
+        }
+
+        var container=document.getElementById('list');
+        for(var i in list)
+        {
+            var thumbnail=document.createElement('div');
+            thumbnail.setAttribute('class','thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-12');
+
+            var img=document.createElement('img');
+            img.setAttribute('src','/resource/'+list[i].attachment1);//以第一幅图片作为缩略图
+
+            var div=document.createElement('div');
+            div.setAttribute('class','caption');
+            thumbnail.appendChild(img);
+            thumbnail.appendChild(div);
+
+            var h3=document.createElement('h3');
+            h3.innerHTML=list[i].activityName;
+
+            var p1=document.createElement('p');
+            p1.innerHTML=list[i].activityDescription;
+
+            var p2=document.createElement('p');
+            div.appendChild(h3);
+            div.appendChild(p1);
+            div.appendChild(p2);
+
+            var button1=document.createElement('a');
+            button1.setAttribute('class','btn btn-primary');
+            button1.setAttribute('onclick',"go('/users/editActivity?actid="+list[i]._id+"')");
+            button1.innerHTML='<i class="fa fa-edit"></i>  编辑';
+
+            var button2=document.createElement('a');
+            button2.setAttribute('class','btn');
+            button2.setAttribute('onclick',"go('/users/showActivity?actid="+list[i]._id+"')");
+            button2.innerHTML='<i class="fa fa-eye"></i>  查看';
+
+            p2.appendChild(button1);
+            p2.appendChild(button2);
+
+            container.appendChild(thumbnail);
+        }
+
+    }
+
+</script>

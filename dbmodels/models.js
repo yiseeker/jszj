@@ -22,7 +22,7 @@ var com_modulesSchema=mongoose.Schema({activityID:String,creatorID:String,creati
 var COM_MODULES=mongoose.model('COM_Modules',com_modulesSchema,'COM_Modules');
 
 //定义模块COM_ItemsInModule
-var com_itemsinmoduleSchema=mongoose.Schema({activityID:String,creatorID:String,creationDate:Date,lastUpdateDate:Date,enabled:Boolean,itemList:Array});
+var com_itemsinmoduleSchema=mongoose.Schema({activityID:String,creatorID:String,creationDate:Date,lastUpdateDate:Date,enabled:Boolean,list:Array});
 var COM_ITEMSINMODULE=mongoose.model('COM_ItemsInModule',com_itemsinmoduleSchema,'COM_ItemsInModule');
 
 

@@ -25,6 +25,7 @@ router.get('/myProfile',function(req,res){
 
 router.get('/myActivity',function(req,res){
     res.render('users/myActivity',{'layout':'LAYOUT.ejs'});
+    res.end();
 });
 
 router.get('/myParticipate',function(req,res){
@@ -62,6 +63,36 @@ router.get('/itemsInModule',function(req,res){
 router.get('/commercialFinished',function(req,res){
     res.render('users/commercialFinished',{'layout':'LAYOUT.ejs'});
 });
+
+
+
+
+
+
+
+/***********************************post region*********************************/
+//获取用户的活动列表
+router.post('/getActivityList',function(req,res){
+        ACTIVITY.find({'creatorID':req.user.username},
+            function(err,docs){
+                if(err)
+                {
+                    res.send({'succeed':false,'message':err});
+                }
+                else
+                {
+                    if(docs==null)
+                    {
+                        res.send({'succeed':true,'message':'活动列表为空！','list':null});
+                    }
+                    else
+                    {
+                        res.send({'succeed':true,'message':'获取活动列表成功！','list':docs});
+                    }
+                }
+            });
+});
+
 
 //保存新的活动
 router.post('/saveNewActivity',function(req,res){
@@ -502,7 +533,7 @@ router.post('/saveItemInModuleList',function(req,res){
                     iim.creatorID=req.user.username;
                     iim.creationDate=new Date();
                     iim.enabled=true;
-                    iim.itemList=req.body.moduleList;
+                    iim.list=req.body.moduleList;
                     iim.activityID=req.body.activityID;
                     iim.save(function (err) {
                         if (err) {
