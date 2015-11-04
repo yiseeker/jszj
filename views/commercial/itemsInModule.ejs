@@ -1,0 +1,300 @@
+<div class="container">
+    <div class="row">
+        <div class="alert alert-info alert-dismissable">
+            <h3>
+                第四步
+            </h3>
+            <strong>为商品归类!</strong> 将创建好的商品分配到模块中来进行分类。
+        </div>
+    </div>
+</div>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+            模块名：<select id="modules">
+
+            </select>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+            商品名：<select id="items">
+
+            </select>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <button class="button button-primary button-small" onclick="addItemToModule()">添加</button>
+        </div>
+    </div>
+</div>
+<br/>
+<div class="container" id="_container">
+
+</div>
+<br/>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <button class="button button-primary button-large text-center" onclick="save()">下一步</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var _moduleList;
+    var _itemList;
+
+    //从db获取moduleList
+    $.post('/commercial/getModuleList',{'activityID':getQueryStringByName('actid')},
+            function(data){
+                if(data.succeed)
+                {
+                    _moduleList=data.list;
+                    createModules();
+                    setModuleListOption();
+                }
+                else
+                {
+                    alert(data.message);
+                }
+            });
+
+    //从db获取itemList
+    $.post('/commercial/getItemList',{'activityID':getQueryStringByName('actid')},
+            function(data){
+                if(data.succeed)
+                {
+                    _itemList=data.list;
+                    setItemListOption();
+                }
+                else
+                {
+                    alert(data.message);
+                }
+            });
+
+    //根据moduleList在页面中创建模块
+    function createModules()
+    {
+        var container=document.getElementById('_container');
+        for(var i in _moduleList)
+        {
+            var row=document.createElement('div');
+            row.setAttribute('class','row');
+
+            var span=document.createElement('div');
+            span.setAttribute('class','col-lg-12 col-md-12 col-sm-12 col-xs-12');
+
+            var panel=document.createElement('div');
+            panel.setAttribute('class','panel panel-default');
+
+            var panelHeading=document.createElement('div');
+            panelHeading.setAttribute('class','panel-heading text-center');
+
+            var panelTitle=document.createElement('h3');
+            panelTitle.setAttribute('class','panel-title');
+            panelTitle.innerHTML=_moduleList[i].moduleName;
+
+            panelHeading.appendChild(panelTitle);
+
+            var table=document.createElement('table');
+            table.setAttribute('id','table_'+_moduleList[i].moduleID);
+            table.setAttribute('class','table table-bordered table-striped');
+            var th = table.insertRow(table.rows.length);
+            var moduleCell =th.insertCell(th.cells.length);
+            moduleCell.innerHTML='商品名称';
+
+            var nameCell =th.insertCell(th.cells.length);
+            nameCell.innerHTML='商品描述';
+
+            var opCell =th.insertCell(th.cells.length);
+            opCell.innerHTML='操作';
+
+            var panelBody=document.createElement('div');
+            panelBody.setAttribute('class','panel-body');
+
+            panelBody.appendChild(table);
+
+
+            panel.appendChild(panelHeading);
+            panel.appendChild(panelBody);
+
+            span.appendChild(panel);
+            row.appendChild(span);
+            container.appendChild(row);
+        }
+    }
+
+    //设置moduleList的option
+    function setModuleListOption()
+    {
+        for(var i in _moduleList)
+        {
+            $('#modules')[0].options.add(new Option(_moduleList[i].moduleName,_moduleList[i].moduleID));
+        }
+    }
+
+    //设置itemList的option
+    function setItemListOption()
+    {
+        for(var i in _itemList)
+        {
+            $('#items')[0].options.add(new Option(_itemList[i].itemName,_itemList[i]._id));
+        }
+    }
+
+    //将商品添加到模块中
+    function addItemToModule()
+    {
+        var moduleID=$('#modules').val();
+        var itemID=$('#items').val();
+        var moduleName=$('#modules').find('option:selected').text();
+        var itemName=$('#items').find('option:selected').text();
+
+        if(moduleID==''||itemID=='')
+        {
+            alert('当前没有选中的模块或商品，请核查！');
+            return;
+        }
+
+        if(isItemInModule(itemID,moduleID))
+        {
+            alert('模块['+moduleName+']中已存在商品['+itemName+']，请勿重复添加！');
+            return;
+        }
+
+        var item=getItemByID(itemID);
+        var module=getModuleByID(moduleID);
+
+        if(item!=null)
+        {
+            add(moduleID,item);
+        }
+        else
+        {
+            alert('向列表中添加商品时出错！');
+            return;
+        }
+
+        if(module!=null)
+        {
+            module.itemList.push(item);
+        }
+        else
+        {
+            alert('向列表中添加商品时出错！');
+            return;
+        }
+    }
+
+    //从_itemList中获取item对象
+    function getItemByID(id)
+    {
+        for(var i in _itemList)
+        {
+            if(_itemList[i]._id==id)
+            {
+                return _itemList[i];
+            }
+        }
+        return null;
+    }
+
+    //从_moduleList中获取module对象
+    function getModuleByID(id)
+    {
+        for(var i in _moduleList)
+        {
+            if(_moduleList[i].moduleID==id)
+            {
+                return _moduleList[i];
+            }
+        }
+        return null;
+    }
+
+    //向table DOM中添加元素
+    function add(moduleID,item)
+    {
+        var table=document.getElementById('table_'+moduleID);
+
+        if(table==null)
+        {
+            alert('向列表中添加商品时失败！');
+            return ;
+        }
+
+        var row=table.insertRow(table.rows.length);
+        row.setAttribute('id','tr_'+item._id);
+
+        var itemName=row.insertCell(row.cells.length);
+        itemName.innerHTML=item.itemName;
+
+        var itemdesc=row.insertCell(row.cells.length);
+        itemdesc.innerHTML=item.itemDescription;
+
+        var op=row.insertCell(row.cells.length);
+        var a=document.createElement('a');
+        a.setAttribute('class','button button-caution button-small');
+        a.setAttribute("onclick","delItem('"+item._id+"','"+moduleID+"')");
+        a.innerHTML='删除';
+        op.appendChild(a);
+    }
+
+    //从DOM中删除item
+    function delItem(itemID,moduleID)
+    {
+        var table=document.getElementById('table_'+moduleID);
+        var itemRow=document.getElementById('tr_'+itemID);
+        //从DOM中删除
+        table.deleteRow(itemRow.rowIndex);
+
+        //从_moduleList.itemList中删除
+        var module=getModuleByID(moduleID);
+        for(var i in module.itemList)
+        {
+            if(module.itemList[i]._id==itemID)
+            {
+                module.itemList.splice(i,1);
+                break;
+            }
+        }
+
+    }
+
+    //商品是否已在模块中
+    function isItemInModule(itemID,moduleID)
+    {
+        for(var i in _moduleList)
+        {
+            if(_moduleList[i].moduleID==moduleID)
+            {
+                for(var j in _moduleList[i].itemList)
+                {
+                    if(_moduleList[i].itemList[j]._id==itemID)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    //保存
+    function save()
+    {
+        $.post('/commercial/saveItemInModuleList',{'activityID':getQueryStringByName('actid'),'moduleList':_moduleList},
+                function(data){
+                    if(data.succeed)
+                    {
+                        go('/commercial/commercialFinished?actid='+getQueryStringByName('actid'));
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
+    }
+
+</script>

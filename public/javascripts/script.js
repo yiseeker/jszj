@@ -4,7 +4,9 @@ $(document).ready(function(){
 
 function go(suffix)
 {
-    window.location.href=getRootPath(suffix);
+    var path = getRootPath(suffix);
+
+    window.location.href=path;
 }
 
 

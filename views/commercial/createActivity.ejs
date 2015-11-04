@@ -1,0 +1,295 @@
+<script src="/javascripts/fileUpload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/javascripts/fileUpload/js/jquery.iframe-transport.js"></script>
+<script src="/javascripts/fileUpload/js/jquery.fileupload.js"></script>
+
+
+<div class="container">
+    <div class="row">
+        <div class="alert alert-info alert-dismissable">
+            <h3>
+                第一步
+            </h3>
+            <strong>设置活动信息!</strong> 包括你的活动名称、描述、宣传图片等。
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <!--活动命名-->
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        为你的活动命名(必须)
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="input-group">
+                                <input name="activityName" id="activityName" type="text" class="form-control" placeholder="输入活动名"/>
+                                <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input name="enable" id="enable" type="checkbox" checked='checked' >启用
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="input-group">
+                                <input name="activityDesc" id="activityDesc" type="text" class="form-control" placeholder="输入活动的概要描述"/>
+                                <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="input-group">
+                                <input name="contactInfo" id="contactInfo" type="text" class="form-control" placeholder="输入联系人信息或地址信息"/>
+                                <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--设置活动宣传栏-->
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        为活动设置宣传栏(可选)
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <input type="file" name="file1" placeholder="第一幅宣传图片" id="file1">
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                            <input type="button" class="button button-primary button-small" value="清除" onclick="clearFile('uploadMessage1')">
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+                            <label id="uploadMessage1" style="color:red"></label>
+                            <input type="hidden" id="file1Path" />
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="input-group">
+                                <input id="fileText1" type="text" class="form-control" placeholder="输入第一幅图片的描述文字"/>
+                                <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <input type="file" name="file2" placeholder="第二幅宣传图片" id="file2">
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <input type="button" class="button button-primary button-small" value="清除" onclick="clearFile('uploadMessage2')">
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+                            <label id="uploadMessage2" style="color:red"></label>
+                            <input type="hidden" id="file2Path" />
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="input-group">
+                                <input id="fileText2" type="text" class="form-control" placeholder="输入第二幅图片的描述文字"/>
+                                <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <input type="file" name="file3" placeholder="第三幅宣传图片" id="file3">
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                            <input type="button" class="button button-primary button-small" value="清除" onclick="clearFile('uploadMessage3')">
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+                            <label id="uploadMessage3" style="color:red"></label>
+                            <input type="hidden" id="file3Path" />
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="input-group">
+                                <input id="fileText3" type="text" class="form-control" placeholder="输入第三幅图片的描述文字"/>
+                                <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <button class="button button-primary button-large text-center" onclick="save()">下一步</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    //清除上传的宣传图片
+    function clearFile(file)
+    {
+        document.getElementById(file).innerHTML='';
+    }
+
+    //用于上传宣传图片
+    $("#file1").fileupload({
+        url:"/upload?type=temp&tag=file1",//处理程序的地址，当然也可以直接写在input的data-url属性内
+        done:function(e,result){
+            if(result.result.file==null)
+            {
+                $('#uploadMessage1').html(result.result);
+            }
+            else
+            {
+                $('#uploadMessage1').html('上传成功！');
+                $('#file1Path').val(result.result.file);
+            }
+        }
+    });
+
+    $("#file2").fileupload({
+        url:"/upload?type=temp&tag=file2",//处理程序的地址，当然也可以直接写在input的data-url属性内
+        done:function(e,result){
+            if(result.result.file==null)
+            {
+                $('#uploadMessage2').html(result.result);
+            }
+            else
+            {
+                $('#uploadMessage2').html('上传成功！');
+                $('#file2Path').val(result.result.file);
+            }
+
+        }
+    });
+
+
+    $("#file3").fileupload({
+        url:"/upload?type=temp&tag=file3",//处理程序的地址，当然也可以直接写在input的data-url属性内
+        done:function(e,result){
+            if(result.result.file==null)
+            {
+                $('#uploadMessage3').html(result.result);
+            }
+            else
+            {
+                $('#uploadMessage3').html('上传成功！');
+                $('#file3Path').val(result.result.file);
+            }
+        }
+    });
+
+
+    <!-- 保存活动页面内容-->
+    function save()
+    {
+        //验证用户活动名
+        var name=$('#activityName').val();
+        if(name.trim()=='' || name.trim()==null)
+        {
+            alert('请输入您的活动名称!');
+            return;
+        }
+
+        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,10}$');//验证活动名是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test($('#activityName').val()))
+        {
+            alert('请输入10个以内的字符作为活动名，汉字、字母及数字的组合都可以!');
+            return;
+        }
+
+        //验证用户活动描述
+        var desc=$('#activityDesc').val();
+        if(desc.trim()=='' || desc.trim()==null)
+        {
+            alert('请输入您的活动描述!');
+            return;
+        }
+
+        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,100}$');//验证活动描述是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test(desc))
+        {
+            alert('请输入100个以内的字符作为活动描述，汉字、字母及数字的组合都可以!');
+            return;
+        }
+
+        //验证用户活动联系信息
+        var contact=$('#contactInfo').val();
+        if(contact.trim()=='' || contact.trim()==null)
+        {
+            alert('请输入您的联系信息!');
+            return;
+        }
+
+        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,50}$');//验证活动描述是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test(contact))
+        {
+            alert('请输入50个以内的字符作为联系信息!');
+            return;
+        }
+
+
+        if(!document.getElementById('enable').checked)
+        {
+            if(!confirm('注意：您尚未选择启用此活动，内容将不公开显示，继续？'))
+            {
+                return;
+            }
+        }
+
+
+        //post数据，进行保存
+        var data={
+            'activityName':name,
+            'activityDesc':desc,
+            'enabled':document.getElementById('enable').checked?true:false,
+            'contactInfo':contact,
+            'pic1':$('#file1Path').val()==null?'':$('#file1Path').val(),
+            'pic1Desc':$('#fileText1').val()==null?'':$('#fileText1').val(),
+            'pic2':$('#file2Path').val()==null?'':$('#file2Path').val(),
+            'pic2Desc':$('#fileText2').val()==null?'':$('#fileText2').val(),
+            'pic3':$('#file3Path').val()==null?'':$('#file3Path').val(),
+            'pic3Desc':$('#fileText3').val()==null?'':$('#fileText3').val()
+        };
+
+        $.post('/commercial/saveNewActivity',
+                {'data':data},
+                function(data){
+                    if(data.succeed)
+                    {
+                        //继续下一步
+                        go('/commercial/createModule?actid='+data.activityId);
+                    }
+                    else
+                    {
+                      //弹出错误信息
+                        alert(data.message);
+                    }
+
+                });
+
+    }
+
+</script>

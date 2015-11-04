@@ -1,0 +1,191 @@
+<div class="container">
+    <div class="row">
+        <div class="alert alert-info alert-dismissable">
+            <h3>
+                第二步
+            </h3>
+            <strong>设置活动页面中的模块!</strong> 模块用来对你的物品进行归类。
+        </div>
+    </div>
+</div>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-default text-center"><!--设置活动板块-->
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        为活动设置版块(必须)
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-8">
+                            <div class="input-group">
+                                <input id="moduleName" type="text" class="form-control" placeholder="输入模块名"/>
+                                <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <button class="button button-primary button-small" onclick="addModule()">添加</button>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row text-left">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            模块列表
+                            <hr/>
+                            <div id="moduleList">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<div class="container">
+    <div class="row text-center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <button class="button button-primary button-large text-center" onclick="save()">下一步</button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var _moduleList=new Array();
+
+    <!-- 判断模块名是否已存在-->
+    function isModuleNameExists(name)
+    {
+        for(var i in _moduleList)
+        {
+            if(_moduleList[i].name==name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function addModule()
+    {
+        var name=$('#moduleName').val();
+        if(name=="")
+        {
+            return ;
+        }
+        else
+        {
+            if(isModuleNameExists(name))
+            {
+                alert('模块名称已存在列表中，请核对');
+                return ;
+            }
+            else
+            {
+                //保存到db并保存到_moduleList
+                var module={
+                    'moduleName':name,
+                    'activityID':getQueryStringByName('actid'),
+                    'moduleID':''
+                };
+
+                $.post('/commercial/saveModule',
+                        {'module':module},
+                        function(data){
+                            if(data.succeed)
+                            {
+                                //添加到_moduleList
+                                module.moduleID=data._id;
+                                _moduleList.push(module);
+                                //添加到页面显示
+                                setModuleList(name,data._id);
+                            }
+                            else
+                            {
+                                //弹出错误信息
+                                alert(data.message);
+                            }
+
+                        });
+            }
+
+        }
+    }
+
+    <!--在模块列表中添加模块名-->
+    function setModuleList(name,moduleID)
+    {
+        var parent=$('#moduleList').get(0);
+        var child=document.createElement("div");
+        child.setAttribute('id',moduleID);
+
+        var grandChild2=document.createElement('button');
+        grandChild2.setAttribute('style',"color: red");
+        grandChild2.setAttribute('onclick',"removeFromModuleList('"+moduleID+"')");
+        grandChild2.innerHTML='<i class="fa fa-close"></i>';
+        child.appendChild(grandChild2);
+
+        var grandChild1=document.createElement('label');
+        grandChild1.innerHTML=name;
+        grandChild1.setAttribute('style',"margin-left:15px");
+        child.appendChild(grandChild1);
+
+        parent.appendChild(child);
+    }
+
+    <!--从模块列表中删除模块-->
+    function removeFromModuleList(moduleID)
+    {
+        var parent=$('#moduleList').get(0);
+        var child=$('#'+moduleID).get(0);
+
+        var module={
+            'moduleID':moduleID,
+            'activityID':getQueryStringByName('actid')
+        };
+
+        $.post('/commercial/deleteModule',
+                {'module':module},
+                function(data){
+                    if(data.succeed)
+                    {
+                        //从_moduleList中删除
+                        for(var i in _moduleList)
+                        {
+                            if(_moduleList[i].moduleID==moduleID)
+                            {
+                                _moduleList.splice(i,1);
+                                break;
+                            }
+                        }
+                        //从页面中删除
+                        parent.removeChild(child);
+                    }
+                    else
+                    {
+                        //弹出错误信息
+                        alert(JSON.stringify(data.message));
+                    }
+
+                });
+
+    }
+
+    <!--保存-->
+    function save()
+    {
+        //检查_moduleList是否为空
+        if(_moduleList.length==0)
+        {
+            alert('请先添加至少一个模块后再进行下一步操作!');
+            return;
+        }
+        go('/commercial/createItem?actid='+getQueryStringByName('actid'));
+
+    }
+</script>
