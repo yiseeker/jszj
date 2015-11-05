@@ -54,7 +54,9 @@ router.get('/commercialFinished',function(req,res){
     res.render('commercial/commercialFinished',{'layout':'LAYOUT.ejs'});
 });
 
-
+router.get('/editModule',function(req,res){
+    res.render('commercial/editModule',{'layout':'LAYOUT.ejs'});
+});
 
 
 
@@ -185,29 +187,104 @@ router.post('/saveNewActivity',function(req,res){
 
 //更新活动信息
 router.post('/updateActivity',function(req,res){
-    ACTIVITY.findByIdAndUpdate({'_id':req.body.data.activityID},
+    async.waterfall([
+            function(callback)//将临时文件夹中的图片1转移到upload文件夹中
+            {
+                if(req.body.data.pic1!='')
+                {
+                    fs.rename(__dirname.replace(/routes/,'temp/')+req.body.data.pic1,__dirname.replace(/routes/,'upload/')+req.body.data.pic1,function(err){
+                        if(err)
+                        {
+                            return callback(err);
+                        }
+                        else
+                        {
+                            return callback(null);
+                        }
+                    });
+                }
+                else
+                {
+                    return callback(null);
+                }
+            },
+            function(callback)//将临时文件夹中的图片2转移到upload文件夹中
+            {
+                if(req.body.data.pic2!='')
+                {
+                    fs.rename(__dirname.replace(/routes/,'temp/')+req.body.data.pic2,__dirname.replace(/routes/,'upload/')+req.body.data.pic2,function(err){
+                        if(err)
+                        {
+                            return callback(err);
+                        }
+                        else
+                        {
+                            return callback(null);
+                        }
+                    });
+                }
+                else
+                {
+                    return callback(null);
+                }
+            },
+            function(callback)//将临时文件夹中的图片3转移到upload文件夹中
+            {
+                if(req.body.data.pic3!='')
+                {
+                    fs.rename(__dirname.replace(/routes/,'temp/')+req.body.data.pic3,__dirname.replace(/routes/,'upload/')+req.body.data.pic3,function(err){
+                        if(err)
+                        {
+                            return callback(err);
+                        }
+                        else
+                        {
+                            return callback(null);
+                        }
+                    });
+                }
+                else
+                {
+                    return callback(null);
+                }
+            },
+            function(callback)
+            {
+                ACTIVITY.findByIdAndUpdate({'_id':req.body.data.activityID},
+                    {
+                        'lastUpdateDate':new Date(),
+                        'enabled':req.body.data.enabled,
+                        'activityDescription':req.body.data.activityDesc,
+                        'activityContact':req.body.data.contactInfo,
+                        'attachment1':req.body.data.pic1,
+                        'attachment2':req.body.data.pic2,
+                        'attachment3':req.body.data.pic3,
+                        'attachment4':req.body.data.pic1Desc,
+                        'attachment5':req.body.data.pic2Desc,
+                        'attachment6':req.body.data.pic3Desc
+                    },
+                    function(err){
+                        if(err)
+                        {
+                            return callback(err);
+                        }
+                        else
+                        {
+                            return callback(null);
+                        }
+                    });
+            }
+    ],
+    function(err,result){
+        if(err)
         {
-            'lastUpdateDate':new Date(),
-            'enabled':req.body.data.enabled,
-            'activityDescription':req.body.data.activityDesc,
-            'activityContact':req.body.data.contactInfo,
-            'attachment1':req.body.data.pic1,
-            'attachment2':req.body.data.pic2,
-            'attachment3':req.body.data.pic3,
-            'attachment4':req.body.data.pic1Desc,
-            'attachment5':req.body.data.pic2Desc,
-            'attachment6':req.body.data.pic3Desc
-        },
-        function(err){
-            if(err)
-            {
-                res.send({'succeed':false,'message':err});
-            }
-            else
-            {
-                res.send({'succeed':true,'message':'活动更新成功！'});
-            }
-        });
+            res.send({'succeed':false,'message':'活动更新失败,原因:'+err});
+        }
+        else
+        {
+            res.send({'succeed':true,'message':'活动更新成功!'});
+        }
+    });
 });
 
 //删除新增的物品
@@ -429,6 +506,21 @@ router.post('/saveModule',function(req,res){
         });
 });
 
+//更新模块
+router.post('/updateModule',function(req,res){
+    MODULE.findByIdAndUpdate({'_id':req.body.module.moduleID},{'enabled':req.body.module.enabled,'lastUpdateDate':req.body.module.lastUpdateDate},
+        function(err){
+            if(err)
+            {
+                res.send({'succeed':false,'message':err});
+            }
+            else
+            {
+                res.send({'succeed':true,'message':'模块状态更新成功！'});
+            }
+        });
+});
+
 //删除模块
 router.post('/deleteModule',function(req,res){
     MODULE.remove({'activityID':req.body.module.activityID,'_id':req.body.module.moduleID},
@@ -446,7 +538,7 @@ router.post('/deleteModule',function(req,res){
 
 //获取模块列表
 router.post('/getModuleList',function(req,res){
-    MODULE.find({'activityID':req.body.activityID,'enabled':true},
+    MODULE.find({'activityID':req.body.activityID},
         function(err,docs){
             if(err)
             {
@@ -463,7 +555,7 @@ router.post('/getModuleList',function(req,res){
                     var list=new Array();
                     for(var i in docs)
                     {
-                        list.push({'moduleName':docs[i].moduleName,'moduleID':docs[i]._id,'itemList':new Array()});
+                        list.push({'moduleName':docs[i].moduleName,'moduleID':docs[i]._id,'enabled':docs[i].enabled,'creationDate':docs[i].creationDate});
                     }
                     res.send({'succeed':true,'message':'获取列表成功！','list':list});
                 }
@@ -526,20 +618,25 @@ router.post('/saveItemInModuleList',function(req,res){
                 },
                 function(callback)//插入新的数据
                 {
-                    var iim=new ITEMSINMODULE();
-                    iim.creatorID=req.user.username;
-                    iim.creationDate=new Date();
-                    iim.enabled=true;
-                    iim.list=req.body.moduleList;
-                    iim.activityID=req.body.activityID;
-                    iim.save(function (err) {
-                        if (err) {
-                            callback(err);
-                        }
-                        else {
-                            callback(null);
-                        }
-                    });
+                    var tag=true;
+
+                    var list =req.body.list;
+                    for(var i in list)
+                    {
+                        var iim=new ITEMSINMODULE();
+                        iim.creatorID=req.user.username;
+                        iim.creationDate=new Date();
+                        iim.enabled=true;
+                        iim.itemList=list[i].itemList;
+                        iim.activityID=list[i].activityID;
+                        iim.moduleID=list[i].moduleID;
+                        iim.save(function (err) {
+                            if (err) {
+                                tag=false;TODO
+                            }
+                        });
+                    }
+                    callback(null);
                 }
             ],
             function(err,result){
