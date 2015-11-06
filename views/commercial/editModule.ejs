@@ -52,17 +52,12 @@
                                         模块列表
                                         <hr/>
                                         <table class="table table-bordered" id="_table">
-                                            <thead>
                                             <tr>
                                                 <td>模块名</td>
                                                 <td>启用</td>
                                                 <td>创建日期</td>
                                                 <td>操作</td>
                                             </tr>
-                                            </thead>
-                                            <tbody id="_body">
-
-                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -83,6 +78,25 @@
 <!--<script src="/javascripts/ckeditor/ckeditor.js"></script>-->
 <script>
     var _moduleList;
+
+    //加载活动信息
+    $.post('/commercial/getActivityInfo',
+            {'activityID':getQueryStringByName('actid')},
+            function(data){
+                if(data.succeed)
+                {
+                    //设置活动名
+                    $('#activityTitle').html(data.activity.activityName);
+                }
+                else
+                {
+                    //弹出错误信息
+                    alert('加载活动信息时出错，原因：'+data.message);
+                }
+
+            });
+
+
 
     //加载模块信息
     $.post('/commercial/getModuleList',
@@ -109,6 +123,8 @@
         for(var i in _moduleList)
         {
             var row=table.insertRow(table.rows.length);
+            row.setAttribute('id','row_'+_moduleList[i].moduleID);
+
             var td1=row.insertCell(row.cells.length);
             td1.innerHTML=_moduleList[i].moduleName;
 
@@ -218,6 +234,8 @@
     {
         var table=document.getElementById('_table');
         var row=table.insertRow(table.rows.length);
+        row.setAttribute('id','row_'+module.moduleID);
+
         var td1=row.insertCell(row.cells.length);
         td1.innerHTML=module.moduleName;
 
@@ -239,19 +257,65 @@
         td4.appendChild(a);
     }
 
-    //删除新增加的模块
+    //删除模块
     function delModule(moduleID)
     {
         if(confirm('删除模块将会同时删除里面的所有内容，确定继续？'))
         {
+            //从db中删除模块
+            $.post('/commercial/deleteModule',
+                    {'module':{'activityID':getQueryStringByName('actid'),'moduleID':moduleID}},
+                    function(data){
+                        if(data.succeed)
+                        {
+                            delItemsInModule(getQueryStringByName('actid'),moduleID);
+                        }
+                        else
+                        {
+                            //弹出错误信息
+                            alert(data.message);
+                        }
 
+                    });
         }
     }
 
-    //清除上传的宣传图片
-    function clearFile(file)
+    //删除itemsInModule
+    function delItemsInModule(actID,moduleID)
     {
-        document.getElementById(file).innerHTML='';
+        $.post('/commercial/deleteItemsInModule',
+                {'activityID':actID,'moduleID':moduleID},
+                function(data){
+                    if(data.succeed)
+                    {
+                        removeFromPage(moduleID);
+                    }
+                    else
+                    {
+                        //弹出错误信息
+                        alert(data.message);
+                    }
+
+                });
+    }
+
+    //从DOM中删除元素
+    function removeFromPage(moduleID)
+    {
+        var table=document.getElementById('_table');
+        var row=document.getElementById('row_'+moduleID);
+
+        table.deleteRow(row.rowIndex);
+
+        for(var i in _moduleList)
+        {
+            if(_moduleList[i].moduleID==moduleID)
+            {
+                _moduleList.splice(i,1);
+                return;
+            }
+        }
+        alert('模块及其内容删除成功！');
     }
 
     //返回前一个页面
@@ -266,94 +330,7 @@
         go(tag+'?actid='+getQueryStringByName('actid'));
     }
 
-    //保存当前页面数据
-    function save()
-    {
-        //验证用户活动名
-        var name=$('#activityName').val();
-        if(name.trim()=='' || name.trim()==null)
-        {
-            alert('请输入您的活动名称!');
-            return;
-        }
 
-        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,10}$');//验证活动名是否汉字、字母或数字的组合，其他字符不允许
-        if(!exp.test($('#activityName').val()))
-        {
-            alert('请输入10个以内的字符作为活动名，汉字、字母及数字的组合都可以!');
-            return;
-        }
-
-        //验证用户活动描述
-        var desc=$('#activityDesc').val();
-        if(desc.trim()=='' || desc.trim()==null)
-        {
-            alert('请输入您的活动描述!');
-            return;
-        }
-
-        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,100}$');//验证活动描述是否汉字、字母或数字的组合，其他字符不允许
-        if(!exp.test(desc))
-        {
-            alert('请输入100个以内的字符作为活动描述，汉字、字母及数字的组合都可以!');
-            return;
-        }
-
-        //验证用户活动联系信息
-        var contact=$('#contactInfo').val();
-        if(contact.trim()=='' || contact.trim()==null)
-        {
-            alert('请输入您的联系信息!');
-            return;
-        }
-
-        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,50}$');//验证活动描述是否汉字、字母或数字的组合，其他字符不允许
-        if(!exp.test(contact))
-        {
-            alert('请输入50个以内的字符作为联系信息!');
-            return;
-        }
-
-
-        if(!document.getElementById('enable').checked)
-        {
-            if(!confirm('注意：您尚未选择启用此活动，内容将不公开显示，继续？'))
-            {
-                return;
-            }
-        }
-
-
-        //post数据，进行保存
-        var data={
-            'activityID':getQueryStringByName('actid'),
-            'activityDesc':desc,
-            'enabled':document.getElementById('enable').checked?true:false,
-            'contactInfo':contact,
-            'pic1':$('#file1Path').val()==null?'':$('#file1Path').val(),
-            'pic1Desc':$('#fileText1').val()==null?'':$('#fileText1').val(),
-            'pic2':$('#file2Path').val()==null?'':$('#file2Path').val(),
-            'pic2Desc':$('#fileText2').val()==null?'':$('#fileText2').val(),
-            'pic3':$('#file3Path').val()==null?'':$('#file3Path').val(),
-            'pic3Desc':$('#fileText3').val()==null?'':$('#fileText3').val()
-        };
-
-        $.post('/commercial/updateActivity',
-                {'data':data},
-                function(data){
-                    if(data.succeed)
-                    {
-                        alert(data.message);
-                    }
-                    else
-                    {
-                        //弹出错误信息
-                        alert(data.message);
-                    }
-
-                });
-
-    }
 
 
 </script>

@@ -38,6 +38,10 @@ router.get('/createItem',function(req,res){
     res.render('commercial/createItem',{'layout':'LAYOUT.ejs'});
 });
 
+router.get('/editItem',function(req,res){
+    res.render('commercial/editItem',{'layout':'LAYOUT.ejs'});
+});
+
 router.get('/createActivity',function(req,res){
     res.render('commercial/createActivity',{'layout':'LAYOUT.ejs'});
 });
@@ -523,17 +527,23 @@ router.post('/updateModule',function(req,res){
 
 //删除模块
 router.post('/deleteModule',function(req,res){
-    MODULE.remove({'activityID':req.body.module.activityID,'_id':req.body.module.moduleID},
-        function(err){
-            if(err)
-            {
-                res.send({'succeed':false,'message':err});
-            }
-            else
-            {
-                res.send({'succeed':true,'message':'模块删除成功！'});
-            }
-        });
+    try
+    {
+        MODULE.remove({'activityID':req.body.module.activityID,'_id':req.body.module.moduleID},
+            function(err){
+                if(err)
+                {
+                    res.send({'succeed':false,'message':err});
+                }
+                else
+                {
+                    res.send({'succeed':true,'message':'模块删除成功！'});
+                }
+            });
+    }catch(e)
+    {
+        console.log(e);
+    }
 });
 
 //获取模块列表
@@ -618,25 +628,29 @@ router.post('/saveItemInModuleList',function(req,res){
                 },
                 function(callback)//插入新的数据
                 {
-                    var tag=true;
-
+                    var docs=new Array();
                     var list =req.body.list;
                     for(var i in list)
                     {
-                        var iim=new ITEMSINMODULE();
-                        iim.creatorID=req.user.username;
-                        iim.creationDate=new Date();
-                        iim.enabled=true;
-                        iim.itemList=list[i].itemList;
-                        iim.activityID=list[i].activityID;
-                        iim.moduleID=list[i].moduleID;
-                        iim.save(function (err) {
-                            if (err) {
-                                tag=false;TODO
-                            }
-                        });
+                        var doc={'activityID':list[i].activityID,
+                                 'moduleID':list[i].moduleID,
+                                 'creationDate':new Date(),
+                                 'creatorID':req.user.username,
+                                 'enabled':true,
+                                 'itemList':list[i].itemList
+                        };
+                        docs.push(doc);
                     }
-                    callback(null);
+                    ITEMSINMODULE.create(docs,function(err){
+                        if(err)
+                        {
+                            callback(err);
+                        }
+                        else
+                        {
+                            callback(null);
+                        }
+                    });
                 }
             ],
             function(err,result){
@@ -655,6 +669,24 @@ router.post('/saveItemInModuleList',function(req,res){
         console.log(e);
     }
 
+});
+
+//删除itemsInModule中的信息
+router.post('/deleteItemsInModule',function(req,res){
+    try {
+        ITEMSINMODULE.remove({'activityID': req.body.activityID, 'moduleID': req.body.moduleID},
+            function (err) {
+                if (err) {
+                    res.send({'succeed': false, 'message': err});
+                }
+                else {
+                    res.send({'succeed': true, 'message': '模块删除成功！'});
+                }
+            });
+    }catch(e)
+    {
+        console.log(e);
+    }
 });
 
 //获取活动名称

@@ -1,0 +1,292 @@
+<script src="/javascripts/fileUpload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/javascripts/fileUpload/js/jquery.iframe-transport.js"></script>
+<script src="/javascripts/fileUpload/js/jquery.fileupload.js"></script>
+
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    编辑商品
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        上传商品图片:
+                        <input type="file" name="file" id="file" placeholder="请选择文件">
+                    </div>
+                </div>
+                <div class="row">
+                    <br/>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <img width="100%" src="#" alt="" id="itemImage">
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="input-group">
+                            <input id="itemName" type="text" class="form-control" placeholder="输入商品名称"/>
+                            <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="input-group">
+                            <input id="itemDesc" type="text" class="form-control" placeholder="输入商品描述"/>
+                            <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="input-group">
+                            <input id="itemUprice" type="text" class="form-control" placeholder="输入商品单价(元)"/>
+                            <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="input-group">
+                            <input id="itemUom" type="text" class="form-control" placeholder="输入商品单位"/>
+                            <span class="input-group-addon"><i class="fa fa-keyboard-o"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <!--<div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p>所属模块：</p>
+                        <select id="modalSelect"></select>
+                    </div>
+                </div>-->
+                <br/>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label id="modalMessage" style="color:red"></label>
+                    </div>
+                </div>
+
+                <input type="hidden" id="modalItemId" />
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    取消
+                </button>
+                <button type="button" class="btn btn-primary" onclick="saveItem()">
+                    保存
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--左边链接等-->
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="activityTitle">
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="#" onclick="redirect('/commercial/editActivity')" > 编辑活动概要</a></li>
+                        <li><a href="#" onclick="redirect('/commercial/editItem')">编辑商品</a></li>
+                        <li><a href="#" onclick="redirect('/commercial/editModule')">编辑模块</a></li>
+                        <li><a href="#" onclick="redirect('/commercial/editItemsInModule')">编辑模块中商品</a></li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <button class="button button-primary" onclick="goback()">返回</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--右边活动编辑区域-->
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+            <!--活动命名-->
+            <div class="row">
+                <div class="panel panel-default text-center">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            编辑
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                                <button class="button button-primary button-small" onclick="addItem()">新增商品</button>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <table id="_table" class="table table-bordered">
+                                    <tr class="active">
+                                        <td>商品名称</td>
+                                        <td>启用</td>
+                                        <td>创建日期</td>
+                                        <td>操作</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+
+    //加载已有的商品列表
+    $.post('/commercial/getItemList',
+            {'activityID':getQueryStringByName('actid')},
+            function(data){
+                if(data.succeed)
+                {
+                    var list=data.list;
+                    var table=document.getElementById('_table');
+
+                    for(var i in list) {
+                        var row = table.insertRow(table.rows.length);
+                        row.setAttribute('id','row_'+list[i]._id);
+
+                        var td1=row.insertCell(row.cells.length);
+                        td1.innerHTML=list[i].itemName;
+
+                        var td2=row.insertCell(row.cells.length);
+                        var cb=document.createElement('input');
+                        cb.setAttribute('type','checkbox');
+                        cb.setAttribute('checked',list[i].enabled);
+                        cb.setAttribute('onclick',"checkChange(this,'"+list[i]._id+"')");
+                        td2.appendChild(cb);
+
+                        var td3=row.insertCell(row.cells.length);
+                        td3.innerHTML=new Date(list[i].creationDate).toLocaleDateString();
+
+                        var td4=row.insertCell(row.cells.length);
+                        var a=document.createElement('a');
+                        a.setAttribute('class','button button-primary button-tiny');
+                        a.setAttribute('onclick',"editItem('"+list[i]._id+"')");
+                        a.innerHTML='编辑';
+                        td4.appendChild(a);
+                    }
+                }
+                else
+                {
+                    //弹出错误信息
+                    alert('加载活动信息时出错，原因：'+data.message);
+                }
+
+            });
+
+    //加载活动信息
+    $.post('/commercial/getActivityInfo',
+            {'activityID':getQueryStringByName('actid')},
+            function(data){
+                if(data.succeed)
+                {
+                    //设置活动名
+                    $('#activityTitle').html(data.activity.activityName);
+                }
+                else
+                {
+                    //弹出错误信息
+                    alert('加载活动信息时出错，原因：'+data.message);
+                }
+            });
+
+    //添加商品
+    function addItem()
+    {
+        resetModal();
+        $('#myModal').modal('show');
+    }
+
+    //modal中的保存
+    function saveItem()
+    {
+        var itemID=document.getElementById('modalItemId');
+        if(itemID=='')//执行新增操作
+        {
+            addItemToDB();
+        }
+        else//执行更新操作
+        {
+            updateItemToDB();
+        }
+    }
+
+    //将商品新增到db中
+    function addItemToDB()
+    {
+
+    }
+
+    //在table中新增一行商品信息
+    function addItemToTable()
+    {
+
+    }
+
+    //更新db中的商品信息
+    function updateItemToDB()
+    {
+
+    }
+
+    //更新table中的商品信息
+    function updateItemToTable()
+    {
+
+    }
+
+    //启用标志变更
+    function checkChange(obj,itemID)
+    {
+
+    }
+
+    //点击编辑按钮
+    function editItem(itemID)
+    {
+        
+    }
+
+    //重置模态窗口中的信息
+    function resetModal()
+    {
+        $('#file').val('');
+        $('#itemImage').attr('src','');
+        $('#itemName').val('');
+        $('#itemDesc').val('');
+        $('#itemUprice').val('');
+        $('#itemUom').val('');
+        $('#modalMessage').html('');
+        $('#modalItemId').val('');
+        $('#modalItemIdActual').val('');
+    }
+
+    //链接跳转
+    function redirect(tag)
+    {
+        go(tag+'?actid='+getQueryStringByName('actid'));
+    }
+</script>

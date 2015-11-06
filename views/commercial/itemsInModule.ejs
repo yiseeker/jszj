@@ -163,19 +163,20 @@
             alert('模块['+moduleName+']中已存在商品['+itemName+']，请勿重复添加！');
             return;
         }
-
         var item=getItemByID(itemID);
 
         //向_itemsInModule中添加数据
         addData(moduleID,item);
 
+        //向DOM中添加元素
+        add(moduleID,item);
     }
 
     //向_itemsInModule添加数据
     function addData(moduleID,item)
     {
         var actID=getQueryStringByName('actid');
-        var node=getItem(actID,moduleID);
+        var node=getNode(actID,moduleID);
         if(node==null)
         {
             node={'activityID':actID,'moduleID':moduleID,'itemList':new Array()};
@@ -189,7 +190,7 @@
     }
 
     //通过activityID和moduleID获取_itemsInModule内的对象
-    function getItem(actID,moduleID)
+    function getNode(actID,moduleID)
     {
         for(var i in _itemsInModule)
         {
@@ -263,7 +264,7 @@
         table.deleteRow(itemRow.rowIndex);
 
         //从_moduleList.itemList中删除
-        var itm=getItem(getQueryStringByName('actid'),moduleID);
+        var itm=getNode(getQueryStringByName('actid'),moduleID);
 
         if(itm==null) return;
 
@@ -275,15 +276,15 @@
                 break;
             }
         }
-
     }
 
     //商品是否已在模块中
     function isItemInModule(itemID,moduleID)
     {
+
         for(var i in _itemsInModule)
         {
-            if(_itemsInModule[i].moduleID==moduleID&&_itemsInModule.activityID==getQueryStringByName('actid'))
+            if(_itemsInModule[i].moduleID==moduleID&&_itemsInModule[i].activityID==getQueryStringByName('actid'))
             {
                 for(var j in _itemsInModule[i].itemList)
                 {
