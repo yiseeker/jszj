@@ -60,13 +60,6 @@
                     </div>
                 </div>
                 <br/>
-                <!--<div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <p>所属模块：</p>
-                        <select id="modalSelect"></select>
-                    </div>
-                </div>-->
-                <br/>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label id="modalMessage" style="color:red"></label>
@@ -110,7 +103,7 @@
                 </div>
                 <div class="panel-footer">
                     <div class="row">
-                        <button class="button button-primary" onclick="goback()">返回</button>
+
                     </div>
                 </div>
             </div>
@@ -155,13 +148,17 @@
 
 <script>
 
+    var _itemList=new Array();
+
     //加载已有的商品列表
     $.post('/commercial/getItemList',
             {'activityID':getQueryStringByName('actid')},
             function(data){
                 if(data.succeed)
                 {
+                    _itemList=data.list;
                     var list=data.list;
+
                     var table=document.getElementById('_table');
 
                     for(var i in list) {
@@ -174,7 +171,7 @@
                         var td2=row.insertCell(row.cells.length);
                         var cb=document.createElement('input');
                         cb.setAttribute('type','checkbox');
-                        cb.setAttribute('checked',list[i].enabled);
+                        cb.setAttribute('checked',list[i].enabled?'checked':'');
                         cb.setAttribute('onclick',"checkChange(this,'"+list[i]._id+"')");
                         td2.appendChild(cb);
 
@@ -223,7 +220,7 @@
     //modal中的保存
     function saveItem()
     {
-        var itemID=document.getElementById('modalItemId');
+        var itemID=$('#modalItemId').val();
         if(itemID=='')//执行新增操作
         {
             addItemToDB();
@@ -237,37 +234,280 @@
     //将商品新增到db中
     function addItemToDB()
     {
+        var id=$('#modalItemId').val();
+        //检查图片是否上传
+        var img=$('#itemImage').attr('src');
+        if(img=='' || img==null)
+        {
+            $('#modalMessage').html('请选择商品图片!');
+            return;
+        }
 
+        //检查商品名称
+        var name=$('#itemName').val();
+        if(name.trim()=='' || name.trim()==null)//验证用户是否输入商品名
+        {
+            $('#modalMessage').html('请输入商品名称!');
+            return;
+        }
+
+        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,15}$');//验证商品名是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test($('#itemName').val()))
+        {
+            $('#modalMessage').html('请输入15个字符以内的汉字或数字或字母的组合的商品名称!');
+            return;
+        }
+
+        //检查商品描述
+        var desc=$('#itemDesc').val();
+        if(desc.trim()=='' || desc.trim()==null)//验证用户是否输入商品描述
+        {
+            $('#modalMessage').html('请输入商品描述!');
+            return;
+        }
+
+        exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,100}$');//验证商品名是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test($('#itemDesc').val()))
+        {
+            $('#modalMessage').html('请输入100个字符以内的汉字或数字或字母的组合作为商品描述!');
+            return;
+        }
+
+        //检查商品单价
+        var price=$('#itemUprice').val();
+        if(price.trim()=='' || price.trim()==null)//验证用户是否输入商品单价
+        {
+            $('#modalMessage').html('请输入商品单价!');
+            return;
+        }
+
+
+        if(isNaN($('#itemUprice').val()))
+        {
+            $('#modalMessage').html('请输入纯数字作为商品单价!');
+            return;
+        }
+
+        //检查商品单位
+        var uom=$('#itemUom').val();
+        if(uom.trim()=='' || uom.trim()==null)//验证用户是否输入商品单位
+        {
+            $('#modalMessage').html('请输入商品单位!');
+            return;
+        }
+
+
+        exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,10}$');//验证商品单位是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test($('#itemUom').val()))
+        {
+            $('#modalMessage').html('请输入10个字符以内的汉字或数字或字母的组合作为商品单位!');
+            return;
+        }
+
+        //保存商品信息至db
+        var item={"itemName":name,"itemDesc":desc,"image":img,"price":price,"uom":uom,"itemID":id,"activityID":getQueryStringByName('actid')};
+
+        $.post('/commercial/saveNewItem',
+                {'data':item},
+                function(data){
+                    if(data.succeed)
+                    {
+                        addItemToTable(data.item);
+                        _itemList.push(data.item);
+                        $('#myModal').modal('hide');
+                    }
+                    else
+                    {
+                        //弹出错误信息
+                        alert('加载活动信息时出错，原因：'+data.message);
+                    }
+                });
     }
 
     //在table中新增一行商品信息
-    function addItemToTable()
+    function addItemToTable(item)
     {
+        var table =document.getElementById('_table');
+        var row =table.insertRow(table.rows.length);
+        row.setAttribute('id','row_'+item._id);
+
+        var td1=row.insertCell(row.cells.length);
+        td1.innerHTML=item.itemName;
+
+        var td2=row.insertCell(row.cells.length);
+        var cb=document.createElement('input');
+        cb.setAttribute('type','checkbox');
+        cb.setAttribute('checked','checked');
+        cb.setAttribute('onclick',"checkChange(this,'"+item._id+"')");
+        td2.appendChild(cb);
+
+        var td3=row.insertCell(row.cells.length);
+        td3.innerHTML=new Date().toLocaleDateString();
+
+        var td4=row.insertCell(row.cells.length);
+        var a=document.createElement('a');
+        a.setAttribute('class','button button-primary button-tiny');
+        a.setAttribute('onclick',"editItem('"+item._id+"')");
+        a.innerHTML='编辑';
+        td4.appendChild(a);
 
     }
 
     //更新db中的商品信息
     function updateItemToDB()
     {
+        var id=$('#modalItemId').val();
+        //检查图片是否上传
+        var img=$('#itemImage').attr('src');
+        if(img=='' || img==null)
+        {
+            $('#modalMessage').html('请选择商品图片!');
+            return;
+        }
 
+        //检查商品名称
+        var name=$('#itemName').val();
+        if(name.trim()=='' || name.trim()==null)//验证用户是否输入商品名
+        {
+            $('#modalMessage').html('请输入商品名称!');
+            return;
+        }
+
+        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,15}$');//验证商品名是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test($('#itemName').val()))
+        {
+            $('#modalMessage').html('请输入15个字符以内的汉字或数字或字母的组合的商品名称!');
+            return;
+        }
+
+        //检查商品描述
+        var desc=$('#itemDesc').val();
+        if(desc.trim()=='' || desc.trim()==null)//验证用户是否输入商品描述
+        {
+            $('#modalMessage').html('请输入商品描述!');
+            return;
+        }
+
+        exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,100}$');//验证商品名是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test($('#itemDesc').val()))
+        {
+            $('#modalMessage').html('请输入100个字符以内的汉字或数字或字母的组合作为商品描述!');
+            return;
+        }
+
+        //检查商品单价
+        var price=$('#itemUprice').val();
+        if(price.trim()=='' || price.trim()==null)//验证用户是否输入商品单价
+        {
+            $('#modalMessage').html('请输入商品单价!');
+            return;
+        }
+
+
+        if(isNaN($('#itemUprice').val()))
+        {
+            $('#modalMessage').html('请输入纯数字作为商品单价!');
+            return;
+        }
+
+        //检查商品单位
+        var uom=$('#itemUom').val();
+        if(uom.trim()=='' || uom.trim()==null)//验证用户是否输入商品单位
+        {
+            $('#modalMessage').html('请输入商品单位!');
+            return;
+        }
+
+
+        exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,10}$');//验证商品单位是否汉字、字母或数字的组合，其他字符不允许
+        if(!exp.test($('#itemUom').val()))
+        {
+            $('#modalMessage').html('请输入10个字符以内的汉字或数字或字母的组合作为商品单位!');
+            return;
+        }
+
+        //保存商品信息至db
+        var item={"itemName":name,
+            "itemDesc":desc,
+            "image":img,
+            "price":price,
+            "uom":uom,
+            "itemID":id,
+            "activityID":getQueryStringByName('actid')
+        };
+
+        $.post('/commercial/saveNewItem',
+                {'data':item},
+                function(data){
+                    if(data.succeed)
+                    {
+                        //更新_itemList中的信息
+                        for(var i in _itemList)
+                        {
+                            if(_itemList[i]._id==id)
+                            {
+                                _itemList[i].itemDescription=desc;
+                                _itemList[i].attachment1=img.replace(/\/resource\//,'').replace(/\/tmp\//,'');
+                                _itemList[i].unitPrice=price;
+                                _itemList[i].primaryUOM=uom;
+                                _itemList[i].lastUpdateDate=new Date();
+                            }
+                        }
+                        $('#myModal').modal('hide');
+                    }
+                    else
+                    {
+                        //弹出错误信息
+                        alert('加载活动信息时出错，原因：'+data.message);
+                    }
+                });
     }
 
-    //更新table中的商品信息
-    function updateItemToTable()
-    {
-
-    }
 
     //启用标志变更
     function checkChange(obj,itemID)
     {
+        $.post('/commercial/updateItemEnabled',
+                {'itemID':itemID,'enabled':obj.checked,'lastUpdateDate':new Date()},
+                function(data){
+                    if(data.succeed)
+                    {
+                        alert(data.message);
+                    }
+                    else
+                    {
+                        //弹出错误信息
+                        alert('更新模块信息时失败，原因：'+data.message);
+                    }
 
+                });
     }
 
     //点击编辑按钮
     function editItem(itemID)
     {
-        
+        var item=getItemById(itemID);
+        $('#itemName').attr('readonly',true);//将商品名称设置为不可编辑
+        $('#itemImage').attr('src','/resource/'+item.attachment1);
+        $('#itemName').val(item.itemName);
+        $('#itemDesc').val(item.itemDescription);
+        $('#itemUprice').val(item.unitPrice);
+        $('#itemUom').val(item.primaryUOM);
+        $('#modalItemId').val(item._id);
+        $('#myModal').modal('show');
+    }
+
+    //按id从_itemList中获取商品
+    function getItemById(id)
+    {
+        for(var i in _itemList)
+        {
+            if(_itemList[i]._id==id)
+            {
+                return _itemList[i];
+            }
+        }
+        return null;
     }
 
     //重置模态窗口中的信息
@@ -276,12 +516,12 @@
         $('#file').val('');
         $('#itemImage').attr('src','');
         $('#itemName').val('');
+        $('#itemName').attr('readonly',false);
         $('#itemDesc').val('');
         $('#itemUprice').val('');
         $('#itemUom').val('');
         $('#modalMessage').html('');
         $('#modalItemId').val('');
-        $('#modalItemIdActual').val('');
     }
 
     //链接跳转
@@ -289,4 +529,18 @@
     {
         go(tag+'?actid='+getQueryStringByName('actid'));
     }
+
+    //返回前一个页面
+    function goback()
+    {
+        history.go(-1);
+    }
+
+    //用于上传商品图片
+    $("#file").fileupload({
+        url:"/upload?type=temp&tag=file",//处理程序的地址，当然也可以直接写在input的data-url属性内
+        done:function(e,result){
+            $('#itemImage').attr('src','/tmp/'+result.result.file);
+        }
+    });
 </script>

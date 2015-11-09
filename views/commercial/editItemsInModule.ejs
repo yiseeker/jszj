@@ -1,0 +1,395 @@
+<div class="container-fluid">
+    <div class="row">
+        <!--左边链接等-->
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="activityTitle">
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="#" onclick="redirect('/commercial/editActivity')" > 编辑活动概要</a></li>
+                        <li><a href="#" onclick="redirect('/commercial/editItem')">编辑商品</a></li>
+                        <li><a href="#" onclick="redirect('/commercial/editModule')">编辑模块</a></li>
+                        <li><a href="#" onclick="redirect('/commercial/editItemsInModule')">编辑模块中商品</a></li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--右边活动编辑区域-->
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+            <!--模块列表-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    编辑模块中的商品
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        模块名：<select id="modules">
+
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                        商品名：<select id="items">
+
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <button class="button button-primary button-small" onclick="addItemToModule()">添加</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div id="_container">
+
+                </div>
+                <br/>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                            <button class="button button-primary" onclick="save()">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    var _moduleList;
+    var _itemList;
+    var _itemsInModule=new Array();
+
+    //从db获取moduleList
+    $.post('/commercial/getModuleList',{'activityID':getQueryStringByName('actid')},
+            function(data){
+                if(data.succeed)
+                {
+                    _moduleList=data.list;
+                    createModules();
+                    setModuleListOption();
+                    loadItemList();
+                }
+                else
+                {
+                    alert(data.message);
+                }
+            });
+
+    //从db获取itemList
+    function loadItemList()
+    {
+        $.post('/commercial/getItemList',{'activityID':getQueryStringByName('actid')},
+                function(data){
+                    if(data.succeed)
+                    {
+                        _itemList=data.list;
+                        setItemListOption();
+                        loadItemToModule();
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
+    }
+
+
+    //加载模块中的商品信息
+    function loadItemToModule()
+    {
+        $.post('/commercial/getItemsInModule',{'activityID':getQueryStringByName('actid')},
+                function(data){
+                    if(data.succeed)
+                    {
+                        _itemsInModule=data.list;
+                        //向DOM中添加元素
+                        for(var i in _itemsInModule)
+                        {
+                            for(var j in _itemsInModule[i].itemList)
+                            {
+                                add(_itemsInModule[i].moduleID,_itemsInModule[i].itemList[j])
+                            }
+                        }
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
+
+    }
+
+
+
+    //根据moduleList在页面中创建模块
+    function createModules()
+    {
+        var container=document.getElementById('_container');
+        for(var i in _moduleList)
+        {
+            var row=document.createElement('div');
+            row.setAttribute('class','row');
+
+            var span=document.createElement('div');
+            span.setAttribute('class','col-lg-12 col-md-12 col-sm-12 col-xs-12');
+
+            var panel=document.createElement('div');
+            panel.setAttribute('class','panel panel-default');
+
+            var panelHeading=document.createElement('div');
+            panelHeading.setAttribute('class','panel-heading text-center');
+
+            var panelTitle=document.createElement('h3');
+            panelTitle.setAttribute('class','panel-title');
+            panelTitle.innerHTML=_moduleList[i].moduleName;
+
+            panelHeading.appendChild(panelTitle);
+
+            var table=document.createElement('table');
+            table.setAttribute('id','table_'+_moduleList[i].moduleID);
+            table.setAttribute('class','table table-bordered table-striped');
+            var th = table.insertRow(table.rows.length);
+            var moduleCell =th.insertCell(th.cells.length);
+            moduleCell.innerHTML='商品名称';
+
+            var nameCell =th.insertCell(th.cells.length);
+            nameCell.innerHTML='商品描述';
+
+            var opCell =th.insertCell(th.cells.length);
+            opCell.innerHTML='操作';
+
+            var panelBody=document.createElement('div');
+            panelBody.setAttribute('class','panel-body');
+
+            panelBody.appendChild(table);
+
+
+            panel.appendChild(panelHeading);
+            panel.appendChild(panelBody);
+
+            span.appendChild(panel);
+            row.appendChild(span);
+            container.appendChild(row);
+        }
+    }
+
+    //设置moduleList的option
+    function setModuleListOption()
+    {
+        for(var i in _moduleList)
+        {
+            $('#modules')[0].options.add(new Option(_moduleList[i].moduleName,_moduleList[i].moduleID));
+        }
+    }
+
+    //设置itemList的option
+    function setItemListOption()
+    {
+        for(var i in _itemList)
+        {
+            $('#items')[0].options.add(new Option(_itemList[i].itemName,_itemList[i]._id));
+        }
+    }
+
+    //将商品添加到模块中
+    function addItemToModule()
+    {
+        var moduleID=$('#modules').val();
+        var itemID=$('#items').val();
+        var moduleName=$('#modules').find('option:selected').text();
+        var itemName=$('#items').find('option:selected').text();
+
+        if(moduleID==''||itemID=='')
+        {
+            alert('当前没有选中的模块或商品，请核查！');
+            return;
+        }
+
+        if(isItemInModule(itemID,moduleID))
+        {
+            alert('模块['+moduleName+']中已存在商品['+itemName+']，请勿重复添加！');
+            return;
+        }
+        var item=getItemByID(itemID);
+
+        //向_itemsInModule中添加数据
+        addData(moduleID,item);
+
+        //向DOM中添加元素
+        add(moduleID,item);
+    }
+
+    //向_itemsInModule添加数据
+    function addData(moduleID,item)
+    {
+        var actID=getQueryStringByName('actid');
+        var node=getNode(actID,moduleID);
+        if(node==null)
+        {
+            node={'activityID':actID,'moduleID':moduleID,'itemList':new Array()};
+            node.itemList.push(item);
+            _itemsInModule.push(node);
+        }
+        else
+        {
+            node.itemList.push(item);
+        }
+    }
+
+    //通过activityID和moduleID获取_itemsInModule内的对象
+    function getNode(actID,moduleID)
+    {
+        for(var i in _itemsInModule)
+        {
+            if(_itemsInModule[i].activityID==actID && _itemsInModule[i].moduleID==moduleID)
+            {
+                return _itemsInModule[i];
+            }
+        }
+    }
+
+    //从_itemList中获取item对象
+    function getItemByID(id)
+    {
+        for(var i in _itemList)
+        {
+            if(_itemList[i]._id==id)
+            {
+                return _itemList[i];
+            }
+        }
+        return null;
+    }
+
+    //从_moduleList中获取module对象
+    function getModuleByID(id)
+    {
+        for(var i in _moduleList)
+        {
+            if(_moduleList[i].moduleID==id)
+            {
+                return _moduleList[i];
+            }
+        }
+        return null;
+    }
+
+    //向table DOM中添加元素
+    function add(moduleID,item)
+    {
+        var table=document.getElementById('table_'+moduleID);
+
+        if(table==null)
+        {
+            alert('向列表中添加商品时失败！');
+            return ;
+        }
+
+        var row=table.insertRow(table.rows.length);
+        row.setAttribute('id','tr_'+item._id);
+
+        var itemName=row.insertCell(row.cells.length);
+        itemName.innerHTML=item.itemName;
+
+        var itemdesc=row.insertCell(row.cells.length);
+        itemdesc.innerHTML=item.itemDescription;
+
+        var op=row.insertCell(row.cells.length);
+        var a=document.createElement('a');
+        a.setAttribute('class','button button-caution button-small');
+        a.setAttribute("onclick","delItem('"+item._id+"','"+moduleID+"')");
+        a.innerHTML='删除';
+        op.appendChild(a);
+    }
+
+    //从DOM中删除item
+    function delItem(itemID,moduleID)
+    {
+        var table=document.getElementById('table_'+moduleID);
+        var itemRow=document.getElementById('tr_'+itemID);
+        //从DOM中删除
+        table.deleteRow(itemRow.rowIndex);
+
+        //从_moduleList.itemList中删除
+        var itm=getNode(getQueryStringByName('actid'),moduleID);
+
+        if(itm==null) return;
+
+        for(var i in itm.itemList)
+        {
+            if(itm.itemList[i]._id==itemID)
+            {
+                itm.itemList.splice(i,1);
+                break;
+            }
+        }
+    }
+
+    //商品是否已在模块中
+    function isItemInModule(itemID,moduleID)
+    {
+        for(var i in _itemsInModule)
+        {
+            if(_itemsInModule[i].moduleID==moduleID&&_itemsInModule[i].activityID==getQueryStringByName('actid'))
+            {
+                for(var j in _itemsInModule[i].itemList)
+                {
+                    if(_itemsInModule[i].itemList[j]._id==itemID)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    //保存
+    function save()
+    {
+        $.post('/commercial/saveItemInModuleList',{'activityID':getQueryStringByName('actid'),'list':_itemsInModule},
+                function(data){
+                    if(data.succeed)
+                    {
+                        alert(data.message);
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
+    }
+
+    //链接跳转
+    function redirect(tag)
+    {
+        go(tag+'?actid='+getQueryStringByName('actid'));
+    }
+
+    //返回前一个页面
+    function goback()
+    {
+        history.go(-1);
+    }
+
+
+</script>

@@ -54,6 +54,10 @@ router.get('/itemsInModule',function(req,res){
     res.render('commercial/itemsInModule',{'layout':'LAYOUT.ejs'});
 });
 
+router.get('/editItemsInModule',function(req,res){
+    res.render('commercial/editItemsInModule',{'layout':'LAYOUT.ejs'});
+});
+
 router.get('/commercialFinished',function(req,res){
     res.render('commercial/commercialFinished',{'layout':'LAYOUT.ejs'});
 });
@@ -309,6 +313,7 @@ router.post('/deleteItem',function(req,res){
 router.post('/saveNewItem',function(req,res){
     try
     {
+
         async.waterfall([
                 function(callback){//活动项下是否存在同名物品
                     ITEM.findOne({'activityID':req.body.data.activityID,'itemName':req.body.data.itemName,'_id':{$ne:req.body.data.itemID==''?null:req.body.data.itemID}},
@@ -351,6 +356,7 @@ router.post('/saveNewItem',function(req,res){
                     }
                 },
                 function(callback){//对于已经保存的商品，如果新的图片名和旧的不一致，那么从upload文件夹中删除旧文件
+
                     var oldFile;
                     if(req.body.data.itemID=='')
                     {
@@ -383,11 +389,16 @@ router.post('/saveNewItem',function(req,res){
                                        }
                                    });
                                }
+                               else
+                               {
+                                   return callback(null);
+                               }
                            }
                        }
                     });
                 },
                 function(callback){
+
                     if(req.body.data.itemID!='')//执行更新
                     {
                         ITEM.findByIdAndUpdate(req.body.data.itemID,
@@ -444,7 +455,7 @@ router.post('/saveNewItem',function(req,res){
                 }
                 else
                 {
-                    res.send({'succeed':true,'message':'物品保存成功!','_id':result._id});
+                    res.send({'succeed':true,'message':'物品保存成功!','_id':result._id,'item':result});
                 }
             }
         );
@@ -454,6 +465,28 @@ router.post('/saveNewItem',function(req,res){
         console.log(e);
     }
 
+});
+
+//更新商品enable标记
+router.post('/updateItemEnabled',function(req,res){
+    try
+    {
+        ITEM.findByIdAndUpdate({'_id':req.body.itemID},{'enabled':req.body.enabled,'lastUpdateDate':req.body.lastUpdateDate},
+            function(err){
+                if(err)
+                {
+                    res.send({'succeed':false,'message':err});
+                }
+                else
+                {
+                    res.send({'succeed':true,'message':'商品状态更新成功！'});
+                }
+            });
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
 });
 
 //保存模块
@@ -607,48 +640,38 @@ router.post('/getItemList',function(req,res){
 router.post('/saveItemInModuleList',function(req,res){
     try{
         async.waterfall([
-                function(callback){//检查itemsInModule是否存在此活动项下的数据数据
-                    ITEMSINMODULE.find({'activityID':req.body.activityID},function(err,docs){
-                        if(err)
-                        {
-                            return callback(err);
-                        }
-                        else
-                        {
-                            if(docs!=null)
-                            {
-                                if(docs.length!=0)
-                                {
-                                    return callback('活动项下已存在模块商品信息，不能重复创建！');
-                                }
-                            }
-                        }
-                        return callback(null);
-                    });
-                },
-                function(callback)//插入新的数据
+                function(callback)//先清除，再新增
                 {
-                    var docs=new Array();
-                    var list =req.body.list;
-                    for(var i in list)
-                    {
-                        var doc={'activityID':list[i].activityID,
-                                 'moduleID':list[i].moduleID,
-                                 'creationDate':new Date(),
-                                 'creatorID':req.user.username,
-                                 'enabled':true,
-                                 'itemList':list[i].itemList
-                        };
-                        docs.push(doc);
-                    }
-                    ITEMSINMODULE.create(docs,function(err){
+                    ITEMSINMODULE.remove({'activityID':req.body.activityID},function(err){
                         if(err)
                         {
-                            callback(err);
+                            return callback('清除原有数据时失败！');
                         }
                         else
                         {
-                            callback(null);
+                            var docs=new Array();
+                            var list =req.body.list;
+                            for(var i in list)
+                            {
+                                var doc={'activityID':list[i].activityID,
+                                    'moduleID':list[i].moduleID,
+                                    'creationDate':new Date(),
+                                    'creatorID':req.user.username,
+                                    'enabled':true,
+                                    'itemList':list[i].itemList
+                                };
+                                docs.push(doc);
+                            }
+                            ITEMSINMODULE.create(docs,function(err){
+                                if(err)
+                                {
+                                    callback(err);
+                                }
+                                else
+                                {
+                                    callback(null);
+                                }
+                            });
                         }
                     });
                 }
@@ -710,6 +733,20 @@ router.post('/getActivityInfo',function(req,res){
 
             }
         });
+});
+
+//获取模块中的商品信息
+router.post('/getItemsInModule',function(req,res){
+    ITEMSINMODULE.find({'activityID':req.body.activityID},function(err,docs){
+        if(err)
+        {
+            res.send({'succeed':false,'message':'获取模块中商品列表时失败，原因：'+err});
+        }
+        else
+        {
+            res.send({'succeed':true,'message':'获取模块中商品列表成功！','list':docs});
+        }
+    });
 });
 
 function SetModel(list)
