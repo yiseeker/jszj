@@ -9,7 +9,7 @@ var userSchema=mongoose.Schema({username:String,password:String,email:String,mob
 var APP_USER=mongoose.model('app_users',userSchema,'app_users');
 
 //定义App_CommercialActivity
-var com_activitySchema=mongoose.Schema({creatorID:String,activityName:String,activityType:String,creationDate:Date,lastUpdateDate:Date,enabled:Boolean,activityDescription:String,activityContact:String,activityAdore:Number,activityDisagree:Number,attachment1:String,attachment2:String,attachment3:String,attachment4:String,attachment5:String,attachment6:String});
+var com_activitySchema=mongoose.Schema({creatorID:String,activityName:String,activityType:String,creationDate:Date,lastUpdateDate:Date,enabled:Boolean,activityDescription:String,activityContact:String,activityFavour:Number,activityDisagree:Number,attachment1:String,attachment2:String,attachment3:String,attachment4:String,attachment5:String,attachment6:String});
 var COM_ACTIVITY=mongoose.model('COM_Activity',com_activitySchema,'COM_Activity');
 
 

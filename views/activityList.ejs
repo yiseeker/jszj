@@ -1,0 +1,83 @@
+<br/>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <blockquote>
+                <p>
+                    商业活动包含了本社区所有的餐饮、超市等从事商业活动的实体店.
+                </p>
+                <small>请点击列表项来查看您<cite>感兴趣的</cite>。</small>
+            </blockquote>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" id="list">
+
+    </div>
+</div>
+
+
+<script>
+    var _activityList=new Array();
+
+    $.post('/getActivityByType',
+            {'type':getQueryStringByName('type')},
+            function(data){
+                if(data.succeed)
+                {
+                    _activityList=data.list;
+                    add();
+                }
+                else
+                {
+                    alert(data.message);
+                }
+            });
+
+    //创建活动的列表
+    function add()
+    {
+        if(_activityList==null)
+        {
+            return;
+        }
+        var container=document.getElementById('list');
+        for(var i in _activityList)
+        {
+            var thumbnail=document.createElement('div');
+            thumbnail.setAttribute('class','thumbnail col-lg-3 col-md-3 col-sm-3 col-xs-12');
+
+            var img=document.createElement('img');
+            img.setAttribute('src','/resource/'+_activityList[i].attachment1);//以第一幅图片作为缩略图
+
+            var div=document.createElement('div');
+            div.setAttribute('class','caption');
+            thumbnail.appendChild(img);
+            thumbnail.appendChild(div);
+
+            var h3=document.createElement('h3');
+            h3.innerHTML=_activityList[i].activityName;
+
+            var p1=document.createElement('p');
+            p1.innerHTML=_activityList[i].activityDescription;
+
+            var p2=document.createElement('p');
+            div.appendChild(h3);
+            div.appendChild(p1);
+            div.appendChild(p2);
+
+            var button2=document.createElement('a');
+            button2.setAttribute('class','btn');
+            button2.setAttribute('onclick',"go('/showActivity?actid="+_activityList[i]._id+"')");
+            button2.innerHTML='<i class="fa fa-eye"></i>  查看';
+
+            p2.appendChild(button2);
+
+            container.appendChild(thumbnail);
+        }
+    }
+
+</script>

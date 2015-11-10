@@ -49,6 +49,12 @@ router.get('/editActivity',function(req,res){
 });
 
 
+
+//显示活动
+router.get('/showActivity',function(req,res){
+    res.render('users/showActivity',{'layout':'LAYOUT.ejs'});
+});
+
 //获取用户的活动列表
 router.post('/getActivityList',function(req,res){
     ACTIVITY.find({'creatorID':req.user.username},
@@ -70,6 +76,8 @@ router.post('/getActivityList',function(req,res){
             }
         });
 });
+
+
 
 
 function SetModel(list)

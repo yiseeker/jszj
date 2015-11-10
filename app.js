@@ -13,10 +13,10 @@ var models=require('./dbmodels/models');
 var bcrypt=require('bcrypt-nodejs');
 var USER=models.getModel('APP_USER');
 
-var routes = require('./routes/index');
+var index = require('./routes/index');index.SetModel(models.getAllModel());
 var news = require('./routes/news');
 var recommend = require('./routes/recommend');
-var hot = require('./routes/activity');
+
 var error = require('./routes/error');
 var users = require('./routes/users');users.SetModel(models.getAllModel());
 var upload = require('./routes/upload');
@@ -64,10 +64,10 @@ app.all('*',function(req,res,next){
 });
 
 
-app.use('/', routes);
+app.use('/', index);
 app.use('/news', news);
 app.use('/recommend', recommend);
-app.use('/activity', hot);
+
 app.use('/error', error);
 app.use('/register', register);
 app.use('/users',users);
