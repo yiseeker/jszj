@@ -712,7 +712,7 @@ router.post('/deleteItemsInModule',function(req,res){
     }
 });
 
-//获取活动名称
+//获取活动信息
 router.post('/getActivityInfo',function(req,res){
     ACTIVITY.findOne({'_id':req.body.activityID},
         function(err,doc){

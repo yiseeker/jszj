@@ -71,7 +71,7 @@
 
             var button2=document.createElement('a');
             button2.setAttribute('class','btn');
-            button2.setAttribute('onclick',"go('/showActivity?actid="+_activityList[i]._id+"')");
+            button2.setAttribute('onclick',"go('/showActivity?type="+getQueryStringByName('type')+"&actid="+_activityList[i]._id+"')");
             button2.innerHTML='<i class="fa fa-eye"></i>  查看';
 
             p2.appendChild(button2);
