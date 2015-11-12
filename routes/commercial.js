@@ -200,10 +200,20 @@ router.post('/updateActivity',function(req,res){
             {
                 if(req.body.data.pic1!='')
                 {
-                    fs.rename(__dirname.replace(/routes/,'temp/')+req.body.data.pic1,__dirname.replace(/routes/,'upload/')+req.body.data.pic1,function(err){
-                        if(err)
+                    //判断文件是否存在与temp目录中
+                    fs.exists(__dirname.replace(/routes/,'temp/')+req.body.data.pic1,function(exists){
+                        if(exists)
                         {
-                            return callback(err);
+                            fs.rename(__dirname.replace(/routes/,'temp/')+req.body.data.pic1,__dirname.replace(/routes/,'upload/')+req.body.data.pic1,function(err){
+                                if(err)
+                                {
+                                    return callback(err);
+                                }
+                                else
+                                {
+                                    return callback(null);
+                                }
+                            });
                         }
                         else
                         {
@@ -220,10 +230,19 @@ router.post('/updateActivity',function(req,res){
             {
                 if(req.body.data.pic2!='')
                 {
-                    fs.rename(__dirname.replace(/routes/,'temp/')+req.body.data.pic2,__dirname.replace(/routes/,'upload/')+req.body.data.pic2,function(err){
-                        if(err)
+                    fs.exists(__dirname.replace(/routes/,'temp/')+req.body.data.pic2,function(exists){
+                        if(exists)
                         {
-                            return callback(err);
+                            fs.rename(__dirname.replace(/routes/,'temp/')+req.body.data.pic2,__dirname.replace(/routes/,'upload/')+req.body.data.pic2,function(err){
+                                if(err)
+                                {
+                                    return callback(err);
+                                }
+                                else
+                                {
+                                    return callback(null);
+                                }
+                            });
                         }
                         else
                         {
@@ -240,10 +259,19 @@ router.post('/updateActivity',function(req,res){
             {
                 if(req.body.data.pic3!='')
                 {
-                    fs.rename(__dirname.replace(/routes/,'temp/')+req.body.data.pic3,__dirname.replace(/routes/,'upload/')+req.body.data.pic3,function(err){
-                        if(err)
+                    fs.exists(__dirname.replace(/routes/,'temp/')+req.body.data.pic3,function(exists){
+                        if(exists)
                         {
-                            return callback(err);
+                            fs.rename(__dirname.replace(/routes/,'temp/')+req.body.data.pic3,__dirname.replace(/routes/,'upload/')+req.body.data.pic3,function(err){
+                                if(err)
+                                {
+                                    return callback(err);
+                                }
+                                else
+                                {
+                                    return callback(null);
+                                }
+                            });
                         }
                         else
                         {
@@ -274,7 +302,7 @@ router.post('/updateActivity',function(req,res){
                     function(err){
                         if(err)
                         {
-                            return callback(err);
+                            return callback('更新活动时出错！');
                         }
                         else
                         {
@@ -286,7 +314,7 @@ router.post('/updateActivity',function(req,res){
     function(err,result){
         if(err)
         {
-            res.send({'succeed':false,'message':'活动更新失败,原因:'+err});
+            res.send({'succeed':false,'message':''+err});
         }
         else
         {
