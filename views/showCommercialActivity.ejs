@@ -1,3 +1,59 @@
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    商品详情
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <br/>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <img width="100%" src="#" alt="" id="itemImage">
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label id="itemName" ></label>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label id="itemDesc" ></label>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label id="priceInfo"></label>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <button class="button button-primary button-small">购物车</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    返回
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
@@ -270,6 +326,34 @@
                     module.appendChild(item);
             }
         }
+    }
+
+    //查看商品明细信息
+    function viewDetail(id)
+    {
+        var item=getItemById(id);
+        $('#itemImage').attr('src','/resource/'+item.attachment1);
+        $('#itemName').html('名称：'+item.itemName);
+        $('#itemDesc').html('描述：'+item.itemDescription);
+        $('#priceInfo').html('￥ '+item.unitPrice+' / '+item.primaryUOM);
+
+        $('#myModal').modal('show');
+    }
+
+    //根据id获取item信息
+    function getItemById(itemID)
+    {
+        for(var i in _itemsInModule)
+        {
+            for(var j in _itemsInModule[i].itemList)
+            {
+                if(_itemsInModule[i].itemList[j]._id==itemID)
+                {
+                    return _itemsInModule[i].itemList[j];
+                }
+            }
+        }
+        return null;
     }
 
 </script>
