@@ -38,7 +38,10 @@ router.get('/showActivity', function(req, res) {
   }
 });
 
-
+/* 搜索界面 */
+router.get('/search', function(req, res) {
+  res.render('search',{'layout':'LAYOUT.ejs'});
+});
 
 
 

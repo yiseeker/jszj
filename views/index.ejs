@@ -22,7 +22,7 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
             <div class="input-group text-center">
-                <input type="text" class="form-control input-lg" placeholder="搜索任意你感兴趣的..." />
+                <input id="keyWords" type="text" class="form-control input-lg" placeholder="搜索任意你感兴趣的..." onkeypress="search(event)" />
                 <span class="input-group-addon"><b class="fa fa-search"></b></span>
             </div>
         </div>
@@ -99,19 +99,38 @@
         </div>
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
             <div class="thumbnail">
-                <img alt="Bootstrap Thumbnail Third" src="/images/thumbnail3.jpg" />
+                <img alt="Bootstrap Thumbnail Third" src="/images/thumbnail4.jpg" />
                 <div class="caption">
                     <h3>
-                        <b>慈善</b>
+                        <b>娱乐</b>
                     </h3>
                     <p>
-                        秦淮河风光带一日游
+                        游戏娱乐
                     </p>
                     <p>
-                        <a class="button button-caution" href="#">便民</a>
+                        <a class="button button-caution" href="#">查看</a>
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function search(event)
+    {
+        if(event.keyCode==13)
+        {
+            var keyWords=$('#keyWords').val();
+            if(keyWords=='')
+            {
+                return;
+            }
+            else
+            {
+                go('/search?keywords='+keyWords);
+            }
+        }
+    }
+
+</script>

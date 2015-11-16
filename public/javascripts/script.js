@@ -87,8 +87,7 @@ function getQueryStringByName(name){
         return "";
 
     }
-
-    return result[1];
+    return decodeURI(result[1]);
 
 }
 
