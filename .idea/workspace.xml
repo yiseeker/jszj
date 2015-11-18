@@ -31,29 +31,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="showCommercialActivity.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/showCommercialActivity.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.666667">
+              <caret line="329" column="0" selection-start-line="329" selection-start-column="0" selection-end-line="339" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.5959596">
+              <caret line="226" column="37" selection-start-line="226" selection-start-column="37" selection-end-line="226" selection-end-column="37" />
               <folding>
-                <element signature="e#1242#1515#0" expanded="false" />
-                <element signature="e#1576#2010#0" expanded="false" />
-                <element signature="e#2069#2743#0" expanded="false" />
-                <element signature="e#2809#3078#0" expanded="false" />
+                <element signature="e#3494#3767#0" expanded="false" />
+                <element signature="e#3828#4262#0" expanded="false" />
+                <element signature="e#4321#4995#0" expanded="false" />
+                <element signature="e#5061#5330#0" expanded="false" />
                 <element signature="n#!!block;n#SetModel#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.ejs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="search.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/search.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39583334">
-              <caret line="87" column="41" selection-start-line="87" selection-start-column="41" selection-end-line="87" selection-end-column="41" />
+            <state vertical-scroll-proportion="-20.666666">
+              <caret line="276" column="39" selection-start-line="276" selection-start-column="39" selection-end-line="276" selection-end-column="39" />
               <folding>
-                <element signature="n#div#7;n#div#0;n#div#2;n#!!top" expanded="false" />
+                <element signature="e#3980#4059#0#HTML" expanded="false" />
+                <element signature="e#8454#8602#0#HTML" expanded="false" />
+                <element signature="e#8632#8811#0#HTML" expanded="false" />
+                <element signature="e#9066#9246#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -104,9 +117,7 @@
         <option value="$PROJECT_DIR$/views/commercial/createItem.ejs" />
         <option value="$PROJECT_DIR$/views/commercial/enditModule.ejs" />
         <option value="$PROJECT_DIR$/views/commercial/itemsInModule.ejs" />
-        <option value="$PROJECT_DIR$/views/test.ejs" />
         <option value="$PROJECT_DIR$/views/commercial/editModule.ejs" />
-        <option value="$PROJECT_DIR$/views/commercial/editActivity.ejs" />
         <option value="$PROJECT_DIR$/views/commercial/editItemsInModule.ejs" />
         <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/dbmodels/models.js" />
@@ -119,11 +130,13 @@
         <option value="$PROJECT_DIR$/views/users/myActivity.ejs" />
         <option value="$PROJECT_DIR$/routes/commercial.js" />
         <option value="$PROJECT_DIR$/views/commercial/editItem.ejs" />
-        <option value="$PROJECT_DIR$/views/showCommercialActivity.ejs" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/views/commercial/editActivity.ejs" />
+        <option value="$PROJECT_DIR$/views/test.ejs" />
         <option value="$PROJECT_DIR$/public/javascripts/script.js" />
+        <option value="$PROJECT_DIR$/views/showCommercialActivity.ejs" />
         <option value="$PROJECT_DIR$/views/search.ejs" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
   </component>
@@ -163,6 +176,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -251,32 +266,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jszj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jszj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="dbmodels" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -520,7 +515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47916666">
           <caret line="23" column="73" selection-start-line="23" selection-start-column="73" selection-end-line="23" selection-end-column="73" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -563,7 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="151" column="57" selection-start-line="151" selection-start-column="57" selection-end-line="151" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -592,7 +585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47916666">
           <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -604,18 +596,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/test.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16666667">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/commercial/editModule.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39583334">
           <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -631,15 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-26.666666">
           <caret line="125" column="9" selection-start-line="79" selection-start-column="8" selection-end-line="125" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/commercial/createItem.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.296296">
-          <caret line="144" column="4" selection-start-line="144" selection-start-column="4" selection-end-line="204" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -647,7 +622,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3587963">
           <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -655,30 +629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.46875">
           <caret line="73" column="97" selection-start-line="73" selection-start-column="97" selection-end-line="73" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.3030303">
-          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dbmodels/models.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="157" selection-start-line="16" selection-start-column="142" selection-end-line="16" selection-end-column="157" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/commercial/editActivity.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3576389">
-          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="157" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -686,11 +636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-          <folding>
-            <element signature="e#222#312#0" expanded="false" />
-            <element signature="e#579#645#0" expanded="false" />
-            <element signature="e#693#1184#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -698,29 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.666667">
           <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="20" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-          <folding>
-            <element signature="e#1242#1515#0" expanded="false" />
-            <element signature="e#1576#2010#0" expanded="false" />
-            <element signature="e#2069#2743#0" expanded="false" />
-            <element signature="e#2809#3078#0" expanded="false" />
-            <element signature="n#!!block;n#SetModel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/showCommercialActivity.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30324075">
-          <caret line="258" column="78" selection-start-line="258" selection-start-column="49" selection-end-line="258" selection-end-column="78" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -728,7 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9895833">
           <caret line="246" column="28" selection-start-line="246" selection-start-column="28" selection-end-line="246" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -736,14 +657,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.11111111">
           <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/commercial/commercialFinished.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/commercial.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="203" column="47" selection-start-line="203" selection-start-column="40" selection-end-line="203" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.02020202">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="28" />
           <folding>
             <element signature="e#7958#8319#0" expanded="false" />
             <element signature="e#9096#9457#0" expanded="false" />
@@ -765,27 +699,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascripts/script.js">
+    <entry file="file://$PROJECT_DIR$/views/test.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5252525">
-          <caret line="89" column="31" selection-start-line="89" selection-start-column="31" selection-end-line="89" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/commercial/commercialFinished.ejs">
+    <entry file="file://$PROJECT_DIR$/views/commercial/editActivity.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5">
-          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="302" column="28" selection-start-line="302" selection-start-column="28" selection-end-line="302" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/commercial/editItem.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24305555">
+        <state vertical-scroll-proportion="0.8946759">
           <caret line="197" column="55" selection-start-line="197" selection-start-column="26" selection-end-line="197" selection-end-column="55" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5959596">
+          <caret line="120" column="14" selection-start-line="120" selection-start-column="14" selection-end-line="120" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbmodels/models.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11111111">
+          <caret line="11" column="89" selection-start-line="11" selection-start-column="77" selection-end-line="11" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/commercial/createItem.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.050925925">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#1;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -797,12 +757,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/showCommercialActivity.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.666667">
+          <caret line="329" column="0" selection-start-line="329" selection-start-column="0" selection-end-line="339" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/search.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39583334">
-          <caret line="87" column="41" selection-start-line="87" selection-start-column="41" selection-end-line="87" selection-end-column="41" />
+        <state vertical-scroll-proportion="-20.666666">
+          <caret line="276" column="39" selection-start-line="276" selection-start-column="39" selection-end-line="276" selection-end-column="39" />
           <folding>
-            <element signature="n#div#7;n#div#0;n#div#2;n#!!top" expanded="false" />
+            <element signature="e#3980#4059#0#HTML" expanded="false" />
+            <element signature="e#8454#8602#0#HTML" expanded="false" />
+            <element signature="e#8632#8811#0#HTML" expanded="false" />
+            <element signature="e#9066#9246#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5959596">
+          <caret line="226" column="37" selection-start-line="226" selection-start-column="37" selection-end-line="226" selection-end-column="37" />
+          <folding>
+            <element signature="e#3494#3767#0" expanded="false" />
+            <element signature="e#3828#4262#0" expanded="false" />
+            <element signature="e#4321#4995#0" expanded="false" />
+            <element signature="e#5061#5330#0" expanded="false" />
+            <element signature="n#!!block;n#SetModel#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -1,3 +1,55 @@
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    商品详情
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <br/>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <img width="100%" src="#" alt="" id="itemImage">
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label id="itemName" ></label>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label id="itemDesc" ></label>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label id="priceInfo"></label>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <button class="button button-primary button-small">购物车</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    返回
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <br/>
 <br/>
 <div class="container-fluid">
@@ -24,62 +76,14 @@
 <br/>
 <div class="container-fluid">
     <div class="row" id="_list">
-        <div class="col-md-12">
+
+        <!--<div class="col-md-12">
             <blockquote>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
                 </p> <small>Someone famous <cite>Source Title</cite></small>
             </blockquote>
-        </div>
-        <div class="col-md-12">
-            <blockquote>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                </p> <small>Someone famous <cite>Source Title</cite></small>
-            </blockquote>
-        </div>
-        <div class="col-md-12">
-            <blockquote>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                </p> <small>Someone famous <cite>Source Title</cite></small>
-            </blockquote>
-        </div>
-        <div class="col-md-12">
-            <blockquote>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                </p> <small>Someone famous <cite>Source Title</cite></small>
-            </blockquote>
-        </div>
-        <div class="col-md-12">
-            <blockquote>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                </p> <small>Someone famous <cite>Source Title</cite></small>
-            </blockquote>
-        </div>
-        <div class="col-md-12">
-            <blockquote>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                </p> <small>Someone famous <cite>Source Title</cite></small>
-            </blockquote>
-        </div>
-        <div class="col-md-12">
-            <blockquote>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                </p> <small>Someone famous <cite>Source Title</cite></small>
-            </blockquote>
-        </div>
-        <div class="col-md-12">
-            <blockquote>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                </p> <small>Someone famous <cite>Source Title</cite></small>
-            </blockquote>
-        </div>
+        </div>-->
     </div>
 </div>
 <br/>
@@ -88,25 +92,19 @@
         <div class="col-md-12 text-center">
             <ul class="pagination">
                 <li>
-                    <a href="#">Prev</a>
+                    <a href="#" onclick="first()"><<</a>
                 </li>
                 <li>
-                    <a href="#">1</a>
+                    <a href="#" onclick="previous()"><</a>
                 </li>
                 <li>
-                    <a href="#">2</a>
+                    <a href="#" id="_indicator">1/10</a>
                 </li>
                 <li>
-                    <a href="#">3</a>
+                    <a href="#" onclick="next()">></a>
                 </li>
                 <li>
-                    <a href="#">4</a>
-                </li>
-                <li>
-                    <a href="#">5</a>
-                </li>
-                <li>
-                    <a href="#">Next</a>
+                    <a href="#" onclick="last()">>></a>
                 </li>
             </ul>
         </div>
@@ -117,13 +115,230 @@
 
 
 <script>
+
+    var _searchResult=new Array();
+    var _currentPage=0;
+
     //初始化
     $('#keyWords').val(getQueryStringByName('keywords')==''?'':getQueryStringByName('keywords'));
+    if($('#keyWords').val()!='')
+    {
+        var event=new Object();event.keyCode=13;
+        search(event);
+    }
 
     //执行检索
-    function search()
+    function search(e)
     {
+        if(e.keyCode!=13)
+        {
+            return;
+        }
+
+        if($('#keyWords').val()=='')
+        {
+            return;
+        }
+
+        $.post('/search',{'keywords':$('#keyWords').val()},
+                function(data){
+                    if(data.succeed)
+                    {
+                        _searchResult=data.list;
+                        if(_searchResult.length==0)
+                        {
+                            clearPage();
+                            _currentPage=0;
+                            setIndicator();
+                            return;
+                        }
+                        else
+                        {
+                            _currentPage=1;
+                            showSearchResult(_currentPage);
+                        }
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
+
 
     }
 
+    function clearPage()
+    {
+        var list=document.getElementById('_list');
+        list.innerHTML='';
+    }
+
+    //显示搜索结果
+    function showSearchResult(pageIndex)
+    {
+        clearPage();
+        //分页，每页显示10个搜索结果
+        var beginIndex=(pageIndex-1)*10+1;
+        var endIndex=beginIndex+9;
+
+        for(var i in _searchResult)
+        {
+
+            if(_searchResult[i].index>=beginIndex&&_searchResult[i].index<=endIndex)
+            {
+                addListItem(_searchResult[i]);
+            }
+        }
+        setIndicator();
+    }
+
+    function addListItem(item)
+    {
+        var list=document.getElementById('_list');
+
+        var div=document.createElement('div');
+        div.setAttribute('class','col-lg-12 col-md-12 col-sm-12 col-xs-12');
+
+        var blockquote=document.createElement('blockquote');
+        var p=document.createElement('p');
+        var a=document.createElement('a');
+        a.setAttribute('href','#');
+        a.setAttribute('onclick','showDetail("'+item.id+'","'+item.type+'")');
+        a.innerHTML=item.name;
+        p.innerHTML='['+resultType(item.type)+'] ';
+        p.appendChild(a);
+
+        var small=document.createElement('small');
+
+        small.innerHTML="描述："+item.description;
+        var cite =document.createElement('cite');
+        cite.innerHTML='  创建于:'+new Date(item.creation_date).format('yyyy-MM-dd');
+        small.appendChild(cite);
+
+        blockquote.appendChild(p);
+        blockquote.appendChild(small);
+
+        div.appendChild(blockquote);
+
+        list.appendChild(div);
+
+    }
+
+    function resultType(code)
+    {
+        switch(code){
+            case 'ITEM':
+                return '商品';
+                break;
+            case 'ACTIVITY':
+                return '活动';
+                break;
+            default:
+                return '';
+                break;
+
+        };
+    }
+
+    function showDetail(id,type)
+    {
+        switch(type)
+        {
+            case 'ITEM':
+                showItem(id);
+                break;
+            case 'ACTIVITY':
+                $.post('/getActivityInfo',{'activityID':id},
+                        function(data){
+                            if(data.succeed)
+                            {
+                                go('/showActivity?type='+data.activity.activityType+'&actid='+id);
+                            }
+                            else
+                            {
+                                alert(data.message);
+                            }
+                        });
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
+    function showItem(itemID)
+    {
+        var item;
+        $.post('/getItemInfo',{'itemID':itemID},
+                function(data){
+                    if(data.succeed)
+                    {
+                        item=data.item;
+                        $('#itemImage').attr('src','/resource/'+item.attachment1);
+                        $('#itemName').html('名称：'+item.itemName);
+                        $('#itemDesc').html('描述：'+item.itemDescription);
+                        $('#priceInfo').html('￥ '+item.unitPrice+' / '+item.primaryUOM);
+                        $('#myModal').modal('show');
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
+    }
+
+
+    function first()
+    {
+        if(_searchResult.length==0)
+        {
+            return;
+        }
+        _currentPage=1;
+        showSearchResult(_currentPage);
+
+    }
+
+    function previous()
+    {
+        if(_currentPage>1)
+        {
+            _currentPage--;
+            showSearchResult(_currentPage);
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    function next()
+    {
+        if(_currentPage<Math.ceil(_searchResult.length/10))
+        {
+            _currentPage++;
+            showSearchResult(_currentPage);
+        }else
+        {
+            return;
+        }
+    }
+
+    function last()
+    {
+        if(_searchResult.length==0)
+        {
+            return;
+        }
+        _currentPage=Math.ceil(_searchResult.length/10);
+        showSearchResult(_currentPage);
+    }
+
+    function setIndicator()
+    {
+        var max=_searchResult.length==0?0:Math.ceil(_searchResult.length/10);
+        var indicator=document.getElementById('_indicator');
+        indicator.innerHTML=_currentPage+'/'+max;
+    }
 </script>

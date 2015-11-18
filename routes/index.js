@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var async =require('async');
 var ACTIVITY;//This is mongodb model
 var ITEM;//This is mongodb model
 var MODULE;//This is mongodb model
@@ -26,7 +27,7 @@ router.get('/activityList', function(req, res) {
   res.render('activityList',{'layout':'LAYOUT.ejs'});
 });
 
-/* 显示活动 */
+/* 显示活动 利用type和activityid */
 router.get('/showActivity', function(req, res) {
   switch(req.query.type)
   {
@@ -38,9 +39,100 @@ router.get('/showActivity', function(req, res) {
   }
 });
 
-/* 搜索界面 */
+/* 加载搜索界面 */
 router.get('/search', function(req, res) {
   res.render('search',{'layout':'LAYOUT.ejs'});
+});
+
+/* 执行搜索 */
+router.post('/search',function(req,res){
+  var result=new Array();
+  var keywords=req.body.keywords.split(' ');
+  var index=1;
+
+  async.waterfall([
+    //检索ACTIVITY
+    function(callback){
+      var keys=new Array();
+      for(var i in keywords)
+      {
+        var regexp=new RegExp(keywords[i],"i");
+        keys.push({activityName:regexp});
+        keys.push({activityDescription:regexp});
+      }
+      ACTIVITY.find({$or:keys,'enabled':true},function(err,docs){
+        if(err)
+        {
+          return callback(err);
+        }
+        else
+        {
+          for(var j in docs)
+          {
+            result.push(
+                {
+                  'index':index,
+                  'name':docs[j].activityName,
+                  'type':'ACTIVITY',
+                  'id':docs[j]._id,
+                  'activity_ref_id':null,
+                  'description':docs[j].activityDescription,
+                  'creation_date':docs[j].creationDate
+                }
+            );
+            index++;
+          }
+          return callback(null);
+        }
+      });
+    },
+    //检索商品
+    function(callback){
+      var keys=new Array();
+      for(var i in keywords)
+      {
+        var regexp=new RegExp(keywords[i],"i");
+        keys.push({itemName:regexp});
+        keys.push({itemDescription:regexp});
+      }
+      ITEM.find({$or:keys,'enabled':true},function(err,docs){
+        if(err)
+        {
+          return callback(err);
+        }
+        else
+        {
+          for(var j in docs)
+          {
+            result.push(
+                {
+                  'index':index,
+                  'name':docs[j].itemName,
+                  'type':'ITEM',
+                  'id':docs[j]._id,
+                  'activity_ref_id':docs[j].activityID,
+                  'description':docs[j].itemDescription,
+                  'creation_date':docs[j].creationDate
+                }
+            );
+            index++;
+          }
+          return callback(null);
+        }
+      });
+    }
+
+  ],function(err,doc){
+    if(err)
+    {
+      res.send({'succeed':false,'message':'检索时出错！'});
+    }
+    else
+    {
+      res.send({'succeed':true,'message':'检索成功！','list':result});
+    }
+  });
+
 });
 
 
@@ -51,9 +143,7 @@ router.get('/search', function(req, res) {
 
 
 
-
 /******************************post zone***********************************************/
-
 //按类型获取所有活动
 router.post('/getActivityByType',function(req,res){
     ACTIVITY.find({'activityType':req.body.type,'enabled':true},function(err,docs){
@@ -132,6 +222,27 @@ router.post('/getItemsInModule',function(req,res){
   });
 });
 
+//根据id获取商品信息
+router.post('/getItemInfo',function(req,res){
+  ITEM.findOne({'_id':req.body.itemID,'enabled':true},
+      function(err,doc){
+        if(err)
+        {
+          res.send({'succeed':false,'message':err});
+        }
+        else
+        {
+          if(doc==null)
+          {
+            res.send({'succeed':false,'message':'未能获取到物品信息！'});
+          }
+          else
+          {
+            res.send({'succeed':true,'message':'成功！','item':doc});
+          }
+        }
+      });
+});
 
 function SetModel(list)
 {

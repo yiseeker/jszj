@@ -284,8 +284,8 @@
             return;
         }
 
-        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,100}$');//验证活动描述是否汉字、字母或数字的组合，其他字符不允许
-        if(!exp.test(desc))
+        //var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,100}$');//验证活动描述是否汉字、字母或数字的组合，其他字符不允许
+        if(desc.length>100)
         {
             alert('请输入100个以内的字符作为活动描述，汉字、字母及数字的组合都可以!');
             return;
@@ -299,8 +299,8 @@
             return;
         }
 
-        var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,50}$');//验证活动描述是否汉字、字母或数字的组合，其他字符不允许
-        if(!exp.test(contact))
+        //var exp =new RegExp('^[a-zA-Z0-9\\u4E00-\\u9FA5]{1,50}$');//验证活动描述是否汉字、字母或数字的组合，其他字符不允许
+        if(contact.length>50)
         {
             alert('请输入50个以内的字符作为联系信息!');
             return;
