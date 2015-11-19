@@ -38,9 +38,11 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <button class="button button-primary button-small">购物车</button>
+                        <a class="button button-circle button-caution button-tiny" onclick="agreeItem()"><i class="fa fa-thumbs-up"></i></a>
+                        <a class="button button-circle button-royal button-tiny" onclick="disagreeItem()"><i class="fa fa-thumbs-down"></i></a>
                     </div>
                 </div>
-
+                <input type="hidden" id="modalItemId" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -55,10 +57,17 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
             <h2>
                 <b id="activityName"></b>
             </h2>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center" >
+            <a class="button button-circle button-caution" style="margin-top: 15px" onclick="agreeActivity()"><i class="fa fa-thumbs-up"></i></a>
+            <a class="button button-circle button-royal" style="margin-top: 15px" onclick="disagreeActivity()"><i class="fa fa-thumbs-down"></i></a>
         </div>
     </div>
 </div>
@@ -112,14 +121,14 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-                            参与度
+                            参与数
                             <br/>
                             <i class="fa fa-users" id="total"> </i>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
                             好评
                             <br/>
-                            <i class="fa fa-thumbs-up" id="favour"> </i>
+                            <i class="fa fa-thumbs-up" id="agree"> </i>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
                             差评
@@ -158,10 +167,6 @@
                     document.getElementById('activityName').innerHTML=data.activity.activityName;
                     document.getElementById('activityDesc').innerHTML=data.activity.activityDescription;
                     document.getElementById('contactInfo').innerHTML=data.activity.activityContact;
-
-                    document.getElementById('total').innerHTML=data.activity.activityFavour+data.activity.activityDisagree;
-                    document.getElementById('favour').innerHTML=data.activity.activityFavour;
-                    document.getElementById('disagree').innerHTML=data.activity.activityDisagree;
 
 
                     //设置宣传图
@@ -214,6 +219,9 @@
                     alert(data.message);
                 }
             });
+
+    //初始显示设置评价信息
+    setActivityAgreeAndComment();
 
     //根据moduleList在页面中创建模块
     function createModules()
@@ -335,7 +343,7 @@
         $('#itemName').html('名称：'+item.itemName);
         $('#itemDesc').html('描述：'+item.itemDescription);
         $('#priceInfo').html('￥ '+item.unitPrice+' / '+item.primaryUOM);
-
+        $('#modalItemId').val(id);
         $('#myModal').modal('show');
     }
 
@@ -353,6 +361,86 @@
             }
         }
         return null;
+    }
+
+    function agreeActivity()
+    {
+        $.post('/serviceAuth/agree',{'type':'ACTIVITY','id':getQueryStringByName('actid')},
+                function(data){
+                    if(data.succeed)
+                    {
+                        setActivityAgreeAndComment();
+                        alert(data.message);
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
+    }
+
+    function disagreeActivity()
+    {
+        $.post('/serviceAuth/disagree',{'type':'ACTIVITY','id':getQueryStringByName('actid')},
+                function(data){
+                    if(data.succeed)
+                    {
+                        setActivityAgreeAndComment();
+                        alert(data.message);
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
+    }
+
+    function agreeItem()
+    {
+        $.post('/serviceAuth/agree',{'type':'ITEM','id':$('#modalItemId').val()},
+                function(data){
+                    if(data.succeed)
+                    {
+                        alert(data.message);
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
+    }
+
+    function disagreeItem()
+    {
+        $.post('/serviceAuth/disagree',{'type':'ITEM','id':$('#modalItemId').val()},
+                function(data){
+                    if(data.succeed)
+                    {
+                        alert(data.message);
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
+    }
+
+    //设置好评及差评
+    function setActivityAgreeAndComment()
+    {
+        $.post('/serviceNonAuth/getActivityEvaluation',{'type':'ACTIVITY','id':getQueryStringByName('actid')},
+                function(data){
+                    if(data.succeed)
+                    {
+                        $('#total').html(data.total);
+                        $('#agree').html(data.agree);
+                        $('#disagree').html(data.disagree);
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
     }
 
 </script>

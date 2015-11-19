@@ -5,11 +5,11 @@ mongoose.connect('mongodb://localhost/jszj');
 var list=new Array();
 
 //定义app_users
-var userSchema=mongoose.Schema({username:String,password:String,email:String,mobile:String});
-var APP_USER=mongoose.model('app_users',userSchema,'app_users');
+var userSchema=mongoose.Schema({username:String,password:String,email:String,mobile:String,creationDate:Date,enabled:Boolean});
+var APP_USER=mongoose.model('APP_Users',userSchema,'APP_Users');
 
 //定义App_CommercialActivity
-var com_activitySchema=mongoose.Schema({creatorID:String,activityName:String,activityType:String,creationDate:Date,lastUpdateDate:Date,enabled:Boolean,activityDescription:String,activityContact:String,activityFavour:Number,activityDisagree:Number,attachment1:String,attachment2:String,attachment3:String,attachment4:String,attachment5:String,attachment6:String});
+var com_activitySchema=mongoose.Schema({creatorID:String,activityName:String,activityType:String,creationDate:Date,lastUpdateDate:Date,enabled:Boolean,activityDescription:String,activityContact:String,attachment1:String,attachment2:String,attachment3:String,attachment4:String,attachment5:String,attachment6:String});
 var COM_ACTIVITY=mongoose.model('COM_Activity',com_activitySchema,'COM_Activity');
 
 
@@ -25,12 +25,18 @@ var COM_MODULES=mongoose.model('COM_Modules',com_modulesSchema,'COM_Modules');
 var com_itemsinmoduleSchema=mongoose.Schema({activityID:String,moduleID:String,creatorID:String,creationDate:Date,lastUpdateDate:Date,enabled:Boolean,itemList:Array});
 var COM_ITEMSINMODULE=mongoose.model('COM_ItemsInModule',com_itemsinmoduleSchema,'COM_ItemsInModule');
 
+//定义评价系统
+var app_evaluationSchema=mongoose.Schema({ref_id:String,ref_type:String,creatorID:String,creationDate:Date,agree:String,comment:String});
+var APP_EVALUATION=mongoose.model('APP_Evaluation',app_evaluationSchema,'APP_Evaluation');
+
 
 list.push({modelName:'APP_USER',model:APP_USER});
 list.push({modelName:'COM_ACTIVITY',model:COM_ACTIVITY});
 list.push({modelName:'COM_ITEMS',model:COM_ITEMS});
 list.push({modelName:'COM_MODULES',model:COM_MODULES});
 list.push({modelName:'COM_ITEMSINMODULE',model:COM_ITEMSINMODULE});
+list.push({modelName:'APP_EVALUATION',model:APP_EVALUATION});
+
 
 function getModel(modelName)
 {

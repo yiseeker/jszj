@@ -12,37 +12,33 @@ var flash=require('connect-flash');
 var models=require('./dbmodels/models');
 var bcrypt=require('bcrypt-nodejs');
 var USER=models.getModel('APP_USER');
-
 var index = require('./routes/index');index.SetModel(models.getAllModel());
 var news = require('./routes/news');
 var recommend = require('./routes/recommend');
-
+var serviceAuth = require('./routes/serviceAuth');serviceAuth.SetModel(models.getAllModel());
+var serviceNonAuth = require('./routes/serviceNonAuth');serviceNonAuth.SetModel(models.getAllModel());
 var error = require('./routes/error');
 var users = require('./routes/users');users.SetModel(models.getAllModel());
 var upload = require('./routes/upload');
-var register = require('./routes/register');
+var register = require('./routes/register');register.SetModel(models.getAllModel());
 var commercial = require('./routes/commercial');commercial.SetModel(models.getAllModel());
-
-
 var app = express();
+
 app.listen(8000,function(){
     console.log('[Server Start] : Listening port 8000.');
 });
 
-
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use('/resource',express.static(path.join(__dirname, 'upload')));
+app.use('/tmp',express.static(path.join(__dirname, 'temp')));
 
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use('/resource',express.static(path.join(__dirname, 'upload')));
-app.use('/tmp',express.static(path.join(__dirname, 'temp')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 app.use(session({secret:'jszj',resave:true,saveUninitialized:true,cookie: { maxAge: 6000000 }}));
@@ -63,18 +59,16 @@ app.all('*',function(req,res,next){
     next();
 });
 
-
 app.use('/', index);
 app.use('/news', news);
 app.use('/recommend', recommend);
-
 app.use('/error', error);
 app.use('/register', register);
 app.use('/users',users);
 app.use('/upload',upload);
 app.use('/commercial',commercial);
-
-
+app.use('/serviceAuth',serviceAuth);
+app.use('/serviceNonAuth',serviceNonAuth);
 
 /************************************** User login **************************************************/
 passport.use(new localStrategy({
@@ -145,17 +139,12 @@ app.get('/test', function(req, res) {
     res.render('test',{'layout':'LAYOUT.ejs'});
 });
 
-
-
-
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
-
-/// error handlers
 
 // development error handler
 // will print stacktrace
