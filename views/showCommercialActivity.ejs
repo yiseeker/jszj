@@ -11,6 +11,17 @@
             </div>
             <div class="modal-body">
                 <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <i class="fa fa-users" id="totalItem"></i>&nbsp;&nbsp;
+                        <i class="fa fa-thumbs-up" id="agreeItem"> </i>&nbsp;&nbsp;
+                        <i class="fa fa-thumbs-down" id="disagreeItem"> </i>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <a class="button button-circle button-caution button-tiny" onclick="agreeItem()"><i class="fa fa-thumbs-up"></i></a>
+                        <a class="button button-circle button-royal button-tiny" onclick="disagreeItem()"><i class="fa fa-thumbs-down"></i></a>
+                    </div>
+                </div>
+                <div class="row">
                     <br/>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <img width="100%" src="#" alt="" id="itemImage">
@@ -38,8 +49,6 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <button class="button button-primary button-small">购物车</button>
-                        <a class="button button-circle button-caution button-tiny" onclick="agreeItem()"><i class="fa fa-thumbs-up"></i></a>
-                        <a class="button button-circle button-royal button-tiny" onclick="disagreeItem()"><i class="fa fa-thumbs-down"></i></a>
                     </div>
                 </div>
                 <input type="hidden" id="modalItemId" />
@@ -344,7 +353,21 @@
         $('#itemDesc').html('描述：'+item.itemDescription);
         $('#priceInfo').html('￥ '+item.unitPrice+' / '+item.primaryUOM);
         $('#modalItemId').val(id);
-        $('#myModal').modal('show');
+
+        $.post('/serviceNonAuth/getEvaluation',{'type':'ITEM','id':id},
+                function(data){
+                    if(data.succeed)
+                    {
+                        $('#totalItem').html(data.total);
+                        $('#agreeItem').html(data.agree);
+                        $('#disagreeItem').html(data.disagree);
+                        $('#myModal').modal('show');
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
     }
 
     //根据id获取item信息
@@ -401,6 +424,7 @@
                 function(data){
                     if(data.succeed)
                     {
+                        setItemAgreeAndComment();
                         alert(data.message);
                     }
                     else
@@ -416,6 +440,7 @@
                 function(data){
                     if(data.succeed)
                     {
+                        setItemAgreeAndComment();
                         alert(data.message);
                     }
                     else
@@ -425,16 +450,34 @@
                 });
     }
 
-    //设置好评及差评
+    //设置活动的好评及差评
     function setActivityAgreeAndComment()
     {
-        $.post('/serviceNonAuth/getActivityEvaluation',{'type':'ACTIVITY','id':getQueryStringByName('actid')},
+        $.post('/serviceNonAuth/getEvaluation',{'type':'ACTIVITY','id':getQueryStringByName('actid')},
                 function(data){
                     if(data.succeed)
                     {
                         $('#total').html(data.total);
                         $('#agree').html(data.agree);
                         $('#disagree').html(data.disagree);
+                    }
+                    else
+                    {
+                        alert(data.message);
+                    }
+                });
+    } 
+
+    //设置商品的好评及差评
+    function setItemAgreeAndComment()
+    {
+        $.post('/serviceNonAuth/getEvaluation',{'type':'ITEM','id':$('#modalItemId').val()},
+                function(data){
+                    if(data.succeed)
+                    {
+                        $('#totalItem').html(data.total);
+                        $('#agreeItem').html(data.agree);
+                        $('#disagreeItem').html(data.disagree);
                     }
                     else
                     {

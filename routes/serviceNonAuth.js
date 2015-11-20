@@ -11,7 +11,7 @@ var EVALUATION;//This is mongodb model
 
 
 //获取活动的总评价数，点赞数和点烂数
-router.post('/getActivityEvaluation',function(req,res){
+router.post('/getEvaluation',function(req,res){
     var agreeCount=0;
     var disagreeCount=0;
     async.waterfall([
@@ -69,8 +69,6 @@ router.post('/getActivityEvaluation',function(req,res){
             }
         });
 });
-
-//TODO获取商品的总评价数
 
 function SetModel(list)
 {
